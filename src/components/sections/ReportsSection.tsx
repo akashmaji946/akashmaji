@@ -11,6 +11,7 @@ interface ReportLink {
 
 interface Report {
   title: string;
+  course: string;
   authors: string;
   date: string;
   links: ReportLink[];
@@ -19,6 +20,7 @@ interface Report {
 const reports: Report[] = [
   {
     title: 'GPU Accelerated Scalar Field Reconstruction and Volume Rendering',
+    course: 'E0-271: Graphics And Visualization',
     authors: 'Utkarsh Sharma • Akash Maji',
     date: 'December 2025',
     links: [
@@ -29,6 +31,7 @@ const reports: Report[] = [
   },
   {
     title: 'Virtual Machine Image Diffing Tool',
+    course: 'E0-256: Computer Systems Security',
     authors: 'Akash Maji',
     date: 'November 2025',
     links: [
@@ -37,6 +40,7 @@ const reports: Report[] = [
   },
   {
     title: 'BASE: An ACID Alternative',
+    course: 'E0-209: Principles of Distributed Systems',
     authors: 'Akash Maji • Ikshita Pathak • Debanjan Saha',
     date: 'March 2025',
     links: [
@@ -45,6 +49,7 @@ const reports: Report[] = [
   },
   {
     title: 'GroupJoin: Implementing a Fused Operator',
+    course: 'E0-399: Research in Computer Systems',
     authors: 'Akash Maji',
     date: 'June 2025',
     links: [
@@ -54,6 +59,7 @@ const reports: Report[] = [
   },
   {
     title: 'AMUSJoin: Implementing a New Operator',
+    course: 'E0-261: Database Management Systems',
     authors: 'Akash Maji • Utkarsh Sharma',
     date: 'December 2024',
     links: [
@@ -63,6 +69,7 @@ const reports: Report[] = [
   },
   {
     title: 'CNN Memory Profiling and Optimisation',
+    course: 'E0-294: Systems for Machine Learning',
     authors: 'Akash Maji • Utkarsh Sharma • Suraj Reddy • Amandeep Nokhwal',
     date: 'April 2025',
     links: [
@@ -123,6 +130,7 @@ export default function ReportsSection() {
                 <h3 className="font-semibold group-hover:text-primary transition-colors">
                   {report.title}
                 </h3>
+                <p className="text-sm text-blue-400 mt-1">{report.course}</p>
                 <p className="text-sm text-muted-foreground mt-1">{report.authors}</p>
                 <p className="text-xs text-muted-foreground mt-1">{report.date}</p>
                 <div className="flex flex-wrap gap-2 mt-3">
@@ -134,7 +142,7 @@ export default function ReportsSection() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 hover:bg-orange-500/20 transition-colors"
                       >
                         <Icon className="h-3 w-3" />
                         {link.label}
