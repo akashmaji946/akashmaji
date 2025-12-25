@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Loader2, CheckCircle } from 'lucide-react';
+import { Send, Loader2, CheckCircle, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import emailjs from '@emailjs/browser';
 import qrCode from '@/assets/qrcode.png';
 import gmailLogo from '@/assets/gmail-logo.png';
@@ -253,16 +260,9 @@ export default function ContactSection() {
             className="space-y-6"
           >
 
-            {/* Connect with me + QR Code */}
+            {/* Connect with me */}
             <div className="glass rounded-xl p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold">Connect with me</h3>
-                <img 
-                  src={qrCode} 
-                  alt="Contact QR Code" 
-                  className="w-20 h-20 rounded-lg bg-white p-1" 
-                />
-              </div>
+              <h3 className="font-semibold mb-4">Connect with me</h3>
               <div className="flex flex-wrap gap-3">
                 {socialLinks.map((link, index) => (
                   <motion.a
@@ -289,20 +289,40 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Quote */}
+            {/* Book 1:1 Call */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="glass rounded-xl p-6 text-center"
+              className="glass rounded-xl p-6"
             >
-              <p className="text-lg italic text-muted-foreground font-hindi mb-2">
-                "संगच्छध्वं संवदध्वं"
+              <h3 className="font-semibold mb-3">Book a 1:1 Call</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Want to discuss something in detail? Schedule a personal call with me.
               </p>
-              <p className="text-sm text-muted-foreground">
-                "Let us move together, let us speak together"
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">— Rigveda</p>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="w-full bg-gradient hover:opacity-90 glow-sm">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Schedule Call
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="text-center">Scan to Book a Call</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col items-center py-6">
+                    <img 
+                      src={qrCode} 
+                      alt="Book a call QR Code" 
+                      className="w-48 h-48 rounded-lg bg-white p-2" 
+                    />
+                    <p className="text-sm text-muted-foreground mt-4 text-center">
+                      Scan this QR code to schedule a 1:1 call with Akash Maji
+                    </p>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </motion.div>
           </motion.div>
         </div>
