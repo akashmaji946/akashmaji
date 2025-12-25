@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ArrowDown, FileText, MessageCircle, Github } from 'lucide-react';
 import TypewriterText from '@/components/TypewriterText';
 import { Button } from '@/components/ui/button';
@@ -12,6 +13,57 @@ const roles = [
   'Incoming Hardware Engineer @ IBM Bangalore',
   'Database Systems Researcher @ DSL, CSA, SERC',
 ];
+
+// Floating Icon Component with tooltip
+function FloatingIcon({ item, index }: { 
+  item: { href: string; emoji: string; angle: number; label: string }; 
+  index: number 
+}) {
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+    setTimeout(() => setShowTooltip(false), 3000);
+  };
+
+  const r = 205;
+  const rad = (item.angle * Math.PI) / 180;
+  const x = Math.cos(rad) * r;
+  const y = Math.sin(rad) * r;
+
+  return (
+    <a
+      href={item.href}
+      className="absolute left-1/2 top-1/2 z-20"
+      style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
+      <div className="relative">
+        <AnimatePresence>
+          {showTooltip && (
+            <motion.div
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 5 }}
+              className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg bg-foreground text-background text-xs font-medium whitespace-nowrap shadow-lg z-30"
+            >
+              {item.label}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-foreground" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <motion.div
+          className="w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 2.8, repeat: Infinity, delay: index * 0.15 }}
+        >
+          <span className="text-lg md:text-xl">{item.emoji}</span>
+        </motion.div>
+      </div>
+    </a>
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -137,38 +189,17 @@ export default function HeroSection() {
               {/* Floating Section Icons - perfectly centered orbit */}
               {(
                 [
-                  { href: '#about', emoji: '👤', angle: 0 },
-                  { href: '#education', emoji: '🎓', angle: 45 },
-                  { href: '#experience', emoji: '💼', angle: 90 },
-                  { href: '#study', emoji: '📚', angle: 135 },
-                  { href: '#projects', emoji: '💻', angle: 180 },
-                  { href: '#reports', emoji: '📄', angle: 225 },
-                  { href: '#achievements', emoji: '🏆', angle: 270 },
-                  { href: '#contact', emoji: '📧', angle: 315 },
+                  { href: '#about', emoji: '👤', angle: 0, label: 'About' },
+                  { href: '#education', emoji: '🎓', angle: 45, label: 'Education' },
+                  { href: '#experience', emoji: '💼', angle: 90, label: 'Experience' },
+                  { href: '#study', emoji: '📚', angle: 135, label: 'Study' },
+                  { href: '#projects', emoji: '💻', angle: 180, label: 'Projects' },
+                  { href: '#reports', emoji: '📄', angle: 225, label: 'Reports' },
+                  { href: '#achievements', emoji: '🏆', angle: 270, label: 'Achievements' },
+                  { href: '#contact', emoji: '📧', angle: 315, label: 'Contact' },
                 ] as const
               ).map((item, index) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="absolute left-1/2 top-1/2 z-20"
-                  style={(() => {
-                    const r = 205;
-                    const rad = (item.angle * Math.PI) / 180;
-                    const x = Math.cos(rad) * r;
-                    const y = Math.sin(rad) * r;
-                    return {
-                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
-                    };
-                  })()}
-                >
-                  <motion.div
-                    className="w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                    animate={{ y: [0, -3, 0] }}
-                    transition={{ duration: 2.8, repeat: Infinity, delay: index * 0.15 }}
-                  >
-                    <span className="text-lg md:text-xl">{item.emoji}</span>
-                  </motion.div>
-                </a>
+                <FloatingIcon key={item.href} item={item} index={index} />
               ))}
             </div>
 
