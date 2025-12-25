@@ -20,6 +20,7 @@ import whatsappLogo from '@/assets/whatsapp-logo.png';
 import githubLogo from '@/assets/github-logo.png';
 import linkedinLogo from '@/assets/linkedin-logo.png';
 import twitterLogo from '@/assets/twitter-logo.png';
+import geetaImage from '@/assets/geeta.jpg';
 
 // Initialize EmailJS
 emailjs.init("59dg56bFBgGKAQAdD");
@@ -139,6 +140,83 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-20 md:py-32">
       <div className="container mx-auto px-6">
+        {/* Bhagavad Gita Quote Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-20"
+        >
+          <div className="max-w-4xl mx-auto glass rounded-2xl p-8 md:p-12 overflow-hidden relative">
+            {/* Decorative gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-orange-500/5 to-yellow-500/5 pointer-events-none" />
+            
+            <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
+              {/* Image */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="flex-shrink-0"
+              >
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 rounded-xl blur-sm opacity-50" />
+                  <img 
+                    src={geetaImage} 
+                    alt="Bhagavad Gita - Krishna and Arjuna" 
+                    className="relative w-32 h-40 md:w-40 md:h-52 object-cover object-center rounded-xl shadow-lg"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Quote Content */}
+              <div className="flex-1 text-center md:text-left">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  className="text-2xl md:text-3xl font-bold font-hindi text-gradient mb-3 leading-relaxed"
+                >
+                  कर्मण्येवाधिकारस्ते मा फलेषु कदाचन
+                </motion.p>
+                
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="text-sm md:text-base text-muted-foreground mb-4 font-medium tracking-wide"
+                >
+                  (Karmaṇy-evādhikāras te mā phaleṣu kadācana)
+                </motion.p>
+                
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  className="text-base md:text-lg text-foreground/80 mb-4 leading-relaxed"
+                >
+                  "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."
+                </motion.p>
+                
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="text-sm font-semibold text-primary tracking-wider uppercase"
+                >
+                  — Bhagavad Gita, Chapter 2, Verse 47
+                </motion.p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
