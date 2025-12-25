@@ -130,86 +130,37 @@ export default function HeroSection() {
                 />
               </motion.div>
 
-              {/* Floating Section Icons - 8 icons on N/NE/E/SE/S/SW/W/NW */}
-              {/* N - About (top center) */}
-              <motion.a
-                href="#about"
-                className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 0 }}
-              >
-                <span className="text-lg md:text-xl">👤</span>
-              </motion.a>
-              
-              {/* NE - Education (top right diagonal) */}
-              <motion.a
-                href="#education"
-                className="absolute right-[14.6%] top-[14.6%] -translate-x-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 0.18 }}
-              >
-                <span className="text-lg md:text-xl">🎓</span>
-              </motion.a>
-              
-              {/* E - Experience (right center) */}
-              <motion.a
-                href="#experience"
-                className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ x: [0, 3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 0.36 }}
-              >
-                <span className="text-lg md:text-xl">💼</span>
-              </motion.a>
-              
-              {/* SE - Study (bottom right diagonal) */}
-              <motion.a
-                href="#study"
-                className="absolute right-[14.6%] bottom-[14.6%] -translate-x-1/2 translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, 3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 0.54 }}
-              >
-                <span className="text-lg md:text-xl">📚</span>
-              </motion.a>
-              
-              {/* S - Projects (bottom center) */}
-              <motion.a
-                href="#projects"
-                className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, 3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 0.72 }}
-              >
-                <span className="text-lg md:text-xl">💻</span>
-              </motion.a>
-              
-              {/* SW - Reports (bottom left diagonal) */}
-              <motion.a
-                href="#reports"
-                className="absolute left-[14.6%] bottom-[14.6%] translate-x-1/2 translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, 3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 0.9 }}
-              >
-                <span className="text-lg md:text-xl">📄</span>
-              </motion.a>
-              
-              {/* W - Achievements (left center) */}
-              <motion.a
-                href="#achievements"
-                className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ x: [0, -3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 1.08 }}
-              >
-                <span className="text-lg md:text-xl">🏆</span>
-              </motion.a>
-              
-              {/* NW - Contact (top left diagonal) */}
-              <motion.a
-                href="#contact"
-                className="absolute left-[14.6%] top-[14.6%] translate-x-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 1.26 }}
-              >
-                <span className="text-lg md:text-xl">📧</span>
-              </motion.a>
+              {/* Floating Section Icons - perfectly centered orbit */}
+              {(
+                [
+                  { href: '#about', emoji: '👤', angle: 0 },
+                  { href: '#education', emoji: '🎓', angle: 45 },
+                  { href: '#experience', emoji: '💼', angle: 90 },
+                  { href: '#study', emoji: '📚', angle: 135 },
+                  { href: '#projects', emoji: '💻', angle: 180 },
+                  { href: '#reports', emoji: '📄', angle: 225 },
+                  { href: '#achievements', emoji: '🏆', angle: 270 },
+                  { href: '#contact', emoji: '📧', angle: 315 },
+                ] as const
+              ).map((item, index) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="absolute left-1/2 top-1/2 z-20"
+                  style={{
+                    transform: `translate(-50%, -50%) rotate(${item.angle}deg) translateY(-205px) rotate(-${item.angle}deg)`,
+                    transformOrigin: 'center',
+                  }}
+                >
+                  <motion.div
+                    className="w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                    animate={{ y: [0, -3, 0] }}
+                    transition={{ duration: 2.8, repeat: Infinity, delay: index * 0.15 }}
+                  >
+                    <span className="text-lg md:text-xl">{item.emoji}</span>
+                  </motion.div>
+                </a>
+              ))}
             </div>
           </motion.div>
         </div>
