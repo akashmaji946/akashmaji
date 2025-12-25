@@ -59,7 +59,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-muted-foreground mb-6 h-10"
+              className="text-2xl md:text-3xl font-mono font-bold text-yellow-500 mb-6 h-12"
             >
               <TypewriterText texts={roles} speed={80} />
             </motion.div>
