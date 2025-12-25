@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, ArrowDown, FileText } from 'lucide-react';
+import { MapPin, ArrowDown, FileText, MessageCircle, Github } from 'lucide-react';
 import TypewriterText from '@/components/TypewriterText';
 import { Button } from '@/components/ui/button';
 import profileImage from '@/assets/profile-image.jpg';
@@ -102,32 +102,6 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
-            >
-              <Button
-                size="lg"
-                className="bg-gradient hover:opacity-90 glow-sm"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Get in Touch
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="glass"
-                asChild
-              >
-                <a href="#projects">
-                  <FileText className="mr-2 h-4 w-4" />
-                  View Projects
-                </a>
-              </Button>
-            </motion.div>
           </motion.div>
 
           {/* Profile Image */}
@@ -135,7 +109,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-shrink-0"
+            className="flex-shrink-0 flex flex-col items-center"
           >
             <div className="relative w-96 h-96 md:w-[460px] md:h-[460px]">
               {/* Glow Effect */}
@@ -197,6 +171,45 @@ export default function HeroSection() {
                 </a>
               ))}
             </div>
+
+            {/* CTA Buttons - Below Profile */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="flex flex-wrap items-center justify-center gap-3 mt-6"
+            >
+              <Button
+                size="lg"
+                className="bg-gradient hover:opacity-90 glow-sm"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Get in Touch
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="glass"
+                asChild
+              >
+                <a href="#projects">
+                  <Github className="mr-2 h-4 w-4" />
+                  View Projects
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="glass"
+                asChild
+              >
+                <a href="/resume/Resume_Akash_Maji.pdf" target="_blank" rel="noopener noreferrer">
+                  <FileText className="mr-2 h-4 w-4" />
+                  See Resume
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
 
