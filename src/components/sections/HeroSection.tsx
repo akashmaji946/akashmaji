@@ -16,6 +16,20 @@ export default function HeroSection() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-20">
       <div className="container mx-auto px-6 py-20">
+        {/* Hero Name (centered across the screen) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center justify-center gap-2 md:gap-3 mb-10 text-center"
+        >
+          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">आकाश</span>
+          <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
+          <span className="text-3xl md:text-5xl font-bold text-gradient">Akash</span>
+          <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
+          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">আকাশ</span>
+        </motion.div>
+
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text Content */}
           <motion.div
@@ -24,20 +38,6 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="flex-1 text-center lg:text-left"
           >
-
-            {/* Name Display */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex items-center justify-center lg:justify-start gap-2 md:gap-3 mb-4"
-            >
-              <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">आकाश</span>
-              <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
-              <span className="text-3xl md:text-5xl font-bold text-gradient">Akash</span>
-              <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
-              <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">আকাশ</span>
-            </motion.div>
 
             {/* Welcome Text */}
             <motion.h2
