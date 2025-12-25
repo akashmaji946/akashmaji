@@ -82,23 +82,23 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex items-start gap-4 p-4 rounded-xl glass mb-8 max-w-xl"
+              className="flex items-start gap-5 border-l-4 border-primary pl-5 mb-8 max-w-xl"
             >
               <div className="flex-shrink-0">
                 <div className="relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 rounded-lg blur-sm opacity-60" />
+                  <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 rounded-lg blur-sm opacity-50" />
                   <img 
                     src={geetaImage} 
                     alt="Bhagavad Gita" 
-                    className="relative w-16 h-20 object-cover object-center rounded-lg"
+                    className="relative w-24 h-32 md:w-28 md:h-36 object-cover object-center rounded-lg shadow-lg"
                   />
                 </div>
               </div>
               <div className="flex-1">
-                <p className="font-hindi text-lg font-bold text-gradient leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
-                <p className="text-xs text-muted-foreground mt-1">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
-                <p className="text-sm text-foreground/80 mt-1">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
-                <p className="text-xs font-semibold text-primary mt-1">— Bhagavad Gita 2.47</p>
+                <p className="font-hindi text-xl md:text-2xl font-bold text-gradient leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
+                <p className="text-xs text-muted-foreground mt-2">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
+                <p className="text-sm md:text-base text-foreground/80 mt-2">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
+                <p className="text-sm font-semibold text-primary mt-2">— Bhagavad Gita 2.47</p>
               </div>
             </motion.div>
 
