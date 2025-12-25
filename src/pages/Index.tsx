@@ -8,6 +8,7 @@ import ExperienceSection from '@/components/sections/ExperienceSection';
 import StudySection from '@/components/sections/StudySection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import ReportsSection from '@/components/sections/ReportsSection';
+import GallerySection from '@/components/sections/GallerySection';
 import AchievementsSection from '@/components/sections/AchievementsSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Chatbot from '@/components/Chatbot';
@@ -29,6 +30,7 @@ export default function Index() {
         <StudySection />
         <ProjectsSection />
         <ReportsSection />
+        <GallerySection />
         <AchievementsSection />
         <ContactSection />
       </main>
