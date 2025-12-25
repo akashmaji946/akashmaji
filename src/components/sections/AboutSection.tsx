@@ -24,23 +24,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 md:py-32">
       <div className="container mx-auto px-6">
-        {/* Name Display Above About */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <span className="text-4xl md:text-6xl font-bold font-hindi text-gradient">आकाश</span>
-            <span className="text-3xl text-muted-foreground">•</span>
-            <span className="text-4xl md:text-6xl font-bold text-gradient">Akash</span>
-            <span className="text-3xl text-muted-foreground">•</span>
-            <span className="text-4xl md:text-6xl font-bold font-hindi text-gradient">আকাশ</span>
-          </div>
-        </motion.div>
-
+        
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

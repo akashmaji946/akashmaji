@@ -25,9 +25,23 @@ export default function HeroSection() {
             className="flex-1 text-center lg:text-left"
           >
 
+            {/* Name Display */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center justify-center lg:justify-start gap-2 md:gap-3 mb-4"
+            >
+              <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">आकाश</span>
+              <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
+              <span className="text-3xl md:text-5xl font-bold text-gradient">Akash</span>
+              <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
+              <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">আকাশ</span>
+            </motion.div>
+
             {/* Welcome Text */}
             <motion.h2
-              className="text-3xl md:text-5xl font-bold text-foreground mb-4"
+              className="text-2xl md:text-3xl font-semibold text-foreground mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
