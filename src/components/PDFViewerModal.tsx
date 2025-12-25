@@ -25,8 +25,8 @@ export default function PDFViewerModal({ isOpen, onClose, pdfUrl, title }: PDFVi
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-0 gap-0 bg-background/95 backdrop-blur-xl border-border/50">
-        <DialogHeader className="px-4 py-3 border-b border-border/50 flex flex-col items-center space-y-3">
+      <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-0 flex flex-col bg-background/95 backdrop-blur-xl border-border/50">
+        <DialogHeader className="px-4 py-3 border-b border-border/50 flex flex-col items-center space-y-3 shrink-0">
           <DialogTitle className="text-sm md:text-base font-medium text-center">
             {title}
           </DialogTitle>
@@ -51,7 +51,7 @@ export default function PDFViewerModal({ isOpen, onClose, pdfUrl, title }: PDFVi
             </Button>
           </div>
         </DialogHeader>
-        <div className="flex-1 w-full h-full min-h-0">
+        <div className="flex-1 min-h-0 overflow-hidden">
           <iframe
             src={`${pdfUrl}#toolbar=0&navpanes=0`}
             className="w-full h-full border-0"
