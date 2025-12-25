@@ -278,7 +278,7 @@ export default function AchievementsSection() {
         >
           <h3 className="text-2xl font-bold mb-6 text-center">Convocation Ceremony</h3>
           <div className="flex justify-center">
-            <div className="max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl border border-border/30">
+            <div className="max-w-md w-full rounded-2xl overflow-hidden shadow-2xl border border-border/30">
               <img
                 src={convocationCollage}
                 alt="12th Convocation Ceremony at RGPV University, May 2025"
