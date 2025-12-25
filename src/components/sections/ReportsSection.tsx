@@ -34,10 +34,10 @@ export default function ReportsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Research <span className="text-gradient">Reports</span>
+            Academic <span className="text-gradient">Reports</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Technical reports and publications from academic projects
+            Technical reports and presentations from academic coursework
           </p>
         </motion.div>
 

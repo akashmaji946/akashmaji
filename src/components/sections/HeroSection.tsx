@@ -142,7 +142,7 @@ export default function HeroSection() {
                 <img 
                   src={profileImage} 
                   alt="Akash Maji"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-[center_15%] scale-[1.8]"
                 />
               </motion.div>
 
