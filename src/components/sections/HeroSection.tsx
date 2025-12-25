@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ArrowDown, FileText, MessageCircle, Github } from 'lucide-react';
 import TypewriterText from '@/components/TypewriterText';
 import { Button } from '@/components/ui/button';
+import PDFViewerModal from '@/components/PDFViewerModal';
 import profileImage from '@/assets/profile-image.jpg';
 import ibmLogo from '@/assets/ibm-logo.svg';
 import geetaImage from '@/assets/geeta.jpg';
@@ -66,6 +67,8 @@ function FloatingIcon({ item, index }: {
 }
 
 export default function HeroSection() {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-20">
       <div className="container mx-auto px-6 py-20">
@@ -234,12 +237,10 @@ export default function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="bg-transparent border-border hover:border-sky-400 hover:bg-transparent !text-foreground transition-colors"
-                asChild
+                onClick={() => setIsResumeOpen(true)}
               >
-                <a href="/resume/Resume_Akash_Maji.pdf" target="_blank" rel="noopener noreferrer">
-                  <FileText className="mr-2 h-4 w-4" />
-                  See Resume
-                </a>
+                <FileText className="mr-2 h-4 w-4" />
+                See Resume
               </Button>
             </motion.div>
           </motion.div>
@@ -262,6 +263,13 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
+
+      <PDFViewerModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
+        pdfUrl="/resume/Resume_Akash_Maji.pdf"
+        title="Resume - Akash Maji"
+      />
     </section>
   );
 }
