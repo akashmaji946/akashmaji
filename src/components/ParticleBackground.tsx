@@ -19,11 +19,11 @@ function Stars() {
       
       const colorChoice = Math.random();
       if (colorChoice < 0.6) {
-        colors[i * 3] = 1; colors[i * 3 + 1] = 1; colors[i * 3 + 2] = 1;
+        colors[i * 3] = 0.6; colors[i * 3 + 1] = 0.6; colors[i * 3 + 2] = 0.65;
       } else if (colorChoice < 0.8) {
-        colors[i * 3] = 1; colors[i * 3 + 1] = 0.95; colors[i * 3 + 2] = 0.7;
+        colors[i * 3] = 0.7; colors[i * 3 + 1] = 0.68; colors[i * 3 + 2] = 0.55;
       } else {
-        colors[i * 3] = 0.7; colors[i * 3 + 1] = 0.85; colors[i * 3 + 2] = 1;
+        colors[i * 3] = 0.55; colors[i * 3 + 1] = 0.6; colors[i * 3 + 2] = 0.7;
       }
     }
     return [positions, colors];
@@ -117,11 +117,11 @@ function Nebula() {
     <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#a855f7"
+        color="#9ca3af"
         size={0.025}
         sizeAttenuation={true}
         depthWrite={false}
-        opacity={0.4}
+        opacity={0.5}
       />
     </Points>
   );
@@ -222,9 +222,9 @@ function WebEffect() {
             nearParticles[j]
           ]);
           const material = new THREE.LineBasicMaterial({
-            color: new THREE.Color(0.4, 0.8, 1),
+            color: new THREE.Color(0.5, 0.55, 0.6),
             transparent: true,
-            opacity: opacity * 0.6
+            opacity: opacity * 0.7
           });
           const line = new THREE.Line(geometry, material);
           linesRef.current.add(line);
@@ -238,11 +238,11 @@ function WebEffect() {
       <Points ref={pointsRef} positions={pointsPositions} stride={3}>
         <PointMaterial
           transparent
-          color="#60a5fa"
+          color="#9ca3af"
           size={0.06}
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.8}
+          opacity={0.9}
           blending={THREE.AdditiveBlending}
         />
       </Points>
