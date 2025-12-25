@@ -6,19 +6,19 @@ const reports = [
     title: 'Implementing the GroupJoin in DuckDB',
     authors: 'Akash Maji',
     date: 'June 2025',
-    link: 'https://akashmaj.me/reports/GroupJoin_Report_Akash.pdf',
+    link: 'https://akashmaji.me/reports/GroupJoin_Report_Akash.pdf',
   },
   {
     title: 'DuckDB AMUS Join: A new Join Operator implementation',
     authors: 'Akash Maji • Utkarsh Sharma',
     date: 'December 2024',
-    link: 'https://akashmaj.me/reports/DuckDB_AMUS_Join_Report.pdf',
+    link: 'https://akashmaji.me/reports/DuckDB_AMUS_Join_Report.pdf',
   },
   {
     title: 'CNN Memory Profiling and Optimisation: Toward Efficient Inference',
     authors: 'Akash Maji • Utkarsh Sharma • Suraj Reddy • Amandeep Nokhwal',
     date: 'April 2025',
-    link: 'https://akashmaj.me/reports/CNN_Memory_Profiling_And_Optimisation_Report.pdf',
+    link: 'https://akashmaji.me/reports/CNN_Memory_Profiling_And_Optimisation_Report.pdf',
   },
 ];
 
