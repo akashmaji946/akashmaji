@@ -19,13 +19,40 @@ const contactInfo = [
     value: 'akashmaji@iisc.ac.in',
     href: 'mailto:akashmaji@iisc.ac.in',
   },
+  {
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg',
+    label: 'WhatsApp',
+    value: '+91 9131697371',
+    href: 'https://wa.me/9131697371',
+  },
 ];
 
 const socialLinks = [
-  { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', href: 'https://github.com/akashmaji946', label: 'GitHub' },
-  { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg', href: 'https://linkedin.com/in/akashmaji946', label: 'LinkedIn' },
-  { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg', href: 'https://twitter.com/akashmaji946', label: 'Twitter' },
-  { icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg', href: 'https://wa.me/9131697371', label: 'WhatsApp' },
+  { 
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', 
+    href: 'https://github.com/akashmaji946', 
+    label: 'GitHub',
+    invertOnDark: true
+  },
+  { 
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg', 
+    href: 'https://linkedin.com/in/akashmaji946', 
+    label: 'LinkedIn',
+    invertOnDark: false
+  },
+  { 
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.svg', 
+    href: 'https://twitter.com/akashmaji946', 
+    label: 'X (Twitter)',
+    invertOnDark: false,
+    invertOnLight: true
+  },
+  { 
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg', 
+    href: 'https://wa.me/9131697371', 
+    label: 'WhatsApp',
+    invertOnDark: false
+  },
 ];
 
 export default function ContactSection() {
@@ -207,7 +234,7 @@ export default function ContactSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.3 }}
                 className="glass rounded-xl p-5 flex items-center gap-4"
               >
                 <div className="p-3 rounded-lg bg-gradient">
@@ -238,7 +265,11 @@ export default function ContactSection() {
                     className="p-3 rounded-lg bg-muted hover:bg-primary/10 transition-colors"
                     aria-label={link.label}
                   >
-                    <img src={link.icon} alt={link.label} className="h-6 w-6" />
+                    <img 
+                      src={link.icon} 
+                      alt={link.label} 
+                      className={`h-6 w-6 ${link.invertOnDark ? 'dark:invert' : ''} ${link.invertOnLight ? 'invert dark:invert-0' : ''}`} 
+                    />
                   </motion.a>
                 ))}
               </div>

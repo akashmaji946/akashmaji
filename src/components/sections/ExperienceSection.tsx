@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
+import ibmLogo from '@/assets/ibm-logo.svg';
+import tcsLogo from '@/assets/tcs-logo.png';
 
 const experiences = [
   {
@@ -12,7 +14,7 @@ const experiences = [
     description: 'Will be joining IBM as a Software Engineer after completing M.Tech at IISc Bangalore.',
     responsibilities: [],
     technologies: [],
-    logo: '💼',
+    logo: ibmLogo,
   },
   {
     title: 'System Engineer (Full Stack Java Developer)',
@@ -29,7 +31,7 @@ const experiences = [
       'Received 3x Star of the Month Award for exceptional performance',
     ],
     technologies: ['Spring Boot', 'Oracle DB', 'Java', 'JavaScript', 'Git', 'JIRA'],
-    logo: '🏢',
+    logo: tcsLogo,
   },
 ];
 
@@ -72,7 +74,7 @@ export default function ExperienceSection() {
                   {/* Header */}
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
                     <div className="flex items-start gap-4">
-                      <div className="text-4xl">{exp.logo}</div>
+                      <img src={exp.logo} alt={exp.company} className="w-14 h-14 rounded-lg object-contain bg-white p-1" />
                       <div>
                         <h3 className="text-xl font-bold">{exp.title}</h3>
                         <a
