@@ -49,8 +49,13 @@ export default function Footer() {
             viewport={{ once: true }}
             className="text-center md:text-left"
           >
-            <span className="text-3xl font-bold font-hindi text-gradient">आकाश</span>
-            <p className="text-sm text-muted-foreground mt-1">Akash Maji</p>
+            <div className="flex items-center gap-2">
+              <span className="text-2xl font-bold font-hindi text-gradient">आकाश</span>
+              <span className="text-xl text-muted-foreground">•</span>
+              <span className="text-2xl font-bold text-gradient">Akash</span>
+              <span className="text-xl text-muted-foreground">•</span>
+              <span className="text-2xl font-bold font-hindi text-gradient">আকাশ</span>
+            </div>
           </motion.div>
 
           {/* Social Links */}

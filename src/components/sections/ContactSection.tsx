@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Send, Loader2, CheckCircle } from 'lucide-react';
+import { Send, Loader2, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,27 +16,6 @@ import twitterLogo from '@/assets/twitter-logo.png';
 
 // Initialize EmailJS
 emailjs.init("59dg56bFBgGKAQAdD");
-
-const contactInfo = [
-  {
-    icon: gmailLogo,
-    label: 'Personal Email',
-    value: 'akashmaji945@gmail.com',
-    href: 'mailto:akashmaji945@gmail.com',
-  },
-  {
-    icon: outlookIcon,
-    label: 'Academic Email',
-    value: 'akashmaji@iisc.ac.in',
-    href: 'mailto:akashmaji@iisc.ac.in',
-  },
-  {
-    icon: whatsappLogo,
-    label: 'WhatsApp',
-    value: '+91 9131697371',
-    href: 'https://wa.me/9131697371',
-  },
-];
 
 const socialLinks = [
   { 
@@ -54,13 +33,25 @@ const socialLinks = [
   { 
     icon: twitterLogo, 
     href: 'https://twitter.com/akashmaji946', 
-    label: 'Twitter',
+    label: 'X (Twitter)',
     invertOnDark: false
   },
   { 
     icon: whatsappLogo, 
     href: 'https://wa.me/9131697371', 
     label: 'WhatsApp',
+    invertOnDark: false
+  },
+  { 
+    icon: gmailLogo, 
+    href: 'mailto:akashmaji945@gmail.com', 
+    label: 'Gmail',
+    invertOnDark: false
+  },
+  { 
+    icon: outlookIcon, 
+    href: 'mailto:akashmaji@iisc.ac.in', 
+    label: 'Academic Email',
     invertOnDark: false
   },
 ];
@@ -261,50 +252,6 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            {/* Contact Cards */}
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={info.label}
-                  href={info.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, x: 4 }}
-                  className="glass rounded-xl p-5 flex items-center gap-4 group"
-                >
-                  <div className="p-3 rounded-lg bg-muted">
-                    <img src={info.icon} alt={info.label} className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-medium group-hover:text-primary transition-colors">
-                      {info.value}
-                    </p>
-                  </div>
-                </motion.a>
-              ))}
-              
-              {/* Location */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="glass rounded-xl p-5 flex items-center gap-4"
-              >
-                <div className="p-3 rounded-lg bg-gradient">
-                  <MapPin className="h-6 w-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="font-medium">IISc Bangalore, India</p>
-                </div>
-              </motion.div>
-            </div>
 
             {/* Connect with me + QR Code */}
             <div className="glass rounded-xl p-6">
@@ -316,7 +263,7 @@ export default function ContactSection() {
                   className="w-20 h-20 rounded-lg bg-white p-1" 
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3">
                 {socialLinks.map((link, index) => (
                   <motion.a
                     key={link.label}
@@ -326,10 +273,11 @@ export default function ContactSection() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.15, y: -4 }}
-                    className="p-3 rounded-lg bg-muted hover:bg-primary/10 transition-colors"
+                    transition={{ delay: index * 0.05 }}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="p-3 rounded-lg bg-muted hover:bg-primary/10 transition-colors flex items-center gap-2"
                     aria-label={link.label}
+                    title={link.label}
                   >
                     <img 
                       src={link.icon} 
