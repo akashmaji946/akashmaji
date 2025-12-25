@@ -184,7 +184,7 @@ export default function ProjectsSection() {
                   {project.technologies.slice(0, 5).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-mono"
+                      className="px-2 py-1 rounded-md bg-orange-500/10 text-orange-400 text-xs font-mono"
                     >
                       {tech}
                     </span>
