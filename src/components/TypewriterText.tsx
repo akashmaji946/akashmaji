@@ -45,7 +45,7 @@ export default function TypewriterText({
     <span className={className}>
       {currentText}
       <motion.span
-        className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle"
+        className="inline-block w-[3px] h-[1em] bg-yellow-500 ml-1 align-middle"
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
       />
