@@ -114,21 +114,24 @@ export default function HeroSection() {
               {/* Glow Effect */}
               <div className="absolute inset-14 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
 
-              {/* Image Container - centered (no click/tap jump) */}
-              <motion.div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/30 glow select-none"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 260, damping: 18 }}
-                style={{ transformOrigin: 'center', WebkitTapHighlightColor: 'transparent' }}
-              >
-                <img
-                  src={profileImage}
-                  alt="Akash Maji"
-                  draggable={false}
-                  className="w-full h-full object-cover object-[center_20%] scale-[1.4]"
-                />
-              </motion.div>
+              {/* Image Container - centered (motion transform-safe) */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <motion.div
+                  className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/30 glow select-none"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                  style={{ transformOrigin: 'center', WebkitTapHighlightColor: 'transparent' }}
+                >
+                  <img
+                    src={profileImage}
+                    alt="Akash Maji"
+                    draggable={false}
+                    className="w-full h-full object-cover object-[center_20%] scale-[1.4]"
+                    loading="eager"
+                  />
+                </motion.div>
+              </div>
 
               {/* Floating Section Icons - perfectly centered orbit */}
               {(
@@ -147,10 +150,15 @@ export default function HeroSection() {
                   key={item.href}
                   href={item.href}
                   className="absolute left-1/2 top-1/2 z-20"
-                  style={{
-                    transform: `translate(-50%, -50%) rotate(${item.angle}deg) translateY(-205px) rotate(-${item.angle}deg)`,
-                    transformOrigin: 'center',
-                  }}
+                  style={(() => {
+                    const r = 205;
+                    const rad = (item.angle * Math.PI) / 180;
+                    const x = Math.cos(rad) * r;
+                    const y = Math.sin(rad) * r;
+                    return {
+                      transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
+                    };
+                  })()}
                 >
                   <motion.div
                     className="w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
