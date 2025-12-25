@@ -14,6 +14,7 @@ const navItems = [
   { label: 'Reports', href: '#reports' },
   { label: 'Achievements', href: '#achievements' },
   { label: 'Contact', href: '#contact' },
+  { label: 'Resume', href: '/resume/Resume_Akash_Maji.pdf', external: true },
 ];
 
 export default function Header() {
@@ -74,27 +75,41 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
-            <motion.a
-              key={item.href}
-              href={item.href}
-              onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors relative ${
-                activeSection === item.href.slice(1)
-                  ? 'text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {activeSection === item.href.slice(1) && (
-                <motion.span
-                  layoutId="activeSection"
-                  className="absolute inset-0 bg-primary/10 rounded-full -z-10"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              {item.label}
-            </motion.a>
+            item.external ? (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full text-sm font-medium transition-colors text-muted-foreground hover:text-foreground"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+              </motion.a>
+            ) : (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors relative ${
+                  activeSection === item.href.slice(1)
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {activeSection === item.href.slice(1) && (
+                  <motion.span
+                    layoutId="activeSection"
+                    className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                {item.label}
+              </motion.a>
+            )
           ))}
         </div>
 
@@ -124,21 +139,36 @@ export default function Header() {
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-2">
               {navItems.map((item, index) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    activeSection === item.href.slice(1)
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                  }`}
-                >
-                  {item.label}
-                </motion.a>
+                item.external ? (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="px-4 py-3 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                  >
+                    {item.label}
+                  </motion.a>
+                ) : (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                      activeSection === item.href.slice(1)
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    }`}
+                  >
+                    {item.label}
+                  </motion.a>
+                )
               ))}
             </div>
           </motion.div>
