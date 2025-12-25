@@ -18,17 +18,20 @@ import rhapsody2 from '@/assets/gallery/iisc-rhapsody-2025-2.jpg';
 import openDay2 from '@/assets/gallery/iisc-open-day-2025-2.jpg';
 import janmashtami from '@/assets/gallery/iisc-janmashtami-2024.jpg';
 
-const galleryImages = [
-  { src: pravegaFest, caption: 'IISc Pravega Fest 2025', size: 'tall' },
-  { src: openDay, caption: 'IISc Open Day 2025', size: 'wide' },
-  { src: durgaPuja, caption: 'IISc Durga Puja 2025', size: 'wide' },
-  { src: ganeshPuja, caption: 'IISc Ganesh Puja 2025', size: 'tall' },
-  { src: pravegaFest2, caption: 'IISc Pravega Fest 2025', size: 'tall' },
-  { src: pravegaFest3, caption: 'IISc Pravega Fest 2025', size: 'wide' },
-  { src: rhapsody, caption: 'IISc Rhapsody 2025', size: 'wide' },
-  { src: rhapsody2, caption: 'IISc Rhapsody 2025', size: 'wide' },
-  { src: openDay2, caption: 'IISc Open Day 2025', size: 'wide' },
-  { src: janmashtami, caption: 'IISc Janmashtami 2024', size: 'wide' },
+const portraitImages = [
+  { src: pravegaFest, caption: 'IISc Pravega Fest 2025' },
+  { src: ganeshPuja, caption: 'IISc Ganesh Puja 2025' },
+  { src: pravegaFest2, caption: 'IISc Pravega Fest 2025' },
+];
+
+const landscapeImages = [
+  { src: openDay, caption: 'IISc Open Day 2025' },
+  { src: durgaPuja, caption: 'IISc Durga Puja 2025' },
+  { src: pravegaFest3, caption: 'IISc Pravega Fest 2025' },
+  { src: rhapsody, caption: 'IISc Rhapsody 2025' },
+  { src: rhapsody2, caption: 'IISc Rhapsody 2025' },
+  { src: openDay2, caption: 'IISc Open Day 2025' },
+  { src: janmashtami, caption: 'IISc Janmashtami 2024' },
 ];
 
 export default function PersonalGallerySection() {
@@ -113,30 +116,61 @@ export default function PersonalGallerySection() {
             </Button>
           </div>
           <ScrollArea className="h-[calc(90vh-60px)]">
-            <div className="p-4">
-              {/* Masonry-style Grid */}
-              <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-                {galleryImages.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="break-inside-avoid group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.caption}
-                      className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <p className="text-white text-sm font-medium drop-shadow-lg">
-                        {image.caption}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+            <div className="p-4 space-y-6">
+              {/* Portrait Photos Row */}
+              <div>
+                <h4 className="text-sm font-medium text-muted-foreground mb-3">Campus Life</h4>
+                <div className="grid grid-cols-3 gap-4">
+                  {portraitImages.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.caption}
+                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p className="text-white text-sm font-medium drop-shadow-lg">
+                          {image.caption}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Landscape Photos 2x2 Grid */}
+              <div>
+                <h4 className="text-sm font-medium text-muted-foreground mb-3">Events & Festivals</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {landscapeImages.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: (index + 3) * 0.05 }}
+                      className="group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.caption}
+                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p className="text-white text-sm font-medium drop-shadow-lg">
+                          {image.caption}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
           </ScrollArea>
