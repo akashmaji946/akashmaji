@@ -10,6 +10,7 @@ import ProjectsSection from '@/components/sections/ProjectsSection';
 import ReportsSection from '@/components/sections/ReportsSection';
 import AchievementsSection from '@/components/sections/AchievementsSection';
 import ContactSection from '@/components/sections/ContactSection';
+import Chatbot from '@/components/Chatbot';
 
 const ParticleBackground = lazy(() => import('@/components/ParticleBackground'));
 
@@ -32,6 +33,7 @@ export default function Index() {
         <ContactSection />
       </main>
       <Footer />
+      <Chatbot />
     </div>
   );
 }
