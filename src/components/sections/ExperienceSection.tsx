@@ -41,7 +41,7 @@ export default function ExperienceSection() {
   const getStatusStyles = (status: string) => {
     switch (status) {
       case 'incoming':
-        return 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400';
+        return 'bg-yellow-500/20 text-yellow-500 font-mono text-base font-bold';
       case 'past':
         return 'bg-red-500/20 text-red-600 dark:text-red-400';
       default:
