@@ -1,5 +1,9 @@
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, Calendar, MapPin } from 'lucide-react';
+import iiscLogo from '@/assets/iisc-logo.png';
+import rgpvLogo from '@/assets/rgpv-logo.png';
+import kpsLogo from '@/assets/kps-logo.jpg';
+import dpsLogo from '@/assets/dps-logo.png';
 
 const education = [
   {
@@ -9,7 +13,7 @@ const education = [
     period: '2024 - 2026',
     description: 'CSA Department. Part of Database Systems Lab, SERC. Research focus on database systems.',
     highlights: ['GATE 2024 AIR 26', 'GATE 2023 AIR 608', '8.0/10.0 CGPA'],
-    logo: '🏛️',
+    logo: iiscLogo,
   },
   {
     degree: 'B.Tech in Computer Science & Engineering',
@@ -18,7 +22,7 @@ const education = [
     period: '2017 - 2021',
     description: 'Graduated with distinction. Active participant in coding competitions and technical events.',
     highlights: ['Silver Medal 🥈', 'CGPA: 9.39/10', 'Chancellor Award 2019'],
-    logo: '🎓',
+    logo: rgpvLogo,
   },
   {
     degree: 'Higher Secondary (Class XII)',
@@ -27,7 +31,7 @@ const education = [
     period: '2015 - 2017',
     description: 'Physics, Chemistry, Mathematics stream. Strong foundation in analytical thinking.',
     highlights: ['95.40% in CBSE', 'JEE Mains Qualified'],
-    logo: '📚',
+    logo: kpsLogo,
   },
   {
     degree: 'Secondary School (Class X)',
@@ -36,7 +40,7 @@ const education = [
     period: '2005 - 2015',
     description: 'Science stream. Awarded by District Collector for academic excellence.',
     highlights: ['94.50% in CGBSE', 'District Award'],
-    logo: '🏫',
+    logo: dpsLogo,
   },
 ];
 
@@ -86,7 +90,7 @@ export default function EducationSection() {
                     className="glass rounded-2xl p-6 md:p-8"
                   >
                     <div className={`flex items-start gap-4 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                      <div className="text-4xl">{edu.logo}</div>
+                      <img src={edu.logo} alt={edu.institution} className="w-14 h-14 rounded-lg object-contain bg-white p-1" />
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
                         <div className="flex items-center gap-2 text-primary mb-2 flex-wrap">

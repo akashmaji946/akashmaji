@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, FileText, Folder } from 'lucide-react';
+import { ExternalLink, FileText, Folder } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const projects = [
@@ -42,10 +42,31 @@ const projects = [
     description: 'Implemented two operators, "Join" and "GroupJoin" in the open-source DuckDB source-code, with "Join" being simple nested loop join, and "GroupJoin" being used when we have any "join" followed by "group by" in the query.',
     technologies: ['C++', 'CMake', 'Git', 'SQL', 'VSCode'],
     github: 'https://github.com/akashmaji946/myduckdb/',
-    featured: false,
+    featured: true,
     year: '2024',
     location: 'Bangalore, IN',
     course: 'Database Systems Course Project',
+  },
+  {
+    title: 'MINI Transformer Model',
+    description: 'Built from scratch in Python without using deep-learning frameworks. Implements core Transformer components including positional encoding, scaled dot-product self-attention, multi-head attention, layer normalization, residual connections, and final output prediction following the original Transformer architecture.',
+    technologies: ['Python3', 'NumPy', 'Git', 'VSCode', 'Shell Scripting'],
+    github: 'https://github.com/akashmaji946/Assignment-02-SysML',
+    featured: true,
+    year: '2025',
+    location: 'Bangalore, IN',
+    course: 'Systems for Machine Learning Project',
+  },
+  {
+    title: 'CNN Memory Profiling',
+    description: 'Profiled and optimized CNN inference across RTX 3060, GTX 1050, and Tesla T4 GPUs. Techniques include FP16 inference, mixed-precision (AMP+AMC), and tiled inference to reduce peak memory and improve throughput. Experiments were performed on ResNet-20/32/44/56 models trained on CIFAR-10 and Mini-ImageNet, with detailed analysis of memory, latency and accuracy tradeoffs.',
+    technologies: ['Python3', 'PyTorch', 'CUDA', 'NVIDIA GPUs', 'Git', 'VSCode'],
+    github: 'https://github.com/akashmaji946/CNN-Memory-Profiling-And-Optimization-v2',
+    report: 'https://akashmaj.me/reports/CNN_Memory_Profiling_And_Optimisation_Report.pdf',
+    featured: true,
+    year: '2025',
+    location: 'Bangalore, IN',
+    course: 'Machine Learning Project',
   },
   {
     title: 'ChampSim-IISc',
@@ -66,27 +87,6 @@ const projects = [
     year: '2024',
     location: 'Bangalore, IN',
     course: 'Computer Architecture Course Project',
-  },
-  {
-    title: 'MINI Transformer Model',
-    description: 'Built from scratch in Python without using deep-learning frameworks. Implements core Transformer components including positional encoding, scaled dot-product self-attention, multi-head attention, layer normalization, residual connections, and final output prediction following the original Transformer architecture.',
-    technologies: ['Python3', 'NumPy', 'Git', 'VSCode', 'Shell Scripting'],
-    github: 'https://github.com/akashmaji946/Assignment-02-SysML',
-    featured: false,
-    year: '2025',
-    location: 'Bangalore, IN',
-    course: 'Systems for Machine Learning Project',
-  },
-  {
-    title: 'CNN Memory Profiling',
-    description: 'Profiled and optimized CNN inference across RTX 3060, GTX 1050, and Tesla T4 GPUs. Techniques include FP16 inference, mixed-precision (AMP+AMC), and tiled inference to reduce peak memory and improve throughput. Experiments were performed on ResNet-20/32/44/56 models trained on CIFAR-10 and Mini-ImageNet, with detailed analysis of memory, latency and accuracy tradeoffs.',
-    technologies: ['Python3', 'PyTorch', 'CUDA', 'NVIDIA GPUs', 'Git', 'VSCode'],
-    github: 'https://github.com/akashmaji946/CNN-Memory-Profiling-And-Optimization-v2',
-    report: 'https://akashmaj.me/reports/CNN_Memory_Profiling_And_Optimisation_Report.pdf',
-    featured: false,
-    year: '2025',
-    location: 'Bangalore, IN',
-    course: 'Machine Learning Project',
   },
 ];
 
@@ -138,7 +138,11 @@ export default function ProjectsSection() {
                         whileHover={{ scale: 1.1 }}
                         className="p-2 rounded-full hover:bg-muted transition-colors"
                       >
-                        <Github className="h-5 w-5" />
+                        <img 
+                          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
+                          alt="GitHub" 
+                          className="h-5 w-5 dark:invert" 
+                        />
                       </motion.a>
                     )}
                     {project.docs && (
@@ -227,7 +231,11 @@ export default function ProjectsSection() {
                   <div className="flex gap-2">
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                        <Github className="h-4 w-4" />
+                        <img 
+                          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
+                          alt="GitHub" 
+                          className="h-4 w-4 dark:invert" 
+                        />
                       </a>
                     )}
                     {project.report && (
@@ -265,7 +273,11 @@ export default function ProjectsSection() {
         >
           <Button variant="outline" size="lg" className="glass" asChild>
             <a href="https://github.com/akashmaji946" target="_blank" rel="noopener noreferrer">
-              <Github className="mr-2 h-4 w-4" />
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
+                alt="GitHub" 
+                className="mr-2 h-4 w-4 dark:invert" 
+              />
               View All Projects on GitHub
             </a>
           </Button>
