@@ -213,7 +213,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-border hover:border-sky-400 hover:bg-transparent text-foreground transition-colors"
+                className="bg-transparent border-border hover:border-sky-400 hover:bg-transparent !text-foreground transition-colors"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <MessageCircle className="mr-2 h-4 w-4" />
@@ -222,7 +222,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-border hover:border-sky-400 hover:bg-transparent text-foreground transition-colors"
+                className="bg-transparent border-border hover:border-sky-400 hover:bg-transparent !text-foreground transition-colors"
                 asChild
               >
                 <a href="#projects">
@@ -233,7 +233,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-border hover:border-sky-400 hover:bg-transparent text-foreground transition-colors"
+                className="bg-transparent border-border hover:border-sky-400 hover:bg-transparent !text-foreground transition-colors"
                 asChild
               >
                 <a href="/resume/Resume_Akash_Maji.pdf" target="_blank" rel="noopener noreferrer">
