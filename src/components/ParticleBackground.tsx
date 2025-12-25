@@ -1,10 +1,11 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Points, PointMaterial, Line } from '@react-three/drei';
+import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import { useTheme } from '@/hooks/useTheme';
 
-// Stars - small twinkling white/yellow points
-function Stars() {
+// Stars - small twinkling points
+function Stars({ isDark }: { isDark: boolean }) {
   const ref = useRef<THREE.Points>(null);
   const starsCount = 2000;
   
@@ -18,16 +19,28 @@ function Stars() {
       positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
       
       const colorChoice = Math.random();
-      if (colorChoice < 0.6) {
-        colors[i * 3] = 0.6; colors[i * 3 + 1] = 0.6; colors[i * 3 + 2] = 0.65;
-      } else if (colorChoice < 0.8) {
-        colors[i * 3] = 0.7; colors[i * 3 + 1] = 0.68; colors[i * 3 + 2] = 0.55;
+      if (isDark) {
+        // Greyish colors for dark mode
+        if (colorChoice < 0.6) {
+          colors[i * 3] = 0.6; colors[i * 3 + 1] = 0.6; colors[i * 3 + 2] = 0.65;
+        } else if (colorChoice < 0.8) {
+          colors[i * 3] = 0.7; colors[i * 3 + 1] = 0.68; colors[i * 3 + 2] = 0.55;
+        } else {
+          colors[i * 3] = 0.55; colors[i * 3 + 1] = 0.6; colors[i * 3 + 2] = 0.7;
+        }
       } else {
-        colors[i * 3] = 0.55; colors[i * 3 + 1] = 0.6; colors[i * 3 + 2] = 0.7;
+        // Darker colors for light mode
+        if (colorChoice < 0.6) {
+          colors[i * 3] = 0.3; colors[i * 3 + 1] = 0.3; colors[i * 3 + 2] = 0.35;
+        } else if (colorChoice < 0.8) {
+          colors[i * 3] = 0.35; colors[i * 3 + 1] = 0.32; colors[i * 3 + 2] = 0.28;
+        } else {
+          colors[i * 3] = 0.28; colors[i * 3 + 1] = 0.32; colors[i * 3 + 2] = 0.38;
+        }
       }
     }
     return [positions, colors];
-  }, []);
+  }, [isDark]);
 
   useFrame((state) => {
     if (ref.current) {
@@ -43,7 +56,7 @@ function Stars() {
         size={0.03}
         sizeAttenuation={true}
         depthWrite={false}
-        opacity={0.9}
+        opacity={isDark ? 0.9 : 1}
       />
     </Points>
   );
@@ -92,7 +105,7 @@ function Galaxy({ position, color, size = 1 }: { position: [number, number, numb
 }
 
 // Nebula clouds
-function Nebula() {
+function Nebula({ isDark }: { isDark: boolean }) {
   const ref = useRef<THREE.Points>(null);
   const particlesCount = 1500;
   
@@ -117,18 +130,18 @@ function Nebula() {
     <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#9ca3af"
+        color={isDark ? "#9ca3af" : "#4b5563"}
         size={0.025}
         sizeAttenuation={true}
         depthWrite={false}
-        opacity={0.5}
+        opacity={isDark ? 0.5 : 0.7}
       />
     </Points>
   );
 }
 
 // Web effect around cursor
-function WebEffect() {
+function WebEffect({ isDark }: { isDark: boolean }) {
   const { viewport } = useThree();
   const mousePos = useRef(new THREE.Vector3(0, 0, 0));
   const linesRef = useRef<THREE.Group>(null);
@@ -167,6 +180,9 @@ function WebEffect() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [viewport]);
+
+  // Line color based on theme
+  const lineColor = isDark ? new THREE.Color(0.5, 0.55, 0.6) : new THREE.Color(0.25, 0.28, 0.32);
 
   useFrame(() => {
     if (!linesRef.current || !pointsRef.current) return;
@@ -222,9 +238,9 @@ function WebEffect() {
             nearParticles[j]
           ]);
           const material = new THREE.LineBasicMaterial({
-            color: new THREE.Color(0.5, 0.55, 0.6),
+            color: lineColor,
             transparent: true,
-            opacity: opacity * 0.7
+            opacity: opacity * (isDark ? 0.7 : 0.9)
           });
           const line = new THREE.Line(geometry, material);
           linesRef.current.add(line);
@@ -238,11 +254,11 @@ function WebEffect() {
       <Points ref={pointsRef} positions={pointsPositions} stride={3}>
         <PointMaterial
           transparent
-          color="#9ca3af"
+          color={isDark ? "#9ca3af" : "#374151"}
           size={0.06}
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.9}
+          opacity={isDark ? 0.9 : 1}
           blending={THREE.AdditiveBlending}
         />
       </Points>
@@ -251,25 +267,37 @@ function WebEffect() {
   );
 }
 
+// Scene component that receives theme
+function Scene({ isDark }: { isDark: boolean }) {
+  return (
+    <>
+      <ambientLight intensity={0.3} />
+      
+      {/* Stars background */}
+      <Stars isDark={isDark} />
+      
+      {/* Nebula clouds */}
+      <Nebula isDark={isDark} />
+      
+      {/* Galaxies */}
+      <Galaxy position={[-8, 5, -15]} color={isDark ? "#ff6b9d" : "#be185d"} size={1.5} />
+      <Galaxy position={[10, -4, -20]} color={isDark ? "#06b6d4" : "#0e7490"} size={2} />
+      <Galaxy position={[0, 8, -25]} color={isDark ? "#a855f7" : "#7c3aed"} size={1.2} />
+      
+      {/* Web effect around cursor */}
+      <WebEffect isDark={isDark} />
+    </>
+  );
+}
+
 export default function ParticleBackground() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <div className="fixed inset-0 -z-10">
       <Canvas camera={{ position: [0, 0, 8], fov: 75 }}>
-        <ambientLight intensity={0.3} />
-        
-        {/* Stars background */}
-        <Stars />
-        
-        {/* Nebula clouds */}
-        <Nebula />
-        
-        {/* Galaxies */}
-        <Galaxy position={[-8, 5, -15]} color="#ff6b9d" size={1.5} />
-        <Galaxy position={[10, -4, -20]} color="#06b6d4" size={2} />
-        <Galaxy position={[0, 8, -25]} color="#a855f7" size={1.2} />
-        
-        {/* Web effect around cursor */}
-        <WebEffect />
+        <Scene isDark={isDark} />
       </Canvas>
     </div>
   );
