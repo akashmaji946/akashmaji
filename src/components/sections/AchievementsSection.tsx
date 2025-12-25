@@ -1,48 +1,63 @@
 import { motion } from 'framer-motion';
 import { Award, ExternalLink, Medal, Trophy, Shield, Star } from 'lucide-react';
 
+// Import certification logos
+import associateJavaLogo from '@/assets/certs/associate-java.png';
+import associateLogo from '@/assets/certs/associate.png';
+import foundationsLogo from '@/assets/certs/foundations.jpeg';
+import foundationsAiLogo from '@/assets/certs/foundations-ai.jpeg';
+import professionalGenAiLogo from '@/assets/certs/professional-gen-ai.jpg';
+
 const certifications = [
+  {
+    title: 'Oracle Certified Professional: OCI Gen AI 2024 Professional',
+    issuer: 'Oracle Corp.',
+    date: 'Oct 2025',
+    credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=DBA8FBF4F9ED8B4D0C6BE0FB0BDE2D5A03FC96C6B97F1C91E9ECA5D98E87FA40',
+    certificateUrl: '/files/eCertificate-prof-gen-ai.pdf',
+    description: 'Expertise in OCI Generative AI services',
+    status: 'Active',
+    logo: professionalGenAiLogo,
+  },
   {
     title: 'Oracle Certified Associate Java Programmer I (1Z0-808)',
     issuer: 'Oracle Corp.',
     date: 'Feb 2020',
     credentialUrl: 'https://www.credly.com/badges/6616ad47-2676-4e01-893c-20a4642a8b67',
-    certificateUrl: 'https://pdflink.to/akash-maji-ocajp/',
+    certificateUrl: '/files/eCertificate-associate-java.pdf',
     description: 'Certified in Java SE 8 Programming',
     status: 'Lifetime',
-  },
-  {
-    title: 'Microsoft Certified Azure Fundamentals (AZ-900)',
-    issuer: 'Microsoft Corp.',
-    date: 'July 2020',
-    credentialUrl: 'https://www.credly.com/badges/2382975e-d741-4ec9-acca-5d8237bbc515',
-    certificateUrl: 'https://pdflink.to/akash-maji-azure/',
-    description: 'Certified in basic cloud technology and tools',
-    status: 'Expired',
+    logo: associateJavaLogo,
   },
   {
     title: 'Oracle Cloud Infrastructure 2025 Foundations Associate',
     issuer: 'Oracle Corp.',
     date: 'Oct 2025',
     credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=D8974AC1ABE8A550247F4F3D974C866752EE44A8830F2BFE3FC50E20FEC5D646',
+    certificateUrl: '/files/eCertificate-foundations.pdf',
     description: 'OCI core concepts and foundations',
     status: 'Active',
+    logo: foundationsLogo,
   },
   {
     title: 'Oracle Cloud Infrastructure 2025 Architect Associate',
     issuer: 'Oracle Corp.',
     date: 'Oct 2025',
     credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=1D95571D88756F44E737AEBC4B01A3749E0C2B1BD995C0A4C4EAA6AC26345891',
+    certificateUrl: '/files/eCertificate-associate.pdf',
     description: 'Expertise in designing OCI cloud solutions',
     status: 'Active',
+    logo: associateLogo,
   },
   {
     title: 'Oracle Cloud Infrastructure 2025 AI Foundations Associate',
     issuer: 'Oracle',
     date: 'Oct 2025',
     credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=47E415AE37C3299E9651B061D8D8E56DCB1F89EF34C6319F8B3A2F1574DA96B1',
+    certificateUrl: '/files/eCertificate-foundations-ai.pdf',
     description: 'OCI AI services and ML fundamentals',
     status: 'Active',
+    logo: foundationsAiLogo,
   },
 ];
 
@@ -141,8 +156,16 @@ export default function AchievementsSection() {
                   whileHover={{ scale: 1.02, x: 4 }}
                   className="glass rounded-xl p-5 group"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
+                  <div className="flex items-start gap-4">
+                    {/* Certification Logo */}
+                    <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-background/50">
+                      <img
+                        src={cert.logo}
+                        alt={`${cert.title} badge`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2">
                         <h4 className="font-semibold group-hover:text-primary transition-colors text-sm">
                           {cert.title}
