@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ImageIcon, ArrowRight } from 'lucide-react';
+import { ImageIcon, ArrowRight, Minus, Square, X, Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -36,6 +36,23 @@ const landscapeImages = [
 
 export default function PersonalGallerySection() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+
+  const handleMinimize = () => {
+    setIsMinimized(!isMinimized);
+  };
+
+  const handleMaximize = () => {
+    setIsMaximized(!isMaximized);
+    setIsMinimized(false);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setIsMaximized(false);
+    setIsMinimized(false);
+  };
 
   return (
     <section id="personal-gallery" className="py-20 md:py-32">
@@ -98,69 +115,102 @@ export default function PersonalGallerySection() {
       </div>
 
       {/* Gallery Modal */}
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-0 overflow-hidden">
-          <DialogTitle className="p-4 border-b border-border text-xl font-bold flex items-center gap-2">
+      <Dialog open={isOpen} onOpenChange={handleClose}>
+        <DialogContent 
+          className={`p-0 overflow-hidden transition-all duration-300 [&>button]:hidden ${
+            isMaximized 
+              ? 'max-w-[100vw] w-[100vw] h-[100vh] rounded-none' 
+              : 'max-w-5xl w-[95vw] h-[90vh]'
+          } ${isMinimized ? 'h-auto' : ''}`}
+        >
+          {/* Window Controls */}
+          <div className="absolute top-2 right-2 flex items-center gap-1 z-10">
+            <button
+              onClick={handleMinimize}
+              className="w-7 h-7 flex items-center justify-center rounded hover:bg-muted transition-colors"
+              title="Minimize"
+            >
+              <Minus className="h-4 w-4" />
+            </button>
+            <button
+              onClick={handleMaximize}
+              className="w-7 h-7 flex items-center justify-center rounded hover:bg-muted transition-colors"
+              title={isMaximized ? "Restore" : "Maximize"}
+            >
+              {isMaximized ? <Square className="h-3.5 w-3.5" /> : <Maximize2 className="h-4 w-4" />}
+            </button>
+            <button
+              onClick={handleClose}
+              className="w-7 h-7 flex items-center justify-center rounded hover:bg-destructive hover:text-destructive-foreground transition-colors"
+              title="Close"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          <DialogTitle className="p-4 border-b border-border text-xl font-bold flex items-center gap-2 pr-24">
             <ImageIcon className="h-5 w-5 text-primary" />
             Life at IISc Bangalore
           </DialogTitle>
-          <ScrollArea className="h-[calc(90vh-60px)]">
-            <div className="p-4 space-y-6">
-              {/* Portrait Photos Row */}
-              <div>
-                <div className="grid grid-cols-3 gap-4">
-                  {portraitImages.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    >
-                      <img
-                        src={image.src}
-                        alt={image.caption}
-                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <p className="text-white text-sm font-medium drop-shadow-lg">
-                          {image.caption}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+          {!isMinimized && (
+            <ScrollArea className={isMaximized ? "h-[calc(100vh-60px)]" : "h-[calc(90vh-60px)]"}>
+              <div className="p-4 space-y-6">
+                {/* Portrait Photos Row */}
+                <div>
+                  <div className="grid grid-cols-3 gap-4">
+                    {portraitImages.map((image, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                      >
+                        <img
+                          src={image.src}
+                          alt={image.caption}
+                          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                          <p className="text-white text-sm font-medium drop-shadow-lg">
+                            {image.caption}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Landscape Photos 2x2 Grid */}
-              <div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {landscapeImages.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: (index + 3) * 0.05 }}
-                      className="group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    >
-                      <img
-                        src={image.src}
-                        alt={image.caption}
-                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <p className="text-white text-sm font-medium drop-shadow-lg">
-                          {image.caption}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                {/* Landscape Photos 2x2 Grid */}
+                <div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {landscapeImages.map((image, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: (index + 3) * 0.05 }}
+                        className="group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                      >
+                        <img
+                          src={image.src}
+                          alt={image.caption}
+                          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                          <p className="text-white text-sm font-medium drop-shadow-lg">
+                            {image.caption}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </ScrollArea>
+            </ScrollArea>
+          )}
         </DialogContent>
       </Dialog>
     </section>
