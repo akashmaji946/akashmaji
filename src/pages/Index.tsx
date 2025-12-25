@@ -10,6 +10,7 @@ import ProjectsSection from '@/components/sections/ProjectsSection';
 import ReportsSection from '@/components/sections/ReportsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import AchievementsSection from '@/components/sections/AchievementsSection';
+import PersonalGallerySection from '@/components/sections/PersonalGallerySection';
 import ContactSection from '@/components/sections/ContactSection';
 import Chatbot from '@/components/Chatbot';
 
@@ -32,6 +33,7 @@ export default function Index() {
         <ReportsSection />
         <GallerySection />
         <AchievementsSection />
+        <PersonalGallerySection />
         <ContactSection />
       </main>
       <Footer />

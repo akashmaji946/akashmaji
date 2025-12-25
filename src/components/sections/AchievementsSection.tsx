@@ -8,7 +8,7 @@ import foundationsLogo from '@/assets/certs/foundations.jpeg';
 import foundationsAiLogo from '@/assets/certs/foundations-ai.jpeg';
 import professionalGenAiLogo from '@/assets/certs/professional-gen-ai.jpg';
 import azureAiLogo from '@/assets/certs/azure-ai.jpg';
-import convocationCollage from '@/assets/convocation-collage.jpg';
+
 
 const certifications = [
   {
@@ -268,28 +268,6 @@ export default function AchievementsSection() {
           </motion.div>
         </div>
 
-        {/* Convocation Collage */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16"
-        >
-          <h3 className="text-2xl font-bold mb-6 text-center">Convocation Ceremony</h3>
-          <div className="flex justify-center">
-            <div className="max-w-md w-full rounded-2xl overflow-hidden shadow-2xl border border-border/30">
-              <img
-                src={convocationCollage}
-                alt="12th Convocation Ceremony at RGPV University, May 2025"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
-          <p className="text-center text-muted-foreground mt-4 text-sm">
-            12th Convocation Ceremony • RGPV University • May 2025
-          </p>
-        </motion.div>
       </div>
     </section>
   );
