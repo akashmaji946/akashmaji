@@ -23,11 +23,11 @@ const certifications = [
   {
     title: 'Microsoft Azure AI Fundamentals (AI-900)',
     issuer: 'Microsoft',
-    date: 'Nov 2024',
-    credentialUrl: 'https://learn.microsoft.com/en-us/users/akashmaji-2931/credentials/certification/azure-ai-fundamentals',
+    date: 'Jul 2020',
+    credentialUrl: 'https://www.credly.com/badges/2382975e-d741-4ec9-acca-5d8237bbc515',
     certificateUrl: '/files/eCertificate-azure-ai.pdf',
     description: 'Azure AI services and machine learning concepts',
-    status: 'Active',
+    status: 'Expired',
     logo: azureAiLogo,
   },
   {
@@ -184,6 +184,7 @@ export default function AchievementsSection() {
                         <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
                           cert.status === 'Active' ? 'bg-green-500/10 text-green-500' :
                           cert.status === 'Lifetime' ? 'bg-primary/10 text-primary' :
+                          cert.status === 'Expired' ? 'bg-yellow-500/10 text-yellow-500' :
                           'bg-muted text-muted-foreground'
                         }`}>
                           {cert.status}
