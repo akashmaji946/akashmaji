@@ -19,8 +19,8 @@ interface Report {
 const reports: Report[] = [
   {
     title: 'GPU Accelerated Scalar Field Reconstruction and Volume Rendering',
-    authors: 'Akash Maji',
-    date: 'April 2025',
+    authors: 'Utkarsh Sharma • Akash Maji',
+    date: 'December 2025',
     links: [
       { type: 'report', label: 'Technical Report', url: '/reports/GPU_Volume_Rendering_Report.pdf' },
       { type: 'paper', label: 'Paper Presentation', url: '/reports/GPU_Volume_Rendering_Paper.pdf' },
@@ -30,15 +30,15 @@ const reports: Report[] = [
   {
     title: 'Virtual Machine Image Diffing Tool',
     authors: 'Akash Maji',
-    date: 'March 2025',
+    date: 'November 2025',
     links: [
       { type: 'demo', label: 'Project Demo', url: '/reports/VM_Image_Diffing_Demo.pdf' },
     ],
   },
   {
     title: 'BASE: An ACID Alternative',
-    authors: 'Akash Maji',
-    date: 'February 2025',
+    authors: 'Akash Maji • Ikshita Pathak • Debanjan Saha',
+    date: 'March 2025',
     links: [
       { type: 'paper', label: 'Paper Presentation', url: '/reports/BASE_ACID_Alternative_Paper.pdf' },
     ],
