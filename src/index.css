@@ -139,11 +139,19 @@
   }
 
   .glass {
-    @apply backdrop-blur-xl bg-card/80 border border-border/50;
+    @apply backdrop-blur-xl bg-card/80 border border-border/50 transition-all duration-300;
+  }
+
+  .glass:hover {
+    @apply border-sky-400/40;
   }
 
   .glass-strong {
-    @apply backdrop-blur-2xl bg-card/90 border border-border/50;
+    @apply backdrop-blur-2xl bg-card/90 border border-border/50 transition-all duration-300;
+  }
+
+  .glass-strong:hover {
+    @apply border-sky-400/40;
   }
 
   .glow {
