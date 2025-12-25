@@ -7,6 +7,7 @@ import associateLogo from '@/assets/certs/associate.png';
 import foundationsLogo from '@/assets/certs/foundations.jpeg';
 import foundationsAiLogo from '@/assets/certs/foundations-ai.jpeg';
 import professionalGenAiLogo from '@/assets/certs/professional-gen-ai.jpg';
+import azureAiLogo from '@/assets/certs/azure-ai.jpg';
 
 const certifications = [
   {
@@ -18,6 +19,16 @@ const certifications = [
     description: 'Expertise in OCI Generative AI services',
     status: 'Active',
     logo: professionalGenAiLogo,
+  },
+  {
+    title: 'Microsoft Azure AI Fundamentals (AI-900)',
+    issuer: 'Microsoft',
+    date: 'Nov 2024',
+    credentialUrl: 'https://learn.microsoft.com/en-us/users/akashmaji-2931/credentials/certification/azure-ai-fundamentals',
+    certificateUrl: '/files/eCertificate-azure-ai.pdf',
+    description: 'Azure AI services and machine learning concepts',
+    status: 'Active',
+    logo: azureAiLogo,
   },
   {
     title: 'Oracle Certified Associate Java Programmer I (1Z0-808)',
@@ -158,11 +169,11 @@ export default function AchievementsSection() {
                 >
                   <div className="flex items-start gap-4">
                     {/* Certification Logo */}
-                    <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-background/50">
+                    <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-background/50 border border-border/30">
                       <img
                         src={cert.logo}
                         alt={`${cert.title} badge`}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
