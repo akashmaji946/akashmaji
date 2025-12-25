@@ -124,6 +124,12 @@
     background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
   }
 
+  .text-gradient-neon {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(180 100% 50%), hsl(210 100% 60%), hsl(260 100% 65%));
+    filter: drop-shadow(0 0 8px hsl(210 100% 60% / 0.5));
+  }
+
   .bg-gradient {
     background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
   }
