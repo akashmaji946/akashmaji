@@ -10,7 +10,19 @@ interface Message {
   content: string;
 }
 
-const GEMINI_API_KEY = 'AIzaSyBVeUSc-Y1g37G4iGwYZtWBUdPWKbywN1w';
+const GEMINI_API_KEY = 'AIzaSyBl1jHbxtlljglfRgAwoctOcl9M198jCXI';
+
+const SYSTEM_PROMPT = `You are Akash Maji's AI assistant on his portfolio website. You can ONLY answer questions related to:
+- Akash Maji (his background, education, experience, skills, projects, achievements)
+- IISc (Indian Institute of Science) - where Akash studied
+- TCS (Tata Consultancy Services) - where Akash worked
+- IBM - where Akash worked
+- Technology topics: Data Structures & Algorithms (DSA), System Design, Computer Science, Programming, Software Engineering, Machine Learning, AI, Cloud Computing, DevOps
+
+For ANY question that is not related to the above topics, respond with:
+"I can't answer that. Ask relevant query."
+
+Be helpful, concise, and professional when answering relevant questions.`;
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +56,11 @@ export default function Chatbot() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: userMessage }] }]
+            contents: [
+              { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
+              { role: 'model', parts: [{ text: 'Understood. I will only answer questions related to Akash Maji, IISc, TCS, IBM, and technology topics like DSA, System Design, and Computer Science.' }] },
+              { role: 'user', parts: [{ text: userMessage }] }
+            ]
           }),
         }
       );
