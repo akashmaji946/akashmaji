@@ -64,11 +64,8 @@ export default function EducationSection() {
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Timeline */}
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/30" />
-
+          {/* Education Cards - Center Justified */}
+          <div className="space-y-8">
             {education.map((edu, index) => (
               <motion.div
                 key={edu.degree}
@@ -76,53 +73,45 @@ export default function EducationSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.2 }}
-                className={`relative flex items-start gap-8 mb-12 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
+                className="flex justify-center"
               >
-                {/* Timeline Node */}
-                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gradient glow-sm z-10" />
-
-                {/* Content */}
-                <div className={`flex-1 ml-16 md:ml-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="glass rounded-2xl p-6 md:p-8"
-                  >
-                    <div className={`flex items-center gap-4 ${index % 2 === 0 ? '' : ''}`}>
-                      <img src={edu.logo} alt={edu.institution} className="w-20 h-20 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
-                        <div className="flex items-center gap-2 text-primary mb-2 flex-wrap">
-                          <GraduationCap className="h-4 w-4" />
-                          <span className="font-medium">{edu.institution}</span>
-                        </div>
-                        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            {edu.period}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="glass rounded-2xl p-6 md:p-8 w-full max-w-3xl"
+                >
+                  <div className="flex items-start gap-6">
+                    <img src={edu.logo} alt={edu.institution} className="w-20 h-20 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
+                      <div className="flex items-center gap-2 text-primary mb-2 flex-wrap">
+                        <GraduationCap className="h-4 w-4" />
+                        <span className="font-medium">{edu.institution}</span>
+                      </div>
+                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          {edu.period}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          {edu.location}
+                        </span>
+                      </div>
+                      <p className="text-muted-foreground text-sm mb-4">{edu.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {edu.highlights.map((highlight) => (
+                          <span
+                            key={highlight}
+                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium"
+                          >
+                            <Award className="h-3 w-3" />
+                            {highlight}
                           </span>
-                          <span className="flex items-center gap-1">
-                            <MapPin className="h-3 w-3" />
-                            {edu.location}
-                          </span>
-                        </div>
-                        <p className="text-muted-foreground text-sm mb-4">{edu.description}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {edu.highlights.map((highlight) => (
-                            <span
-                              key={highlight}
-                              className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium"
-                            >
-                              <Award className="h-3 w-3" />
-                              {highlight}
-                            </span>
-                          ))}
-                        </div>
+                        ))}
                       </div>
                     </div>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>

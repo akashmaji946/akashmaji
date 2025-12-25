@@ -1,15 +1,42 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Twitter, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
+import githubLogo from '@/assets/github-logo.png';
+import linkedinLogo from '@/assets/linkedin-logo.png';
+import twitterLogo from '@/assets/twitter-logo.png';
+import gmailLogo from '@/assets/gmail-logo.png';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/akashmaji946', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/akash-maji-iisc', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com/akash_maji_', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:akashmaji@iisc.ac.in', label: 'Email' },
+  { icon: githubLogo, href: 'https://github.com/akashmaji946', label: 'GitHub', invertOnDark: true },
+  { icon: linkedinLogo, href: 'https://linkedin.com/in/akashmaji946', label: 'LinkedIn', invertOnDark: false },
+  { icon: twitterLogo, href: 'https://twitter.com/akashmaji946', label: 'Twitter', invertOnDark: false },
+  { icon: gmailLogo, href: 'mailto:akashmaji@iisc.ac.in', label: 'Email', invertOnDark: false },
 ];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatDateTime = (date: Date) => {
+    return date.toLocaleString('en-IN', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: 'Asia/Kolkata'
+    });
+  };
 
   return (
     <footer className="relative py-12 border-t border-border/50">
@@ -32,22 +59,32 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="flex items-center gap-4"
+            className="flex flex-col items-center gap-3"
           >
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full glass hover:bg-primary/10 transition-colors"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={link.label}
-              >
-                <link.icon className="h-5 w-5" />
-              </motion.a>
-            ))}
+            <div className="flex items-center gap-4">
+              {socialLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full glass hover:bg-primary/10 transition-colors"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={link.label}
+                >
+                  <img 
+                    src={link.icon} 
+                    alt={link.label} 
+                    className={`h-5 w-5 ${link.invertOnDark ? 'dark:invert' : ''}`} 
+                  />
+                </motion.a>
+              ))}
+            </div>
+            {/* Current Date/Time */}
+            <p className="text-xs text-muted-foreground font-mono">
+              {formatDateTime(currentDateTime)} IST
+            </p>
           </motion.div>
 
           {/* Copyright */}
