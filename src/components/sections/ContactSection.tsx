@@ -41,11 +41,10 @@ const socialLinks = [
     invertOnDark: false
   },
   { 
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.svg', 
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg', 
     href: 'https://twitter.com/akashmaji946', 
-    label: 'X (Twitter)',
-    invertOnDark: false,
-    invertOnLight: true
+    label: 'Twitter',
+    invertOnDark: false
   },
   { 
     icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg', 
@@ -268,7 +267,7 @@ export default function ContactSection() {
                     <img 
                       src={link.icon} 
                       alt={link.label} 
-                      className={`h-6 w-6 ${link.invertOnDark ? 'dark:invert' : ''} ${link.invertOnLight ? 'invert dark:invert-0' : ''}`} 
+                      className={`h-6 w-6 ${link.invertOnDark ? 'dark:invert' : ''}`} 
                     />
                   </motion.a>
                 ))}
