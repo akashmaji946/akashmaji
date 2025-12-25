@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { MapPin, Briefcase, ArrowDown, FileText } from 'lucide-react';
+import { MapPin, ArrowDown, FileText } from 'lucide-react';
 import TypewriterText from '@/components/TypewriterText';
 import { Button } from '@/components/ui/button';
 import profileImage from '@/assets/profile-image.jpg';
+import ibmLogo from '@/assets/ibm-logo.svg';
 
 const roles = [
   'M.Tech Scholar @ IISc Bangalore',
@@ -23,32 +24,34 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="flex-1 text-center lg:text-left"
           >
-            {/* Name in 3 Languages */}
+            {/* Name in 3 Languages - Hindi • English • Bengali */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="mb-4"
             >
-              {/* Hindi Name */}
               <h1 className="text-5xl md:text-7xl font-bold font-hindi text-gradient inline-block">
                 आकाश
               </h1>
               <span className="mx-3 text-muted-foreground text-3xl">•</span>
-              {/* Bengali Name */}
+              <h1 className="text-5xl md:text-7xl font-bold text-gradient inline-block">
+                Akash
+              </h1>
+              <span className="mx-3 text-muted-foreground text-3xl">•</span>
               <h1 className="text-5xl md:text-7xl font-bold font-hindi text-gradient inline-block">
                 আকাশ
               </h1>
             </motion.div>
 
-            {/* English Name */}
+            {/* Welcome Text */}
             <motion.h2
               className="text-3xl md:text-5xl font-bold text-foreground mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              Akash Maji
+              Welcome, folk!
             </motion.h2>
 
             {/* Typewriter Roles */}
@@ -69,8 +72,8 @@ export default function HeroSection() {
               className="flex items-center justify-center lg:justify-start gap-4 mb-8 flex-wrap"
             >
               <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="IBM" className="h-4 w-4" />
-                <span className="text-sm">Incoming @ IBM, Bangalore</span>
+                <img src={ibmLogo} alt="IBM" className="h-5 w-5" />
+                <span className="text-sm">Incoming Hardware Engineer @ IBM</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
                 <MapPin className="h-4 w-4 text-primary" />

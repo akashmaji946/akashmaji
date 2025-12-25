@@ -89,8 +89,8 @@ export default function EducationSection() {
                     whileHover={{ scale: 1.02 }}
                     className="glass rounded-2xl p-6 md:p-8"
                   >
-                    <div className={`flex items-start gap-4 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                      <img src={edu.logo} alt={edu.institution} className="w-14 h-14 rounded-lg object-contain bg-white p-1" />
+                    <div className={`flex items-center gap-4 ${index % 2 === 0 ? '' : ''}`}>
+                      <img src={edu.logo} alt={edu.institution} className="w-20 h-20 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
                         <div className="flex items-center gap-2 text-primary mb-2 flex-wrap">

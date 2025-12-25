@@ -64,11 +64,11 @@ export default function Header() {
         <motion.a
           href="#home"
           onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
-          className="text-2xl font-bold font-hindi text-gradient"
+          className="text-2xl font-bold text-gradient"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          आकाश
+          Akash Maji
         </motion.a>
 
         {/* Desktop Navigation */}
