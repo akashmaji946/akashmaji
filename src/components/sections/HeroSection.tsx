@@ -142,25 +142,90 @@ export default function HeroSection() {
                 <img 
                   src={profileImage} 
                   alt="Akash Maji"
-                  className="w-full h-full object-cover object-[center_15%] scale-[1.8]"
+                  className="w-full h-full object-cover object-[center_20%] scale-[1.4]"
                 />
               </motion.div>
 
-              {/* Floating Elements */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-16 h-16 rounded-full glass flex items-center justify-center"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
+              {/* Floating Section Icons - 8 icons around the profile */}
+              {/* About - User icon */}
+              <motion.a
+                href="#about"
+                className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 0 }}
               >
-                <span className="text-2xl">🎓</span>
-              </motion.div>
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-14 h-14 rounded-full glass flex items-center justify-center"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                <span className="text-xl">👤</span>
+              </motion.a>
+              
+              {/* Education - top right */}
+              <motion.a
+                href="#education"
+                className="absolute top-6 -right-2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, delay: 0.3 }}
               >
-                <span className="text-2xl">💻</span>
-              </motion.div>
+                <span className="text-xl">🎓</span>
+              </motion.a>
+              
+              {/* Experience - right */}
+              <motion.a
+                href="#experience"
+                className="absolute top-1/2 -right-6 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ x: [0, 6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 0.6 }}
+              >
+                <span className="text-xl">💼</span>
+              </motion.a>
+              
+              {/* Study - bottom right */}
+              <motion.a
+                href="#study"
+                className="absolute bottom-6 -right-2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 3.2, repeat: Infinity, delay: 0.9 }}
+              >
+                <span className="text-xl">📚</span>
+              </motion.a>
+              
+              {/* Projects - bottom */}
+              <motion.a
+                href="#projects"
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 3.8, repeat: Infinity, delay: 1.2 }}
+              >
+                <span className="text-xl">💻</span>
+              </motion.a>
+              
+              {/* Reports - bottom left */}
+              <motion.a
+                href="#reports"
+                className="absolute bottom-6 -left-2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 3.4, repeat: Infinity, delay: 1.5 }}
+              >
+                <span className="text-xl">📄</span>
+              </motion.a>
+              
+              {/* Achievements - left */}
+              <motion.a
+                href="#achievements"
+                className="absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ x: [0, -6, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, delay: 1.8 }}
+              >
+                <span className="text-xl">🏆</span>
+              </motion.a>
+              
+              {/* Contact - top left */}
+              <motion.a
+                href="#contact"
+                className="absolute top-6 -left-2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3.6, repeat: Infinity, delay: 2.1 }}
+              >
+                <span className="text-xl">📧</span>
+              </motion.a>
             </div>
           </motion.div>
         </div>
