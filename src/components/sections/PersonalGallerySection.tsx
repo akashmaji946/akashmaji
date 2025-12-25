@@ -1,9 +1,39 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ImageIcon, ArrowRight } from 'lucide-react';
+import { ImageIcon, ArrowRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import convocationCollage from '@/assets/convocation-collage.jpg';
 
+// Gallery images with captions
+import pravegaFest from '@/assets/gallery/iisc-pravega-fest-2025.jpg';
+import openDay from '@/assets/gallery/iisc-2025-open-day.jpg';
+import durgaPuja from '@/assets/gallery/iisc-durga-puja-2025.jpg';
+import ganeshPuja from '@/assets/gallery/iisc-ganesh-puja-2025.jpg';
+import pravegaFest2 from '@/assets/gallery/iisc-pravega-fest-2025-2.jpg';
+import pravegaFest3 from '@/assets/gallery/iisc-pravega-fest-2025-3.jpg';
+import rhapsody from '@/assets/gallery/iisc-rhapsody-2025.jpg';
+import rhapsody2 from '@/assets/gallery/iisc-rhapsody-2025-2.jpg';
+import openDay2 from '@/assets/gallery/iisc-open-day-2025-2.jpg';
+import janmashtami from '@/assets/gallery/iisc-janmashtami-2024.jpg';
+
+const galleryImages = [
+  { src: pravegaFest, caption: 'IISc Pravega Fest 2025', size: 'tall' },
+  { src: openDay, caption: 'IISc Open Day 2025', size: 'wide' },
+  { src: durgaPuja, caption: 'IISc Durga Puja 2025', size: 'wide' },
+  { src: ganeshPuja, caption: 'IISc Ganesh Puja 2025', size: 'tall' },
+  { src: pravegaFest2, caption: 'IISc Pravega Fest 2025', size: 'tall' },
+  { src: pravegaFest3, caption: 'IISc Pravega Fest 2025', size: 'wide' },
+  { src: rhapsody, caption: 'IISc Rhapsody 2025', size: 'wide' },
+  { src: rhapsody2, caption: 'IISc Rhapsody 2025', size: 'wide' },
+  { src: openDay2, caption: 'IISc Open Day 2025', size: 'wide' },
+  { src: janmashtami, caption: 'IISc Janmashtami 2024', size: 'wide' },
+];
+
 export default function PersonalGallerySection() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <section id="personal-gallery" className="py-20 md:py-32">
       <div className="container mx-auto px-6">
@@ -55,10 +85,7 @@ export default function PersonalGallerySection() {
             <Button
               variant="outline"
               className="group"
-              onClick={() => {
-                const gallerySection = document.getElementById('gallery');
-                gallerySection?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => setIsOpen(true)}
             >
               View More
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -66,6 +93,55 @@ export default function PersonalGallerySection() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Gallery Modal */}
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-0 overflow-hidden">
+          <DialogTitle className="sr-only">Photo Gallery</DialogTitle>
+          <div className="flex items-center justify-between p-4 border-b border-border">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <ImageIcon className="h-5 w-5 text-primary" />
+              Life at IISc Bangalore
+            </h3>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(false)}
+              className="h-8 w-8"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <ScrollArea className="h-[calc(90vh-60px)]">
+            <div className="p-4">
+              {/* Masonry-style Grid */}
+              <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+                {galleryImages.map((image, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="break-inside-avoid group relative overflow-hidden rounded-xl border border-border/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.caption}
+                      className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="text-white text-sm font-medium drop-shadow-lg">
+                        {image.caption}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
