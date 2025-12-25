@@ -24,11 +24,11 @@ export default function HeroSection() {
           transition={{ delay: 0.2 }}
           className="flex items-center justify-center gap-2 md:gap-3 mb-10 text-center"
         >
-          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient-neon">आकाश</span>
-          <span className="text-2xl md:text-3xl text-gradient-neon">•</span>
-          <span className="text-3xl md:text-5xl font-bold text-gradient-neon">Akash</span>
-          <span className="text-2xl md:text-3xl text-gradient-neon">•</span>
-          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient-neon">আকাশ</span>
+          <span className="text-3xl md:text-5xl font-bold font-hindi text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)]">आकाश</span>
+          <span className="text-2xl md:text-3xl text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)]">•</span>
+          <span className="text-3xl md:text-5xl font-bold text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)]">Akash</span>
+          <span className="text-2xl md:text-3xl text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)]">•</span>
+          <span className="text-3xl md:text-5xl font-bold font-hindi text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.7)]">আকাশ</span>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
