@@ -95,10 +95,10 @@ export default function HeroSection() {
                 </div>
               </div>
               <div className="flex-1">
-                <p className="font-hindi text-xl md:text-2xl font-bold text-gradient leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
+                <p className="font-hindi text-base md:text-lg font-semibold text-sky-400 leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
                 <p className="text-sm md:text-base text-muted-foreground mt-2">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
                 <p className="text-sm md:text-base text-foreground/80 mt-2">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
-                <p className="text-sm font-bold text-primary mt-2 uppercase tracking-[0.2em]">— B H A G A V A D  G I T A  2 . 4 7</p>
+                <p className="text-sm font-bold text-primary mt-2 uppercase tracking-widest">— Bhagavad Gita 2.47</p>
               </div>
             </motion.div>
 
