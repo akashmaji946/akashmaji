@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ImageIcon, ArrowRight, X } from 'lucide-react';
+import { ImageIcon, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -100,26 +100,14 @@ export default function PersonalGallerySection() {
       {/* Gallery Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-0 overflow-hidden">
-          <DialogTitle className="sr-only">Photo Gallery</DialogTitle>
-          <div className="flex items-center justify-between p-4 border-b border-border">
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <ImageIcon className="h-5 w-5 text-primary" />
-              Life at IISc Bangalore
-            </h3>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(false)}
-              className="h-8 w-8"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+          <DialogTitle className="p-4 border-b border-border text-xl font-bold flex items-center gap-2">
+            <ImageIcon className="h-5 w-5 text-primary" />
+            Life at IISc Bangalore
+          </DialogTitle>
           <ScrollArea className="h-[calc(90vh-60px)]">
             <div className="p-4 space-y-6">
               {/* Portrait Photos Row */}
               <div>
-                <h4 className="text-sm font-medium text-muted-foreground mb-3">Campus Life</h4>
                 <div className="grid grid-cols-3 gap-4">
                   {portraitImages.map((image, index) => (
                     <motion.div
@@ -147,7 +135,6 @@ export default function PersonalGallerySection() {
 
               {/* Landscape Photos 2x2 Grid */}
               <div>
-                <h4 className="text-sm font-medium text-muted-foreground mb-3">Events & Festivals</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {landscapeImages.map((image, index) => (
                     <motion.div
