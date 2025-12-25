@@ -50,7 +50,7 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <div className="glass rounded-2xl p-6 md:p-8">
-              <h3 className="text-2xl font-semibold mb-4 text-gradient">Hello, I'm Akash!</h3>
+              <h3 className="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">Hello, I'm Akash!</h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>
                   I am a <a href="https://www.csa.iisc.ac.in/people/akash-maji/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">scholar</a> at{' '}
