@@ -39,7 +39,7 @@ export default function PDFViewerModal({ isOpen, onClose, pdfUrl, title }: PDFVi
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
-        className={`p-0 flex flex-col bg-background/95 backdrop-blur-xl border-border/50 transition-all duration-300 ${
+        className={`p-0 flex flex-col bg-background/95 backdrop-blur-xl border-border/50 transition-all duration-300 [&>button]:hidden ${
           isMaximized 
             ? 'max-w-[100vw] w-[100vw] h-[100vh] rounded-none' 
             : 'max-w-5xl w-[95vw] h-[90vh]'
