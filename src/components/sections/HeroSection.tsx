@@ -24,25 +24,6 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="flex-1 text-center lg:text-left"
           >
-            {/* Name in 3 Languages - Hindi • English • Bengali */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mb-4"
-            >
-              <h1 className="text-5xl md:text-7xl font-bold font-hindi text-gradient inline-block">
-                आकाश
-              </h1>
-              <span className="mx-3 text-muted-foreground text-3xl">•</span>
-              <h1 className="text-5xl md:text-7xl font-bold text-gradient inline-block">
-                Akash
-              </h1>
-              <span className="mx-3 text-muted-foreground text-3xl">•</span>
-              <h1 className="text-5xl md:text-7xl font-bold font-hindi text-gradient inline-block">
-                আকাশ
-              </h1>
-            </motion.div>
 
             {/* Welcome Text */}
             <motion.h2
@@ -129,34 +110,13 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex-shrink-0"
           >
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
+            <div className="relative">
               {/* Glow Effect */}
-              <div className="absolute inset-8 md:inset-12 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
+              <div className="absolute inset-0 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
               
-              {/* Spokes connecting icons to center */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => {
-                  const rad = (angle * Math.PI) / 180;
-                  const x2 = 50 + 42 * Math.sin(rad);
-                  const y2 = 50 - 42 * Math.cos(rad);
-                  return (
-                    <line
-                      key={i}
-                      x1="50"
-                      y1="50"
-                      x2={x2}
-                      y2={y2}
-                      stroke="hsl(var(--primary))"
-                      strokeWidth="0.3"
-                      opacity="0.4"
-                    />
-                  );
-                })}
-              </svg>
-
-              {/* Image Container - centered */}
+              {/* Image Container */}
               <motion.div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-primary/30 glow z-10"
+                className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 glow"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -167,45 +127,78 @@ export default function HeroSection() {
                 />
               </motion.div>
 
-              {/* Floating Section Icons - 8 icons positioned at 45° intervals */}
-              {[
-                { href: '#about', emoji: '👤', angle: 0 },
-                { href: '#education', emoji: '🎓', angle: 45 },
-                { href: '#experience', emoji: '💼', angle: 90 },
-                { href: '#study', emoji: '📚', angle: 135 },
-                { href: '#projects', emoji: '💻', angle: 180 },
-                { href: '#reports', emoji: '📄', angle: 225 },
-                { href: '#achievements', emoji: '🏆', angle: 270 },
-                { href: '#contact', emoji: '📧', angle: 315 },
-              ].map((item, index) => {
-                const rad = (item.angle * Math.PI) / 180;
-                const radius = 42; // percentage from center
-                const x = 50 + radius * Math.sin(rad);
-                const y = 50 - radius * Math.cos(rad);
-                
-                return (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    className="absolute w-10 h-10 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform z-20"
-                    style={{
-                      left: `${x}%`,
-                      top: `${y}%`,
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity, 
-                      delay: index * 0.3,
-                    }}
-                  >
-                    <span className="text-lg md:text-xl">{item.emoji}</span>
-                  </motion.a>
-                );
-              })}
+              {/* Floating Section Icons - 8 icons around the profile */}
+              <motion.a
+                href="#about"
+                className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0 }}
+              >
+                <span className="text-xl">👤</span>
+              </motion.a>
+              
+              <motion.a
+                href="#education"
+                className="absolute top-4 -right-4 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 2.8, repeat: Infinity, delay: 0.3 }}
+              >
+                <span className="text-xl">🎓</span>
+              </motion.a>
+              
+              <motion.a
+                href="#experience"
+                className="absolute top-1/2 -right-6 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}
+              >
+                <span className="text-xl">💼</span>
+              </motion.a>
+              
+              <motion.a
+                href="#study"
+                className="absolute bottom-4 -right-4 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 2.6, repeat: Infinity, delay: 0.9 }}
+              >
+                <span className="text-xl">📚</span>
+              </motion.a>
+              
+              <motion.a
+                href="#projects"
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 2.7, repeat: Infinity, delay: 1.2 }}
+              >
+                <span className="text-xl">💻</span>
+              </motion.a>
+              
+              <motion.a
+                href="#reports"
+                className="absolute bottom-4 -left-4 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 2.9, repeat: Infinity, delay: 1.5 }}
+              >
+                <span className="text-xl">📄</span>
+              </motion.a>
+              
+              <motion.a
+                href="#achievements"
+                className="absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ x: [0, -5, 0] }}
+                transition={{ duration: 3.1, repeat: Infinity, delay: 1.8 }}
+              >
+                <span className="text-xl">🏆</span>
+              </motion.a>
+              
+              <motion.a
+                href="#contact"
+                className="absolute top-4 -left-4 w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 2.4, repeat: Infinity, delay: 2.1 }}
+              >
+                <span className="text-xl">📧</span>
+              </motion.a>
             </div>
           </motion.div>
         </div>
