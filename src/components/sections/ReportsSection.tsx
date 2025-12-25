@@ -53,7 +53,7 @@ const reports: Report[] = [
     authors: 'Akash Maji',
     date: 'June 2025',
     links: [
-      { type: 'report', label: 'Technical Report', url: '/reports/GroupJoin_Report_Akash.pdf' },
+      { type: 'report', label: 'Technical Report', url: '/reports/GroupJoin_Report.pdf' },
       { type: 'project', label: 'Project Presentation', url: '/reports/GroupJoin_Project.pdf' },
     ],
   },
@@ -63,7 +63,7 @@ const reports: Report[] = [
     authors: 'Akash Maji • Utkarsh Sharma',
     date: 'December 2024',
     links: [
-      { type: 'report', label: 'Technical Report', url: '/reports/DuckDB_AMUS_Join_Report.pdf' },
+      { type: 'report', label: 'Technical Report', url: '/reports/AMUS_Join_Report.pdf' },
       { type: 'project', label: 'Project Presentation', url: '/reports/AMUS_Join_Project.pdf' },
     ],
   },
@@ -73,7 +73,7 @@ const reports: Report[] = [
     authors: 'Akash Maji • Utkarsh Sharma • Suraj Reddy • Amandeep Nokhwal',
     date: 'April 2025',
     links: [
-      { type: 'report', label: 'Technical Report', url: '/reports/CNN_Memory_Profiling_And_Optimisation_Report.pdf' },
+      { type: 'report', label: 'Technical Report', url: '/reports/CNN_Memory_Report.pdf' },
       { type: 'project', label: 'Project Presentation', url: '/reports/CNN_Memory_Project.pdf' },
     ],
   },
