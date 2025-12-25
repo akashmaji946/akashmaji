@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Award, ExternalLink, Medal, Trophy, Shield, Star } from 'lucide-react';
+import PDFViewerModal from '@/components/PDFViewerModal';
 
 // Import certification logos
 import associateJavaLogo from '@/assets/certs/associate-java.png';
@@ -101,174 +103,187 @@ const awards = [
 ];
 
 export default function AchievementsSection() {
+  const [selectedPDF, setSelectedPDF] = useState<{ url: string; title: string } | null>(null);
+
+  const handleCertificateClick = (url: string, title: string) => {
+    setSelectedPDF({ url, title });
+  };
+
   return (
-    <section id="achievements" className="py-20 md:py-32">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Achievements</span> & Certifications
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Recognition and professional credentials
-          </p>
-        </motion.div>
+    <>
+      <section id="achievements" className="py-20 md:py-32">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="text-gradient">Achievements</span> & Certifications
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Recognition and professional credentials
+            </p>
+          </motion.div>
 
-        {/* GATE Scores */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h3 className="text-2xl font-bold mb-6 text-center">GATE Scores</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {gateScores.map((score, index) => (
-              <motion.div
-                key={score.year + score.exam}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="glass rounded-xl p-6 text-center min-w-[160px]"
-              >
-                <div className="text-3xl font-bold text-gradient">{score.rank}</div>
-                <div className="text-sm font-medium mt-1">{score.exam}</div>
-                <div className="text-xs text-muted-foreground">{score.year}</div>
-              </motion.div>
-            ))}
+          {/* GATE Scores */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h3 className="text-2xl font-bold mb-6 text-center">GATE Scores</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {gateScores.map((score, index) => (
+                <motion.div
+                  key={score.year + score.exam}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="glass rounded-xl p-6 text-center min-w-[160px]"
+                >
+                  <div className="text-3xl font-bold text-gradient">{score.rank}</div>
+                  <div className="text-sm font-medium mt-1">{score.exam}</div>
+                  <div className="text-xs text-muted-foreground">{score.year}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Certifications */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <Shield className="h-6 w-6 text-primary" />
+                Certifications
+              </h3>
+              <div className="space-y-4">
+                {certifications.map((cert, index) => (
+                  <motion.div
+                    key={cert.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    className="glass rounded-xl p-5 group"
+                  >
+                    <div className="flex items-start gap-4">
+                      {/* Certification Logo */}
+                      <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-background/50 border border-border/30">
+                        <img
+                          src={cert.logo}
+                          alt={`${cert.title} badge`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <h4 className="font-semibold group-hover:text-primary transition-colors text-sm">
+                            {cert.title}
+                          </h4>
+                          <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
+                            cert.status === 'Active' ? 'bg-green-500/10 text-green-500' :
+                            cert.status === 'Lifetime' ? 'bg-primary/10 text-primary' :
+                            cert.status === 'Expired' ? 'bg-yellow-500/10 text-yellow-500' :
+                            'bg-muted text-muted-foreground'
+                          }`}>
+                            {cert.status}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-1">{cert.issuer} • {cert.date}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{cert.description}</p>
+                        <div className="flex gap-4 mt-2">
+                          {cert.credentialUrl && (
+                            <a
+                              href={cert.credentialUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                            >
+                              Verify Credential
+                              <ExternalLink className="h-3 w-3" />
+                            </a>
+                          )}
+                          {cert.certificateUrl && (
+                            <button
+                              onClick={() => handleCertificateClick(cert.certificateUrl, cert.title)}
+                              className="inline-flex items-center gap-1 text-xs text-accent hover:underline cursor-pointer"
+                            >
+                              View Certificate
+                              <ExternalLink className="h-3 w-3" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Awards */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <Award className="h-6 w-6 text-accent" />
+                Awards & Honors
+              </h3>
+              <div className="space-y-4">
+                {awards.map((award, index) => (
+                  <motion.div
+                    key={award.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    className="glass rounded-xl p-5"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-lg bg-gradient">
+                        <award.icon className="h-6 w-6 text-primary-foreground" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between gap-4">
+                          <h4 className="font-semibold">{award.title}</h4>
+                          <span className="text-sm text-muted-foreground whitespace-nowrap">
+                            {award.year}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {award.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Certifications */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Shield className="h-6 w-6 text-primary" />
-              Certifications
-            </h3>
-            <div className="space-y-4">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={cert.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, x: 4 }}
-                  className="glass rounded-xl p-5 group"
-                >
-                  <div className="flex items-start gap-4">
-                    {/* Certification Logo */}
-                    <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-background/50 border border-border/30">
-                      <img
-                        src={cert.logo}
-                        alt={`${cert.title} badge`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h4 className="font-semibold group-hover:text-primary transition-colors text-sm">
-                          {cert.title}
-                        </h4>
-                        <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
-                          cert.status === 'Active' ? 'bg-green-500/10 text-green-500' :
-                          cert.status === 'Lifetime' ? 'bg-primary/10 text-primary' :
-                          cert.status === 'Expired' ? 'bg-yellow-500/10 text-yellow-500' :
-                          'bg-muted text-muted-foreground'
-                        }`}>
-                          {cert.status}
-                        </span>
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-1">{cert.issuer} • {cert.date}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{cert.description}</p>
-                      <div className="flex gap-4 mt-2">
-                        {cert.credentialUrl && (
-                          <a
-                            href={cert.credentialUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
-                          >
-                            Verify Credential
-                            <ExternalLink className="h-3 w-3" />
-                          </a>
-                        )}
-                        {cert.certificateUrl && (
-                          <a
-                            href={cert.certificateUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
-                          >
-                            View Certificate
-                            <ExternalLink className="h-3 w-3" />
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Awards */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Award className="h-6 w-6 text-accent" />
-              Awards & Honors
-            </h3>
-            <div className="space-y-4">
-              {awards.map((award, index) => (
-                <motion.div
-                  key={award.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, x: 4 }}
-                  className="glass rounded-xl p-5"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-gradient">
-                      <award.icon className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between gap-4">
-                        <h4 className="font-semibold">{award.title}</h4>
-                        <span className="text-sm text-muted-foreground whitespace-nowrap">
-                          {award.year}
-                        </span>
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {award.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
+      </section>
 
-      </div>
-    </section>
+      <PDFViewerModal
+        isOpen={!!selectedPDF}
+        onClose={() => setSelectedPDF(null)}
+        pdfUrl={selectedPDF?.url || ''}
+        title={selectedPDF?.title || ''}
+      />
+    </>
   );
 }
