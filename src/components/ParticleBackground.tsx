@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -17,14 +17,13 @@ function Stars() {
       positions[i * 3 + 1] = (Math.random() - 0.5) * 50;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
       
-      // Vary star colors between white, yellow, and light blue
       const colorChoice = Math.random();
       if (colorChoice < 0.6) {
-        colors[i * 3] = 1; colors[i * 3 + 1] = 1; colors[i * 3 + 2] = 1; // White
+        colors[i * 3] = 1; colors[i * 3 + 1] = 1; colors[i * 3 + 2] = 1;
       } else if (colorChoice < 0.8) {
-        colors[i * 3] = 1; colors[i * 3 + 1] = 0.95; colors[i * 3 + 2] = 0.7; // Yellow
+        colors[i * 3] = 1; colors[i * 3 + 1] = 0.95; colors[i * 3 + 2] = 0.7;
       } else {
-        colors[i * 3] = 0.7; colors[i * 3 + 1] = 0.85; colors[i * 3 + 2] = 1; // Light blue
+        colors[i * 3] = 0.7; colors[i * 3 + 1] = 0.85; colors[i * 3 + 2] = 1;
       }
     }
     return [positions, colors];
@@ -47,6 +46,160 @@ function Stars() {
         opacity={0.9}
       />
     </Points>
+  );
+}
+
+// Falling/Shooting Stars
+function ShootingStar({ delay }: { delay: number }) {
+  const ref = useRef<THREE.Mesh>(null);
+  const trailRef = useRef<THREE.Points>(null);
+  const [active, setActive] = useState(false);
+  const startTime = useRef(delay);
+  const trailLength = 30;
+  
+  const trailPositions = useMemo(() => new Float32Array(trailLength * 3), []);
+
+  useFrame((state) => {
+    const time = state.clock.elapsedTime;
+    
+    if (time > startTime.current && !active) {
+      setActive(true);
+    }
+    
+    if (active && ref.current) {
+      const progress = ((time - startTime.current) % 3) / 3;
+      
+      if (progress < 0.01) {
+        // Reset position for new shooting star
+        ref.current.position.set(
+          (Math.random() - 0.5) * 20 + 10,
+          (Math.random() - 0.5) * 10 + 8,
+          -15 - Math.random() * 10
+        );
+      }
+      
+      // Move diagonally down-left
+      ref.current.position.x -= 0.15;
+      ref.current.position.y -= 0.08;
+      
+      // Update trail
+      if (trailRef.current) {
+        const positions = trailRef.current.geometry.attributes.position.array as Float32Array;
+        for (let i = trailLength - 1; i > 0; i--) {
+          positions[i * 3] = positions[(i - 1) * 3];
+          positions[i * 3 + 1] = positions[(i - 1) * 3 + 1];
+          positions[i * 3 + 2] = positions[(i - 1) * 3 + 2];
+        }
+        positions[0] = ref.current.position.x;
+        positions[1] = ref.current.position.y;
+        positions[2] = ref.current.position.z;
+        trailRef.current.geometry.attributes.position.needsUpdate = true;
+      }
+    }
+  });
+
+  return (
+    <>
+      <mesh ref={ref} position={[15, 10, -20]}>
+        <sphereGeometry args={[0.04, 8, 8]} />
+        <meshBasicMaterial color="#ffffff" />
+      </mesh>
+      <Points ref={trailRef} positions={trailPositions} stride={3}>
+        <PointMaterial
+          transparent
+          color="#ffffff"
+          size={0.03}
+          sizeAttenuation={true}
+          depthWrite={false}
+          opacity={0.6}
+        />
+      </Points>
+    </>
+  );
+}
+
+// Moon
+function Moon() {
+  const ref = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.y = state.clock.elapsedTime * 0.02;
+    }
+  });
+
+  return (
+    <group ref={ref} position={[-12, 8, -25]}>
+      {/* Main moon body */}
+      <mesh>
+        <sphereGeometry args={[2, 32, 32]} />
+        <meshBasicMaterial color="#f5f5dc" />
+      </mesh>
+      {/* Moon craters (darker spots) */}
+      <mesh position={[0.5, 0.5, 1.8]}>
+        <sphereGeometry args={[0.3, 16, 16]} />
+        <meshBasicMaterial color="#d4d4aa" />
+      </mesh>
+      <mesh position={[-0.8, -0.3, 1.6]}>
+        <sphereGeometry args={[0.4, 16, 16]} />
+        <meshBasicMaterial color="#c9c99a" />
+      </mesh>
+      <mesh position={[0.2, -0.7, 1.7]}>
+        <sphereGeometry args={[0.25, 16, 16]} />
+        <meshBasicMaterial color="#d4d4aa" />
+      </mesh>
+      {/* Glow effect */}
+      <mesh>
+        <sphereGeometry args={[2.3, 32, 32]} />
+        <meshBasicMaterial color="#fffde7" transparent opacity={0.15} />
+      </mesh>
+    </group>
+  );
+}
+
+// Sun
+function Sun() {
+  const ref = useRef<THREE.Group>(null);
+  const raysRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.z = state.clock.elapsedTime * 0.1;
+    }
+    if (raysRef.current) {
+      raysRef.current.rotation.z = -state.clock.elapsedTime * 0.05;
+      const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.05;
+      raysRef.current.scale.set(scale, scale, 1);
+    }
+  });
+
+  return (
+    <group position={[15, 10, -30]}>
+      {/* Sun core */}
+      <mesh>
+        <sphereGeometry args={[1.5, 32, 32]} />
+        <meshBasicMaterial color="#ffd700" />
+      </mesh>
+      {/* Inner glow */}
+      <mesh>
+        <sphereGeometry args={[1.8, 32, 32]} />
+        <meshBasicMaterial color="#ffeb3b" transparent opacity={0.5} />
+      </mesh>
+      {/* Outer glow */}
+      <mesh>
+        <sphereGeometry args={[2.5, 32, 32]} />
+        <meshBasicMaterial color="#fff59d" transparent opacity={0.2} />
+      </mesh>
+      {/* Corona rays */}
+      <group ref={ref}>
+        {[...Array(12)].map((_, i) => (
+          <mesh key={i} rotation={[0, 0, (i * Math.PI * 2) / 12]} position={[0, 0, 0]}>
+            <planeGeometry args={[0.15, 4]} />
+            <meshBasicMaterial color="#ffeb3b" transparent opacity={0.3} side={THREE.DoubleSide} />
+          </mesh>
+        ))}
+      </group>
+    </group>
   );
 }
 
@@ -191,6 +344,17 @@ export default function ParticleBackground() {
         
         {/* Stars background */}
         <Stars />
+        
+        {/* Moon and Sun */}
+        <Moon />
+        <Sun />
+        
+        {/* Shooting Stars */}
+        <ShootingStar delay={0} />
+        <ShootingStar delay={2} />
+        <ShootingStar delay={4} />
+        <ShootingStar delay={6} />
+        <ShootingStar delay={8} />
         
         {/* Nebula clouds */}
         <Nebula />
