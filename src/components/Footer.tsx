@@ -108,31 +108,6 @@ export default function Footer() {
             </p>
           </motion.div>
         </div>
-
-        {/* Bhagavad Gita Quote */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-8 pt-8 border-t border-border/30"
-        >
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="relative">
-              <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-4xl text-primary/20">"</span>
-              <p className="text-lg md:text-xl font-hindi text-gradient font-medium tracking-wide">
-                कर्मण्येवाधिकारस्ते मा फलेषु कदाचन
-              </p>
-              <p className="text-sm text-muted-foreground mt-2 italic">
-                "You have the right to work, but never to the fruit of work"
-              </p>
-              <span className="absolute -bottom-2 right-1/4 text-4xl text-primary/20">"</span>
-            </div>
-            <p className="text-xs text-primary/70 mt-4 font-medium tracking-wider uppercase">
-              — Bhagavad Gita 2.47
-            </p>
-          </div>
-        </motion.div>
       </div>
     </footer>
   );
