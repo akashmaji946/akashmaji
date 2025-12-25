@@ -1,6 +1,6 @@
-import { useRef, useMemo, useState, useEffect } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
+import { Points, PointMaterial, Line } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Stars - small twinkling white/yellow points
@@ -46,45 +46,6 @@ function Stars() {
         opacity={0.9}
       />
     </Points>
-  );
-}
-
-// Moon
-function Moon() {
-  const ref = useRef<THREE.Group>(null);
-  
-  useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.y = state.clock.elapsedTime * 0.02;
-    }
-  });
-
-  return (
-    <group ref={ref} position={[-12, 8, -25]}>
-      {/* Main moon body */}
-      <mesh>
-        <sphereGeometry args={[2, 32, 32]} />
-        <meshBasicMaterial color="#f5f5dc" />
-      </mesh>
-      {/* Moon craters (darker spots) */}
-      <mesh position={[0.5, 0.5, 1.8]}>
-        <sphereGeometry args={[0.3, 16, 16]} />
-        <meshBasicMaterial color="#d4d4aa" />
-      </mesh>
-      <mesh position={[-0.8, -0.3, 1.6]}>
-        <sphereGeometry args={[0.4, 16, 16]} />
-        <meshBasicMaterial color="#c9c99a" />
-      </mesh>
-      <mesh position={[0.2, -0.7, 1.7]}>
-        <sphereGeometry args={[0.25, 16, 16]} />
-        <meshBasicMaterial color="#d4d4aa" />
-      </mesh>
-      {/* Glow effect */}
-      <mesh>
-        <sphereGeometry args={[2.3, 32, 32]} />
-        <meshBasicMaterial color="#fffde7" transparent opacity={0.15} />
-      </mesh>
-    </group>
   );
 }
 
@@ -166,196 +127,127 @@ function Nebula() {
   );
 }
 
-// Interactive Cursor Particles with physics
-function CursorParticles() {
-  const ref = useRef<THREE.Points>(null);
-  const { viewport, camera } = useThree();
-  const particlesCount = 150;
+// Web effect around cursor
+function WebEffect() {
+  const { viewport } = useThree();
   const mousePos = useRef(new THREE.Vector3(0, 0, 0));
+  const linesRef = useRef<THREE.Group>(null);
+  const particlesCount = 80;
+  const connectionDistance = 2.5;
+  const mouseInfluence = 4;
   
-  // Particle physics state
-  const particleData = useMemo(() => {
-    const positions = new Float32Array(particlesCount * 3);
-    const velocities = new Float32Array(particlesCount * 3);
-    const originalPositions = new Float32Array(particlesCount * 3);
-    const colors = new Float32Array(particlesCount * 3);
-    
+  const particles = useMemo(() => {
+    const arr = [];
     for (let i = 0; i < particlesCount; i++) {
-      const x = (Math.random() - 0.5) * 15;
-      const y = (Math.random() - 0.5) * 10;
-      const z = (Math.random() - 0.5) * 5 - 2;
-      
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
-      
-      originalPositions[i * 3] = x;
-      originalPositions[i * 3 + 1] = y;
-      originalPositions[i * 3 + 2] = z;
-      
-      velocities[i * 3] = 0;
-      velocities[i * 3 + 1] = 0;
-      velocities[i * 3 + 2] = 0;
-      
-      // Colorful particles - cyan, purple, pink
-      const colorChoice = Math.random();
-      if (colorChoice < 0.33) {
-        colors[i * 3] = 0.4; colors[i * 3 + 1] = 0.9; colors[i * 3 + 2] = 1;
-      } else if (colorChoice < 0.66) {
-        colors[i * 3] = 0.7; colors[i * 3 + 1] = 0.3; colors[i * 3 + 2] = 0.9;
-      } else {
-        colors[i * 3] = 1; colors[i * 3 + 1] = 0.4; colors[i * 3 + 2] = 0.7;
-      }
+      arr.push({
+        position: new THREE.Vector3(
+          (Math.random() - 0.5) * 16,
+          (Math.random() - 0.5) * 12,
+          (Math.random() - 0.5) * 4 - 2
+        ),
+        velocity: new THREE.Vector3(
+          (Math.random() - 0.5) * 0.01,
+          (Math.random() - 0.5) * 0.01,
+          0
+        )
+      });
     }
-    
-    return { positions, velocities, originalPositions, colors };
+    return arr;
   }, []);
+
+  const pointsPositions = useMemo(() => new Float32Array(particlesCount * 3), []);
+  const pointsRef = useRef<THREE.Points>(null);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      // Convert mouse position to 3D coordinates
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
-      
-      mousePos.current.set(
-        x * viewport.width / 2,
-        y * viewport.height / 2,
-        0
-      );
+      mousePos.current.set(x * viewport.width / 2, y * viewport.height / 2, 0);
     };
-    
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [viewport]);
 
-  useFrame((state, delta) => {
-    if (!ref.current) return;
-    
-    const positions = ref.current.geometry.attributes.position.array as Float32Array;
-    const { velocities, originalPositions } = particleData;
-    
-    const mouseInfluenceRadius = 3;
-    const repelStrength = 8;
-    const returnStrength = 0.5;
-    const damping = 0.92;
-    
-    for (let i = 0; i < particlesCount; i++) {
-      const ix = i * 3;
-      const iy = i * 3 + 1;
-      const iz = i * 3 + 2;
-      
-      // Calculate distance to mouse
-      const dx = positions[ix] - mousePos.current.x;
-      const dy = positions[iy] - mousePos.current.y;
-      const dz = positions[iz] - mousePos.current.z;
-      const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
-      
-      // Repel from cursor
-      if (distance < mouseInfluenceRadius && distance > 0.01) {
-        const force = (mouseInfluenceRadius - distance) / mouseInfluenceRadius * repelStrength;
-        velocities[ix] += (dx / distance) * force * delta;
-        velocities[iy] += (dy / distance) * force * delta;
-        velocities[iz] += (dz / distance) * force * delta;
-      }
-      
-      // Return to original position
-      velocities[ix] += (originalPositions[ix] - positions[ix]) * returnStrength * delta;
-      velocities[iy] += (originalPositions[iy] - positions[iy]) * returnStrength * delta;
-      velocities[iz] += (originalPositions[iz] - positions[iz]) * returnStrength * delta;
-      
-      // Apply damping
-      velocities[ix] *= damping;
-      velocities[iy] *= damping;
-      velocities[iz] *= damping;
-      
-      // Update positions
-      positions[ix] += velocities[ix];
-      positions[iy] += velocities[iy];
-      positions[iz] += velocities[iz];
-    }
-    
-    ref.current.geometry.attributes.position.needsUpdate = true;
-  });
-
-  return (
-    <Points ref={ref} positions={particleData.positions} stride={3} frustumCulled={false}>
-      <PointMaterial
-        transparent
-        vertexColors
-        size={0.08}
-        sizeAttenuation={true}
-        depthWrite={false}
-        opacity={0.8}
-        blending={THREE.AdditiveBlending}
-      />
-      <bufferAttribute
-        attach="geometry-attributes-color"
-        count={particlesCount}
-        array={particleData.colors}
-        itemSize={3}
-      />
-    </Points>
-  );
-}
-
-// Floating ambient particles
-function FloatingParticles() {
-  const ref = useRef<THREE.Points>(null);
-  const particlesCount = 300;
-  
-  const [positions, velocities] = useMemo(() => {
-    const positions = new Float32Array(particlesCount * 3);
-    const velocities = new Float32Array(particlesCount * 3);
-    
-    for (let i = 0; i < particlesCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 10 - 5;
-      
-      velocities[i * 3] = (Math.random() - 0.5) * 0.02;
-      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.02;
-      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
-    }
-    
-    return [positions, velocities];
-  }, []);
-
   useFrame(() => {
-    if (!ref.current) return;
-    
-    const posArray = ref.current.geometry.attributes.position.array as Float32Array;
-    
-    for (let i = 0; i < particlesCount; i++) {
-      const ix = i * 3;
-      const iy = i * 3 + 1;
-      const iz = i * 3 + 2;
+    if (!linesRef.current || !pointsRef.current) return;
+
+    // Update particle positions
+    particles.forEach((p, i) => {
+      p.position.add(p.velocity);
       
-      posArray[ix] += velocities[ix];
-      posArray[iy] += velocities[iy];
-      posArray[iz] += velocities[iz];
-      
-      // Wrap around bounds
-      if (posArray[ix] > 10) posArray[ix] = -10;
-      if (posArray[ix] < -10) posArray[ix] = 10;
-      if (posArray[iy] > 7.5) posArray[iy] = -7.5;
-      if (posArray[iy] < -7.5) posArray[iy] = 7.5;
+      // Wrap around
+      if (p.position.x > 8) p.position.x = -8;
+      if (p.position.x < -8) p.position.x = 8;
+      if (p.position.y > 6) p.position.y = -6;
+      if (p.position.y < -6) p.position.y = 6;
+
+      pointsPositions[i * 3] = p.position.x;
+      pointsPositions[i * 3 + 1] = p.position.y;
+      pointsPositions[i * 3 + 2] = p.position.z;
+    });
+
+    pointsRef.current.geometry.attributes.position.needsUpdate = true;
+
+    // Clear old lines
+    while (linesRef.current.children.length > 0) {
+      const child = linesRef.current.children[0];
+      if (child instanceof THREE.Line) {
+        child.geometry.dispose();
+        if (child.material instanceof THREE.Material) child.material.dispose();
+      }
+      linesRef.current.remove(child);
     }
+
+    // Create web connections near cursor
+    const nearParticles: THREE.Vector3[] = [];
     
-    ref.current.geometry.attributes.position.needsUpdate = true;
+    particles.forEach(p => {
+      const distToMouse = p.position.distanceTo(mousePos.current);
+      if (distToMouse < mouseInfluence) {
+        nearParticles.push(p.position.clone());
+      }
+    });
+
+    // Add cursor as a connection point
+    nearParticles.push(mousePos.current.clone());
+
+    // Draw connections
+    for (let i = 0; i < nearParticles.length; i++) {
+      for (let j = i + 1; j < nearParticles.length; j++) {
+        const dist = nearParticles[i].distanceTo(nearParticles[j]);
+        if (dist < connectionDistance) {
+          const opacity = 1 - dist / connectionDistance;
+          const geometry = new THREE.BufferGeometry().setFromPoints([
+            nearParticles[i],
+            nearParticles[j]
+          ]);
+          const material = new THREE.LineBasicMaterial({
+            color: new THREE.Color(0.4, 0.8, 1),
+            transparent: true,
+            opacity: opacity * 0.6
+          });
+          const line = new THREE.Line(geometry, material);
+          linesRef.current.add(line);
+        }
+      }
+    }
   });
 
   return (
-    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
-      <PointMaterial
-        transparent
-        color="#60a5fa"
-        size={0.04}
-        sizeAttenuation={true}
-        depthWrite={false}
-        opacity={0.6}
-        blending={THREE.AdditiveBlending}
-      />
-    </Points>
+    <>
+      <Points ref={pointsRef} positions={pointsPositions} stride={3}>
+        <PointMaterial
+          transparent
+          color="#60a5fa"
+          size={0.06}
+          sizeAttenuation={true}
+          depthWrite={false}
+          opacity={0.8}
+          blending={THREE.AdditiveBlending}
+        />
+      </Points>
+      <group ref={linesRef} />
+    </>
   );
 }
 
@@ -368,9 +260,6 @@ export default function ParticleBackground() {
         {/* Stars background */}
         <Stars />
         
-        {/* Moon */}
-        <Moon />
-        
         {/* Nebula clouds */}
         <Nebula />
         
@@ -379,11 +268,8 @@ export default function ParticleBackground() {
         <Galaxy position={[10, -4, -20]} color="#06b6d4" size={2} />
         <Galaxy position={[0, 8, -25]} color="#a855f7" size={1.2} />
         
-        {/* Interactive cursor particles */}
-        <CursorParticles />
-        
-        {/* Floating ambient particles */}
-        <FloatingParticles />
+        {/* Web effect around cursor */}
+        <WebEffect />
       </Canvas>
     </div>
   );
