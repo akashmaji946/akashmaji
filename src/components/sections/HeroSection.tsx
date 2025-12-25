@@ -4,6 +4,7 @@ import TypewriterText from '@/components/TypewriterText';
 import { Button } from '@/components/ui/button';
 import profileImage from '@/assets/profile-image.jpg';
 import ibmLogo from '@/assets/ibm-logo.svg';
+import geetaImage from '@/assets/geeta.jpg';
 
 const roles = [
   'AIR 26 @ GATE CS 2024',
@@ -76,18 +77,30 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Quote */}
-            <motion.blockquote
+            {/* Bhagavad Gita Quote */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="border-l-4 border-primary pl-4 italic text-muted-foreground mb-8"
+              className="flex items-start gap-4 p-4 rounded-xl glass mb-8 max-w-xl"
             >
-              <p className="font-hindi text-lg">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन |</p>
-              <p className="text-sm mt-1">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
-              <p className="text-sm mt-1">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
-              <footer className="text-sm mt-1 text-primary">— Bhagavad Gita, Chapter 2, Verse 47</footer>
-            </motion.blockquote>
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 rounded-lg blur-sm opacity-60" />
+                  <img 
+                    src={geetaImage} 
+                    alt="Bhagavad Gita" 
+                    className="relative w-16 h-20 object-cover object-center rounded-lg"
+                  />
+                </div>
+              </div>
+              <div className="flex-1">
+                <p className="font-hindi text-lg font-bold text-gradient leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
+                <p className="text-xs text-muted-foreground mt-1">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
+                <p className="text-sm text-foreground/80 mt-1">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
+                <p className="text-xs font-semibold text-primary mt-1">— Bhagavad Gita 2.47</p>
+              </div>
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
