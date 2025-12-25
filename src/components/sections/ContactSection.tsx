@@ -180,7 +180,7 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8 space-y-6">
-                <h3 className="text-xl font-semibold">Contact Akash Maji</h3>
+                <h3 className="text-xl font-semibold">Contact Me</h3>
                 <div>
                   <label htmlFor="name" className="text-sm font-medium mb-2 block">
                     Full Name
@@ -264,7 +264,7 @@ export default function ContactSection() {
 
             {/* Connect with me */}
             <div className="glass rounded-xl p-6">
-              <h3 className="font-semibold mb-4">Connect with me</h3>
+              <h3 className="font-semibold mb-4">Reach Me</h3>
               <div className="flex flex-wrap gap-3">
                 {socialLinks.map((link, index) => (
                   <motion.a
@@ -298,9 +298,9 @@ export default function ContactSection() {
               viewport={{ once: true }}
               className="glass rounded-xl p-6"
             >
-              <h3 className="font-semibold mb-3">Book a 1:1 Call</h3>
+              <h3 className="font-semibold mb-3">Book 1:1 Call for Career Counselling & GATE Guidance</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Want to discuss something in detail? Schedule a personal call with me.
+                Schedule a personal call with me to discuss your career or GATE preparation.
               </p>
               <Dialog>
                 <DialogTrigger asChild>
