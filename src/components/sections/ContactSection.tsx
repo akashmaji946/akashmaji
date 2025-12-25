@@ -5,22 +5,29 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import qrCode from '@/assets/qrcode.png';
+import gmailLogo from '@/assets/gmail-logo.png';
+import outlookIcon from '@/assets/outlook-icon.png';
+import whatsappLogo from '@/assets/whatsapp-logo.png';
+import githubLogo from '@/assets/github-logo.png';
+import linkedinLogo from '@/assets/linkedin-logo.png';
+import twitterLogo from '@/assets/twitter-logo.png';
 
 const contactInfo = [
   {
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg',
+    icon: gmailLogo,
     label: 'Personal Email',
     value: 'akashmaji945@gmail.com',
     href: 'mailto:akashmaji945@gmail.com',
   },
   {
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg',
+    icon: outlookIcon,
     label: 'Academic Email',
     value: 'akashmaji@iisc.ac.in',
     href: 'mailto:akashmaji@iisc.ac.in',
   },
   {
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg',
+    icon: whatsappLogo,
     label: 'WhatsApp',
     value: '+91 9131697371',
     href: 'https://wa.me/9131697371',
@@ -29,25 +36,25 @@ const contactInfo = [
 
 const socialLinks = [
   { 
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', 
+    icon: githubLogo, 
     href: 'https://github.com/akashmaji946', 
     label: 'GitHub',
     invertOnDark: true
   },
   { 
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg', 
+    icon: linkedinLogo, 
     href: 'https://linkedin.com/in/akashmaji946', 
     label: 'LinkedIn',
     invertOnDark: false
   },
   { 
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg', 
+    icon: twitterLogo, 
     href: 'https://twitter.com/akashmaji946', 
     label: 'Twitter',
     invertOnDark: false
   },
   { 
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg', 
+    icon: whatsappLogo, 
     href: 'https://wa.me/9131697371', 
     label: 'WhatsApp',
     invertOnDark: false
@@ -113,7 +120,7 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
+          {/* Contact Form with QR Code */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -121,7 +128,10 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
           >
             <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8 space-y-6">
-              <h3 className="text-xl font-semibold mb-4">Contact Akash Maji</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold">Contact Akash Maji</h3>
+                <img src={qrCode} alt="Contact QR Code" className="w-16 h-16 rounded-lg bg-white p-1" />
+              </div>
               <div>
                 <label htmlFor="name" className="text-sm font-medium mb-2 block">
                   Full Name

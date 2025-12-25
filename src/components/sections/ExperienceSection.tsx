@@ -5,13 +5,14 @@ import tcsLogo from '@/assets/tcs-logo.png';
 
 const experiences = [
   {
-    title: 'Incoming Software Engineer',
-    company: 'IBM',
+    title: 'Incoming Hardware Engineer',
+    company: 'International Business Machines (IBM)',
     companyUrl: 'https://www.ibm.com',
     location: 'Bangalore, India',
     period: 'July 2026',
     type: 'Full-time',
-    description: 'Will be joining IBM as a Software Engineer after completing M.Tech at IISc Bangalore.',
+    status: 'incoming', // incoming = yellow
+    description: 'Will be joining IBM as a Hardware Engineer after completing M.Tech at IISc Bangalore.',
     responsibilities: [],
     technologies: [],
     logo: ibmLogo,
@@ -23,6 +24,7 @@ const experiences = [
     location: 'Indore, India',
     period: 'Aug 2021 - May 2024',
     type: 'Full-time',
+    status: 'past', // past = red
     description: 'Worked as a System Engineer in TCS Digital Profile as a Full Stack Java Web Developer.',
     responsibilities: [
       'Developed and maintained enterprise web applications using Spring Boot and Oracle DB',
@@ -36,6 +38,28 @@ const experiences = [
 ];
 
 export default function ExperienceSection() {
+  const getStatusStyles = (status: string) => {
+    switch (status) {
+      case 'incoming':
+        return 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400';
+      case 'past':
+        return 'bg-red-500/20 text-red-600 dark:text-red-400';
+      default:
+        return 'bg-primary/10 text-primary';
+    }
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'incoming':
+        return 'Incoming';
+      case 'past':
+        return 'Past';
+      default:
+        return 'Current';
+    }
+  };
+
   return (
     <section id="experience" className="py-20 md:py-32">
       <div className="container mx-auto px-6">
@@ -89,9 +113,14 @@ export default function ExperienceSection() {
                       </div>
                     </div>
                     <div className="flex flex-col items-start md:items-end gap-2">
-                      <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        {exp.type}
-                      </span>
+                      <div className="flex gap-2">
+                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                          {exp.type}
+                        </span>
+                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusStyles(exp.status)}`}>
+                          {getStatusLabel(exp.status)}
+                        </span>
+                      </div>
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
