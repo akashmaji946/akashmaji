@@ -1,31 +1,24 @@
 import { motion } from 'framer-motion';
-import { Code2, Cloud, Database, Terminal, Cpu, Globe, Layers, Server } from 'lucide-react';
 
+// Technology icons using devicons CDN
 const skills = [
-  { name: 'C/C++', icon: Terminal, category: 'Languages' },
-  { name: 'Java', icon: Code2, category: 'Languages' },
-  { name: 'Python', icon: Code2, category: 'Languages' },
-  { name: 'JavaScript', icon: Globe, category: 'Languages' },
-  { name: 'Spring Boot', icon: Server, category: 'Backend' },
-  { name: 'Oracle DB', icon: Database, category: 'Database' },
-  { name: 'Docker', icon: Layers, category: 'DevOps' },
-  { name: 'Kubernetes', icon: Cpu, category: 'DevOps' },
-  { name: 'OpenGL', icon: Cpu, category: 'Graphics' },
-  { name: 'CUDA', icon: Cpu, category: 'HPC' },
-  { name: 'Git', icon: Code2, category: 'Tools' },
-  { name: 'Linux', icon: Terminal, category: 'OS' },
+  { name: 'C/C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'Spring Boot', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
+  { name: 'Oracle DB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Kubernetes', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+  { name: 'OpenGL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opengl/opengl-original.svg' },
+  { name: 'PyTorch', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg' },
+  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'VSCode', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
+  { name: 'IntelliJ', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg' },
 ];
-
-const courses = {
-  undergraduate: [
-    'Operating Systems', 'Database Management Systems', 'Computer Networks', 
-    'Computer Organization', 'Compiler Design', 'Theory of Computation'
-  ],
-  graduate: [
-    'Algorithms', 'Computer Architecture', 'Distributed Systems',
-    'Machine Learning', 'Graphics and Visualization', 'Computer Systems Security'
-  ]
-};
 
 export default function AboutSection() {
   return (
@@ -59,19 +52,22 @@ export default function AboutSection() {
               <h3 className="text-2xl font-semibold mb-4 text-gradient">Hello, I'm Akash!</h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  I am a <strong className="text-foreground">scholar at IISc Bangalore</strong> pursuing 
-                  M.Tech in Computer Science Engineering (2024-2026) in the{' '}
-                  <strong className="text-foreground">Computer Science and Automation (CSA)</strong> department.
+                  I am a <a href="https://www.csa.iisc.ac.in/people/akash-maji/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">scholar</a> at{' '}
+                  <a href="https://iisc.ac.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">IISc Bangalore</a>{' '}
+                  pursuing M.Tech in Computer Science Engineering (2024-2026), in the{' '}
+                  <a href="https://www.csa.iisc.ac.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Computer Science and Automation (CSA)</a> department.
                 </p>
                 <p>
-                  I am part of the <strong className="text-foreground">Database Systems Lab, SERC, IISc Bangalore</strong> doing 
-                  research in database systems. I am a B.Tech CSE graduate from{' '}
-                  <strong className="text-foreground">RGPV Bhopal</strong> and secured{' '}
-                  <strong className="text-primary">AIR 26 in GATE CSE 2024</strong>.
+                  I am part of the{' '}
+                  <a href="https://dsl.cds.iisc.ac.in/index.php" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Database Systems Lab, SERC, IISc Bangalore (DSL)</a>{' '}
+                  doing research in database systems. I am a B.Tech CSE graduate from{' '}
+                  <a href="https://www.rgpv.ac.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">RGPV Bhopal</a>. 
+                  I secured <strong className="text-primary">AIR 26 in GATE CSE 2024</strong>.
                 </p>
                 <p>
                   I have work experience of about 2.5 years having worked as a{' '}
-                  <strong className="text-foreground">Full Stack Java Developer at TCS</strong>. 
+                  <strong className="text-foreground">Full Stack Java Developer</strong> at{' '}
+                  <a href="https://www.tcs.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">TCS</a>. 
                   I have a keen interest in advanced studies and research. I love theoretical and applied Computer Science.
                 </p>
               </div>
@@ -97,55 +93,32 @@ export default function AboutSection() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Coursework */}
-            <div className="glass rounded-2xl p-6">
-              <h4 className="font-semibold mb-4">Relevant Coursework</h4>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-sm font-medium text-primary mb-2">Graduate (IISc)</p>
-                  <div className="flex flex-wrap gap-2">
-                    {courses.graduate.map((course) => (
-                      <span key={course} className="px-2 py-1 rounded-md bg-primary/10 text-xs">
-                        {course}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-accent mb-2">Undergraduate (RGPV)</p>
-                  <div className="flex flex-wrap gap-2">
-                    {courses.undergraduate.map((course) => (
-                      <span key={course} className="px-2 py-1 rounded-md bg-accent/10 text-xs">
-                        {course}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
           </motion.div>
 
-          {/* Skills Grid */}
+          {/* Skills Grid with Real Icons */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-xl font-semibold mb-6">Skills & Technologies</h3>
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+            <h3 className="text-xl font-semibold mb-6">Languages & Tools</h3>
+            <div className="grid grid-cols-4 gap-3">
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ delay: index * 0.03 }}
+                  whileHover={{ scale: 1.1, y: -4 }}
                   className="glass rounded-xl p-3 flex flex-col items-center gap-2 cursor-default"
                 >
-                  <skill.icon className="h-6 w-6 text-primary" />
+                  <img 
+                    src={skill.icon} 
+                    alt={skill.name} 
+                    className="h-8 w-8"
+                  />
                   <span className="text-xs font-medium text-center">{skill.name}</span>
                 </motion.div>
               ))}

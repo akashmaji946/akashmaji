@@ -5,79 +5,87 @@ import { Button } from '@/components/ui/button';
 const projects = [
   {
     title: 'VM-Diffing-Tool (VMTOOL)',
-    description: 'A powerful tool for analyzing and comparing VM disk images. Built with Flask and a C++ core (pybind11) using libguestfs for robust disk access. Features file browsing, side-by-side diffs, and exportable JSON/PDF reports.',
-    technologies: ['Python', 'Flask', 'C++', 'pybind11', 'libguestfs', 'Docker', 'SQLite'],
+    description: 'A powerful tool for analyzing and comparing VM disk images. Built with Flask and a C++ core (pybind11) that uses libguestfs for robust disk access. Features file browsing, side‑by‑side file diffs, directory and block comparisons, image conversion, VM launch utilities, and exportable JSON/PDF reports. Supports web-based and CLI (vmt) interfaces.',
+    technologies: ['Python (Flask)', 'C++ (pybind11)', 'libguestfs', 'Docker', 'SQLite'],
     github: 'https://github.com/akashmaji946/VM-Diffing-Tool',
-    demo: null,
     docs: 'https://akashmaji946.github.io/VM-Diffing-Tool/',
+    releases: 'https://github.com/akashmaji946/VM-Diffing-Tool/releases',
     featured: true,
     year: '2025',
+    location: 'Bangalore, IN',
     course: 'Computer Systems Security Course Project',
   },
   {
     title: 'Medical Volume Renderer (MVR)',
-    description: 'Lightweight OpenGL-based 3D volume renderer with PyQt6 UI. Loads medical volumes (NIfTI, DICOM, VTK) with GPU-accelerated rendering, slice views, isosurface rendering, and custom transfer functions.',
-    technologies: ['C++', 'OpenGL', 'Python', 'PyQt6', 'pybind11', 'VTK', 'DCMTK', 'Docker'],
+    description: 'Lightweight OpenGL-based 3D volume renderer with a compact PyQt6 UI. Loads medical and scientific volumes (NIfTI: .nii/.nii.gz, DICOM: .dcm, VTK: .vtk) and supports GPU-accelerated volume rendering, slice/slicer view, isosurface rendering, custom & interactive transfer functions, overlays/annotations, and saving/exporting images. Distributed as a standalone Linux binary and shared library. Docker image available for easy deployment.',
+    technologies: ['C++', 'OpenGL', 'Python', 'PyQt6', 'pybind11', 'VTK', 'DCMTK', 'Docker', 'NIfTI'],
     github: 'https://github.com/akashmaji/MedicalVolumeRenderer',
-    demo: 'https://hub.docker.com/r/akashmaji/renderer-v0',
-    docs: null,
+    releases: 'https://github.com/akashmaji/MedicalVolumeRenderer/releases',
+    docker: 'https://hub.docker.com/r/akashmaji/renderer-v0',
     featured: true,
     year: '2025',
+    location: 'Bangalore, IN',
     course: 'Graphics and Visualization Course Project',
   },
   {
     title: 'Market Microservice',
-    description: 'Implemented three microservices (account, marketplace, wallet) using a dockerized Akka cluster. Handles concurrent RESTful requests through CLI while maintaining consistency.',
-    technologies: ['Java 21', 'Spring Boot 3', 'Akka', 'Docker', 'Kubernetes'],
+    description: 'Implemented three microservices (account-service, marketplace-service, wallet-service) using a dockerized Akka cluster. These services handle concurrent RESTful requests through a CLI interface while maintaining consistency and correctness.',
+    technologies: ['Java 21', 'Spring Boot 3', 'Akka Library', 'Docker', 'Kubernetes', 'IntelliJ', 'Git'],
     github: 'https://github.com/akashmaji946/PODS-Project-2-Phase-2-v1/tree/docker',
-    demo: null,
-    docs: null,
     featured: true,
     year: '2024',
+    location: 'Bangalore, IN',
     course: 'Distributed Systems Course Project',
   },
   {
-    title: 'DuckDB Join Operators',
-    description: 'Implemented two operators, "Join" and "GroupJoin" in DuckDB source-code, with nested loop join and optimized group-by handling.',
-    technologies: ['C++', 'CMake', 'Git', 'SQL'],
+    title: 'DuckDB',
+    description: 'Implemented two operators, "Join" and "GroupJoin" in the open-source DuckDB source-code, with "Join" being simple nested loop join, and "GroupJoin" being used when we have any "join" followed by "group by" in the query.',
+    technologies: ['C++', 'CMake', 'Git', 'SQL', 'VSCode'],
     github: 'https://github.com/akashmaji946/myduckdb/',
-    demo: null,
-    docs: null,
     featured: false,
     year: '2024',
+    location: 'Bangalore, IN',
     course: 'Database Systems Course Project',
   },
   {
     title: 'ChampSim-IISc',
-    description: 'Adapted ChampSim simulator with various branch predictors for calculating performance metrics like prediction accuracy, MPKI, IPC from program traces.',
-    technologies: ['C/C++', 'Shell Scripting', 'Git'],
+    description: 'ChampSim-IISc is an adapted version of ChampSim (open-source simulator) with various kinds of branch predictors implemented for calculating performance metrics like prediction accuracy, MPKI, IPC etc. from program traces.',
+    technologies: ['C/C++', 'Shell Scripting', 'Git', 'VSCode'],
     github: 'https://github.com/akashmaji946/ChampSim-IISc/',
-    demo: null,
-    docs: null,
     featured: false,
     year: '2024',
+    location: 'Bangalore, IN',
+    course: 'Computer Architecture Course Project',
+  },
+  {
+    title: 'Large Page Allocator',
+    description: 'Used "perf mem" tool to obtain a sampled report of TLB misses at different logical addresses, and identified top N TLB-miss regions and allocated large pages to improve performance.',
+    technologies: ['C/C++', 'Python', 'Git', 'Make', 'VSCode'],
+    github: 'https://github.com/akashmaji946/HPCA-Assignment-02/',
+    featured: false,
+    year: '2024',
+    location: 'Bangalore, IN',
     course: 'Computer Architecture Course Project',
   },
   {
     title: 'MINI Transformer Model',
-    description: 'Built from scratch in Python without deep-learning frameworks. Implements core Transformer components including attention, multi-head attention, and layer normalization.',
-    technologies: ['Python3', 'NumPy', 'Shell Scripting'],
+    description: 'Built from scratch in Python without using deep-learning frameworks. Implements core Transformer components including positional encoding, scaled dot-product self-attention, multi-head attention, layer normalization, residual connections, and final output prediction following the original Transformer architecture.',
+    technologies: ['Python3', 'NumPy', 'Git', 'VSCode', 'Shell Scripting'],
     github: 'https://github.com/akashmaji946/Assignment-02-SysML',
-    demo: null,
-    docs: null,
     featured: false,
     year: '2025',
-    course: 'Systems for ML Course Project',
+    location: 'Bangalore, IN',
+    course: 'Systems for Machine Learning Project',
   },
   {
     title: 'CNN Memory Profiling',
-    description: 'Memory profiling and optimization for CNN inference. Analyzes memory usage patterns and implements optimization strategies for efficient deep learning.',
-    technologies: ['Python3', 'PyTorch', 'CUDA', 'NVIDIA GPUs'],
+    description: 'Profiled and optimized CNN inference across RTX 3060, GTX 1050, and Tesla T4 GPUs. Techniques include FP16 inference, mixed-precision (AMP+AMC), and tiled inference to reduce peak memory and improve throughput. Experiments were performed on ResNet-20/32/44/56 models trained on CIFAR-10 and Mini-ImageNet, with detailed analysis of memory, latency and accuracy tradeoffs.',
+    technologies: ['Python3', 'PyTorch', 'CUDA', 'NVIDIA GPUs', 'Git', 'VSCode'],
     github: 'https://github.com/akashmaji946/CNN-Memory-Profiling-And-Optimization-v2',
-    demo: null,
-    docs: null,
+    report: 'https://akashmaj.me/reports/CNN_Memory_Profiling_And_Optimisation_Report.pdf',
     featured: false,
     year: '2025',
+    location: 'Bangalore, IN',
     course: 'Machine Learning Project',
   },
 ];
@@ -120,7 +128,7 @@ export default function ProjectsSection() {
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
-                  <div className="text-xs text-muted-foreground">{project.year} • {project.course}</div>
+                  <div className="text-xs text-muted-foreground">{project.year} | {project.location}</div>
                   <div className="flex gap-2">
                     {project.github && (
                       <motion.a
@@ -131,17 +139,6 @@ export default function ProjectsSection() {
                         className="p-2 rounded-full hover:bg-muted transition-colors"
                       >
                         <Github className="h-5 w-5" />
-                      </motion.a>
-                    )}
-                    {project.demo && (
-                      <motion.a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        className="p-2 rounded-full hover:bg-muted transition-colors"
-                      >
-                        <ExternalLink className="h-5 w-5" />
                       </motion.a>
                     )}
                     {project.docs && (
@@ -155,10 +152,22 @@ export default function ProjectsSection() {
                         <FileText className="h-5 w-5" />
                       </motion.a>
                     )}
+                    {project.docker && (
+                      <motion.a
+                        href={project.docker}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        className="p-2 rounded-full hover:bg-muted transition-colors"
+                      >
+                        <ExternalLink className="h-5 w-5" />
+                      </motion.a>
+                    )}
                   </div>
                 </div>
 
                 {/* Content */}
+                <p className="text-xs text-primary mb-2">{project.course}</p>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
@@ -197,7 +206,7 @@ export default function ProjectsSection() {
           <h3 className="text-2xl font-bold mb-4">Other Noteworthy Projects</h3>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {otherProjects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -206,31 +215,43 @@ export default function ProjectsSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
             >
-              <motion.a
-                href={project.github || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.div
                 whileHover={{ y: -4 }}
-                className="block glass rounded-xl p-5 h-full group"
+                className="glass rounded-xl p-5 h-full group"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <Folder className="h-5 w-5 text-primary" />
-                  <h4 className="font-semibold group-hover:text-primary transition-colors text-sm">
-                    {project.title}
-                  </h4>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <Folder className="h-5 w-5 text-primary" />
+                    <span className="text-xs text-muted-foreground">{project.year}</span>
+                  </div>
+                  <div className="flex gap-2">
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                        <Github className="h-4 w-4" />
+                      </a>
+                    )}
+                    {project.report && (
+                      <a href={project.report} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                        <FileText className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <p className="text-muted-foreground text-xs mb-3 line-clamp-2">
+                <p className="text-xs text-primary mb-1">{project.course}</p>
+                <h4 className="font-semibold group-hover:text-primary transition-colors mb-2">
+                  {project.title}
+                </h4>
+                <p className="text-muted-foreground text-xs mb-3 line-clamp-3">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-1">
-                  {project.technologies.slice(0, 3).map((tech) => (
+                  {project.technologies.slice(0, 3).map((tech, i) => (
                     <span key={tech} className="text-xs text-muted-foreground font-mono">
-                      {tech}
-                      {project.technologies.indexOf(tech) < 2 && ' •'}
+                      {tech}{i < 2 && ' •'}
                     </span>
                   ))}
                 </div>
-              </motion.a>
+              </motion.div>
             </motion.div>
           ))}
         </div>

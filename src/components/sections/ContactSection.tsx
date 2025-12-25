@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send, Github, Linkedin, Twitter, MessageCircle, Loader2 } from 'lucide-react';
+import { MapPin, Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,30 +8,24 @@ import { useToast } from '@/hooks/use-toast';
 
 const contactInfo = [
   {
-    icon: Mail,
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg',
     label: 'Personal Email',
     value: 'akashmaji945@gmail.com',
     href: 'mailto:akashmaji945@gmail.com',
   },
   {
-    icon: Mail,
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg',
     label: 'Academic Email',
     value: 'akashmaji@iisc.ac.in',
     href: 'mailto:akashmaji@iisc.ac.in',
   },
-  {
-    icon: MapPin,
-    label: 'Location',
-    value: 'IISc Bangalore, India',
-    href: 'https://maps.google.com/?q=IISc+Bangalore',
-  },
 ];
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/akashmaji946', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/akashmaji946', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com/akashmaji946', label: 'Twitter' },
-  { icon: MessageCircle, href: 'https://wa.me/9131697371', label: 'WhatsApp' },
+  { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', href: 'https://github.com/akashmaji946', label: 'GitHub' },
+  { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg', href: 'https://linkedin.com/in/akashmaji946', label: 'LinkedIn' },
+  { icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg', href: 'https://twitter.com/akashmaji946', label: 'Twitter' },
+  { icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg', href: 'https://wa.me/9131697371', label: 'WhatsApp' },
 ];
 
 export default function ContactSection() {
@@ -39,7 +33,6 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: '',
   });
   const { toast } = useToast();
@@ -63,7 +56,7 @@ export default function ContactSection() {
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
       
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', message: '' });
     } catch {
       toast({
         title: "Error",
@@ -102,47 +95,31 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
           >
             <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8 space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="text-sm font-medium mb-2 block">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="bg-background/50"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="text-sm font-medium mb-2 block">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="bg-background/50"
-                  />
-                </div>
-              </div>
-
+              <h3 className="text-xl font-semibold mb-4">Contact Akash Maji</h3>
               <div>
-                <label htmlFor="subject" className="text-sm font-medium mb-2 block">
-                  Subject
+                <label htmlFor="name" className="text-sm font-medium mb-2 block">
+                  Full Name
                 </label>
                 <Input
-                  id="subject"
-                  name="subject"
-                  placeholder="What's this about?"
-                  value={formData.subject}
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="bg-background/50"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="text-sm font-medium mb-2 block">
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
                   className="bg-background/50"
@@ -151,19 +128,23 @@ export default function ContactSection() {
 
               <div>
                 <label htmlFor="message" className="text-sm font-medium mb-2 block">
-                  Message
+                  Query
                 </label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder="Your message..."
+                  placeholder="Please specify your query"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
+                  rows={4}
                   className="bg-background/50 resize-none"
                 />
               </div>
+              
+              <p className="text-xs text-muted-foreground">
+                Note: You can send only one query, so write properly.
+              </p>
 
               <Button
                 type="submit"
@@ -179,7 +160,7 @@ export default function ContactSection() {
                 ) : (
                   <>
                     <Send className="mr-2 h-4 w-4" />
-                    Send Message
+                    Submit
                   </>
                 )}
               </Button>
@@ -192,7 +173,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-6"
           >
             {/* Contact Cards */}
             <div className="space-y-4">
@@ -209,8 +190,8 @@ export default function ContactSection() {
                   whileHover={{ scale: 1.02, x: 4 }}
                   className="glass rounded-xl p-5 flex items-center gap-4 group"
                 >
-                  <div className="p-3 rounded-lg bg-gradient">
-                    <info.icon className="h-6 w-6 text-primary-foreground" />
+                  <div className="p-3 rounded-lg bg-muted">
+                    <img src={info.icon} alt={info.label} className="h-6 w-6" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">{info.label}</p>
@@ -220,9 +201,26 @@ export default function ContactSection() {
                   </div>
                 </motion.a>
               ))}
+              
+              {/* Location */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="glass rounded-xl p-5 flex items-center gap-4"
+              >
+                <div className="p-3 rounded-lg bg-gradient">
+                  <MapPin className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Location</p>
+                  <p className="font-medium">IISc Bangalore, India</p>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Social Links */}
+            {/* Social Links with Real Icons */}
             <div className="glass rounded-xl p-6">
               <h3 className="font-semibold mb-4">Connect with me</h3>
               <div className="flex gap-4">
@@ -236,11 +234,11 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileHover={{ scale: 1.15, y: -4 }}
                     className="p-3 rounded-lg bg-muted hover:bg-primary/10 transition-colors"
                     aria-label={link.label}
                   >
-                    <link.icon className="h-6 w-6" />
+                    <img src={link.icon} alt={link.label} className="h-6 w-6" />
                   </motion.a>
                 ))}
               </div>
