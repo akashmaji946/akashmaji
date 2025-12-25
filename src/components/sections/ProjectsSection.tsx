@@ -4,64 +4,81 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
-    title: 'VM Diffing Tool',
-    description: 'A sophisticated tool for comparing and analyzing differences between virtual machine snapshots. Enables efficient detection of changes in VM states for debugging and development.',
-    technologies: ['C++', 'Python', 'QEMU', 'Linux', 'Docker'],
-    github: 'https://github.com/akashmaji946/vm-diffing-tool',
+    title: 'VM-Diffing-Tool (VMTOOL)',
+    description: 'A powerful tool for analyzing and comparing VM disk images. Built with Flask and a C++ core (pybind11) using libguestfs for robust disk access. Features file browsing, side-by-side diffs, and exportable JSON/PDF reports.',
+    technologies: ['Python', 'Flask', 'C++', 'pybind11', 'libguestfs', 'Docker', 'SQLite'],
+    github: 'https://github.com/akashmaji946/VM-Diffing-Tool',
     demo: null,
-    docs: 'https://github.com/akashmaji946/vm-diffing-tool#readme',
+    docs: 'https://akashmaji946.github.io/VM-Diffing-Tool/',
     featured: true,
-    image: '🖥️',
+    year: '2025',
+    course: 'Computer Systems Security Course Project',
   },
   {
-    title: 'Medical Volume Renderer',
-    description: 'High-performance 3D volume rendering application for medical imaging data. Implements ray casting algorithms with transfer functions for CT/MRI visualization.',
-    technologies: ['C++', 'OpenGL', 'GLSL', 'VTK', 'CUDA'],
-    github: 'https://github.com/akashmaji946/medical-volume-renderer',
+    title: 'Medical Volume Renderer (MVR)',
+    description: 'Lightweight OpenGL-based 3D volume renderer with PyQt6 UI. Loads medical volumes (NIfTI, DICOM, VTK) with GPU-accelerated rendering, slice views, isosurface rendering, and custom transfer functions.',
+    technologies: ['C++', 'OpenGL', 'Python', 'PyQt6', 'pybind11', 'VTK', 'DCMTK', 'Docker'],
+    github: 'https://github.com/akashmaji/MedicalVolumeRenderer',
+    demo: 'https://hub.docker.com/r/akashmaji/renderer-v0',
+    docs: null,
+    featured: true,
+    year: '2025',
+    course: 'Graphics and Visualization Course Project',
+  },
+  {
+    title: 'Market Microservice',
+    description: 'Implemented three microservices (account, marketplace, wallet) using a dockerized Akka cluster. Handles concurrent RESTful requests through CLI while maintaining consistency.',
+    technologies: ['Java 21', 'Spring Boot 3', 'Akka', 'Docker', 'Kubernetes'],
+    github: 'https://github.com/akashmaji946/PODS-Project-2-Phase-2-v1/tree/docker',
     demo: null,
     docs: null,
     featured: true,
-    image: '🏥',
+    year: '2024',
+    course: 'Distributed Systems Course Project',
   },
   {
-    title: 'Cloud Resource Monitor',
-    description: 'Real-time monitoring dashboard for cloud resources across AWS and Azure. Features alerts, cost analysis, and resource optimization recommendations.',
-    technologies: ['React', 'Node.js', 'AWS SDK', 'Azure SDK', 'Chart.js'],
-    github: 'https://github.com/akashmaji946/cloud-monitor',
-    demo: null,
-    docs: null,
-    featured: true,
-    image: '☁️',
-  },
-  {
-    title: 'Distributed Cache System',
-    description: 'Implementation of a distributed caching system with consistent hashing, replication, and failure recovery mechanisms.',
-    technologies: ['Java', 'Redis', 'gRPC', 'Docker', 'Kubernetes'],
-    github: 'https://github.com/akashmaji946/dist-cache',
+    title: 'DuckDB Join Operators',
+    description: 'Implemented two operators, "Join" and "GroupJoin" in DuckDB source-code, with nested loop join and optimized group-by handling.',
+    technologies: ['C++', 'CMake', 'Git', 'SQL'],
+    github: 'https://github.com/akashmaji946/myduckdb/',
     demo: null,
     docs: null,
     featured: false,
-    image: '🗄️',
+    year: '2024',
+    course: 'Database Systems Course Project',
   },
   {
-    title: 'Graphics Engine',
-    description: 'A custom 3D graphics engine built from scratch with support for PBR materials, shadow mapping, and post-processing effects.',
-    technologies: ['C++', 'OpenGL', 'GLSL', 'ImGui', 'Assimp'],
-    github: 'https://github.com/akashmaji946/graphics-engine',
+    title: 'ChampSim-IISc',
+    description: 'Adapted ChampSim simulator with various branch predictors for calculating performance metrics like prediction accuracy, MPKI, IPC from program traces.',
+    technologies: ['C/C++', 'Shell Scripting', 'Git'],
+    github: 'https://github.com/akashmaji946/ChampSim-IISc/',
     demo: null,
     docs: null,
     featured: false,
-    image: '🎮',
+    year: '2024',
+    course: 'Computer Architecture Course Project',
   },
   {
-    title: 'Algorithm Visualizer',
-    description: 'Interactive web application for visualizing various algorithms including sorting, pathfinding, and graph algorithms.',
-    technologies: ['React', 'TypeScript', 'Canvas API', 'Tailwind CSS'],
-    github: 'https://github.com/akashmaji946/algo-viz',
-    demo: 'https://algo-viz.vercel.app',
+    title: 'MINI Transformer Model',
+    description: 'Built from scratch in Python without deep-learning frameworks. Implements core Transformer components including attention, multi-head attention, and layer normalization.',
+    technologies: ['Python3', 'NumPy', 'Shell Scripting'],
+    github: 'https://github.com/akashmaji946/Assignment-02-SysML',
+    demo: null,
     docs: null,
     featured: false,
-    image: '📊',
+    year: '2025',
+    course: 'Systems for ML Course Project',
+  },
+  {
+    title: 'CNN Memory Profiling',
+    description: 'Memory profiling and optimization for CNN inference. Analyzes memory usage patterns and implements optimization strategies for efficient deep learning.',
+    technologies: ['Python3', 'PyTorch', 'CUDA', 'NVIDIA GPUs'],
+    github: 'https://github.com/akashmaji946/CNN-Memory-Profiling-And-Optimization-v2',
+    demo: null,
+    docs: null,
+    featured: false,
+    year: '2025',
+    course: 'Machine Learning Project',
   },
 ];
 
@@ -83,7 +100,7 @@ export default function ProjectsSection() {
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A collection of projects I've built and contributed to
+            Academic and personal projects in systems, graphics, and machine learning
           </p>
         </motion.div>
 
@@ -103,7 +120,7 @@ export default function ProjectsSection() {
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
-                  <div className="text-4xl">{project.image}</div>
+                  <div className="text-xs text-muted-foreground">{project.year} • {project.course}</div>
                   <div className="flex gap-2">
                     {project.github && (
                       <motion.a
@@ -151,7 +168,7 @@ export default function ProjectsSection() {
 
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.technologies.map((tech) => (
+                  {project.technologies.slice(0, 5).map((tech) => (
                     <span
                       key={tech}
                       className="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-mono"
@@ -159,6 +176,11 @@ export default function ProjectsSection() {
                       {tech}
                     </span>
                   ))}
+                  {project.technologies.length > 5 && (
+                    <span className="px-2 py-1 rounded-md bg-muted text-muted-foreground text-xs">
+                      +{project.technologies.length - 5}
+                    </span>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
@@ -175,7 +197,7 @@ export default function ProjectsSection() {
           <h3 className="text-2xl font-bold mb-4">Other Noteworthy Projects</h3>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {otherProjects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -193,11 +215,11 @@ export default function ProjectsSection() {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <Folder className="h-5 w-5 text-primary" />
-                  <h4 className="font-semibold group-hover:text-primary transition-colors">
+                  <h4 className="font-semibold group-hover:text-primary transition-colors text-sm">
                     {project.title}
                   </h4>
                 </div>
-                <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
+                <p className="text-muted-foreground text-xs mb-3 line-clamp-2">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-1">

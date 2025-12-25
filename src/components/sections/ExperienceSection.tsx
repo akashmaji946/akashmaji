@@ -1,58 +1,35 @@
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Calendar, MapPin, ExternalLink } from 'lucide-react';
 
 const experiences = [
   {
-    title: 'Software Developer',
+    title: 'Incoming Software Engineer',
     company: 'IBM',
     companyUrl: 'https://www.ibm.com',
     location: 'Bangalore, India',
-    period: 'July 2023 - Present',
+    period: 'July 2026',
     type: 'Full-time',
-    description: 'Working on cloud infrastructure, enterprise solutions, and building scalable applications for global clients.',
-    responsibilities: [
-      'Developing and maintaining cloud-native applications on IBM Cloud and AWS',
-      'Building microservices architecture using Java, Node.js, and Kubernetes',
-      'Implementing CI/CD pipelines and DevOps practices',
-      'Collaborating with cross-functional teams across multiple time zones',
-    ],
-    technologies: ['Java', 'Node.js', 'Kubernetes', 'Docker', 'AWS', 'IBM Cloud', 'React'],
+    description: 'Will be joining IBM as a Software Engineer after completing M.Tech at IISc Bangalore.',
+    responsibilities: [],
+    technologies: [],
     logo: '💼',
   },
   {
-    title: 'Research Intern',
-    company: 'IISc Bangalore',
-    companyUrl: 'https://www.iisc.ac.in',
-    location: 'Bangalore, India',
-    period: 'Jan 2023 - June 2023',
-    type: 'Internship',
-    description: 'Conducted research on high-performance computing and graphics algorithms as part of M.Tech thesis.',
+    title: 'System Engineer (Full Stack Java Developer)',
+    company: 'Tata Consultancy Services (TCS)',
+    companyUrl: 'https://www.tcs.com',
+    location: 'Indore, India',
+    period: 'Aug 2021 - May 2024',
+    type: 'Full-time',
+    description: 'Worked as a System Engineer in TCS Digital Profile as a Full Stack Java Web Developer.',
     responsibilities: [
-      'Developed efficient volume rendering algorithms using OpenGL',
-      'Implemented parallel processing techniques using CUDA',
-      'Published research findings in academic conferences',
-      'Mentored junior students on graphics programming concepts',
+      'Developed and maintained enterprise web applications using Spring Boot and Oracle DB',
+      'Built responsive frontends with JavaScript and modern frameworks',
+      'Collaborated with cross-functional teams using Git and JIRA',
+      'Received 3x Star of the Month Award for exceptional performance',
     ],
-    technologies: ['C++', 'OpenGL', 'CUDA', 'Python', 'GLSL', 'VTK'],
-    logo: '🔬',
-  },
-  {
-    title: 'Software Engineering Intern',
-    company: 'Tech Startup',
-    companyUrl: '#',
-    location: 'Remote',
-    period: 'May 2020 - July 2020',
-    type: 'Internship',
-    description: 'Worked on full-stack web development and learned industry best practices.',
-    responsibilities: [
-      'Built responsive web applications using React and Node.js',
-      'Implemented RESTful APIs and database integration',
-      'Participated in agile development processes',
-      'Collaborated with designers for UI/UX improvements',
-    ],
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Git'],
-    logo: '🚀',
+    technologies: ['Spring Boot', 'Oracle DB', 'Java', 'JavaScript', 'Git', 'JIRA'],
+    logo: '🏢',
   },
 ];
 
@@ -130,26 +107,30 @@ export default function ExperienceSection() {
                   <p className="text-muted-foreground mb-4">{exp.description}</p>
 
                   {/* Responsibilities */}
-                  <ul className="space-y-2 mb-4">
-                    {exp.responsibilities.map((resp, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="text-primary mt-1">▹</span>
-                        {resp}
-                      </li>
-                    ))}
-                  </ul>
+                  {exp.responsibilities.length > 0 && (
+                    <ul className="space-y-2 mb-4">
+                      {exp.responsibilities.map((resp, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <span className="text-primary mt-1">▹</span>
+                          {resp}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  {exp.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {exp.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </motion.div>

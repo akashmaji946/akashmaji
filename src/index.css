@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,83 +6,89 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 222 47% 11%;
+    /* Professional Academic Theme - Light Mode */
+    /* Clean whites, greys, with refined blue accents */
+    --background: 0 0% 99%;
+    --foreground: 220 20% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 220 20% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 220 20% 10%;
 
-    --primary: 262 83% 58%;
+    /* Academic Blue Primary */
+    --primary: 215 80% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 20% 20%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 199 89% 48%;
+    --accent: 200 70% 45%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 262 83% 58%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 215 80% 45%;
+
+    /* Surface colors */
+    --surface: 0 0% 100%;
+    --surface-hover: 220 15% 97%;
+    
+    /* Gradient colors */
+    --gradient-start: 215 80% 45%;
+    --gradient-end: 200 70% 45%;
+    --glow: 215 80% 45%;
 
     --radius: 0.75rem;
-
-    /* Custom colors */
-    --gradient-start: 262 83% 58%;
-    --gradient-mid: 280 87% 65%;
-    --gradient-end: 199 89% 48%;
-    
-    --glow: 262 83% 58%;
-    --surface: 0 0% 100%;
-    --surface-hover: 210 40% 98%;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    /* Professional Academic Theme - Dark Mode */
+    /* Deep blacks/greys with refined blue accents */
+    --background: 220 20% 6%;
+    --foreground: 0 0% 95%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 20% 9%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 20% 9%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 262 83% 65%;
+    /* Academic Blue Primary */
+    --primary: 210 85% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 15% 12%;
+    --muted-foreground: 220 10% 55%;
 
-    --accent: 199 89% 55%;
+    --accent: 200 75% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 262 83% 65%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 210 85% 55%;
 
-    /* Custom colors - dark mode */
-    --gradient-start: 262 83% 65%;
-    --gradient-mid: 280 87% 70%;
-    --gradient-end: 199 89% 55%;
+    /* Surface colors */
+    --surface: 220 20% 10%;
+    --surface-hover: 220 15% 14%;
     
-    --glow: 262 83% 65%;
-    --surface: 222 47% 10%;
-    --surface-hover: 222 47% 12%;
+    /* Gradient colors */
+    --gradient-start: 210 85% 55%;
+    --gradient-end: 200 75% 55%;
+    --glow: 210 85% 55%;
   }
 }
 
@@ -98,6 +104,10 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
 }
 
 @layer utilities {
@@ -111,11 +121,11 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-mid)), hsl(var(--gradient-end)));
+    background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
   }
 
   .bg-gradient {
-    background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-mid)), hsl(var(--gradient-end)));
+    background-image: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
   }
 
   .bg-gradient-subtle {
@@ -184,10 +194,4 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.5);
-}
-
-/* Selection styling */
-::selection {
-  background: hsl(var(--primary) / 0.3);
-  color: hsl(var(--foreground));
 }

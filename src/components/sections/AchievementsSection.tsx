@@ -3,56 +3,72 @@ import { Award, ExternalLink, Medal, Trophy, Shield, Star } from 'lucide-react';
 
 const certifications = [
   {
-    title: 'Oracle Cloud Infrastructure Foundations',
+    title: 'Oracle Certified Associate Java Programmer I (1Z0-808)',
+    issuer: 'Oracle Corp.',
+    date: 'Feb 2020',
+    credentialUrl: 'https://www.credly.com/badges/6616ad47-2676-4e01-893c-20a4642a8b67',
+    certificateUrl: 'https://pdflink.to/akash-maji-ocajp/',
+    description: 'Certified in Java SE 8 Programming',
+    status: 'Lifetime',
+  },
+  {
+    title: 'Microsoft Certified Azure Fundamentals (AZ-900)',
+    issuer: 'Microsoft Corp.',
+    date: 'July 2020',
+    credentialUrl: 'https://www.credly.com/badges/2382975e-d741-4ec9-acca-5d8237bbc515',
+    certificateUrl: 'https://pdflink.to/akash-maji-azure/',
+    description: 'Certified in basic cloud technology and tools',
+    status: 'Expired',
+  },
+  {
+    title: 'Oracle Cloud Infrastructure 2025 Foundations Associate',
+    issuer: 'Oracle Corp.',
+    date: 'Oct 2025',
+    credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=D8974AC1ABE8A550247F4F3D974C866752EE44A8830F2BFE3FC50E20FEC5D646',
+    description: 'OCI core concepts and foundations',
+    status: 'Active',
+  },
+  {
+    title: 'Oracle Cloud Infrastructure 2025 Architect Associate',
+    issuer: 'Oracle Corp.',
+    date: 'Oct 2025',
+    credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=1D95571D88756F44E737AEBC4B01A3749E0C2B1BD995C0A4C4EAA6AC26345891',
+    description: 'Expertise in designing OCI cloud solutions',
+    status: 'Active',
+  },
+  {
+    title: 'Oracle Cloud Infrastructure 2025 AI Foundations Associate',
     issuer: 'Oracle',
-    date: '2023',
-    credentialUrl: 'https://catalog-education.oracle.com/pls/certview/sharebadge',
-    icon: '🔶',
-    color: 'from-orange-500 to-red-500',
+    date: 'Oct 2025',
+    credentialUrl: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=47E415AE37C3299E9651B061D8D8E56DCB1F89EF34C6319F8B3A2F1574DA96B1',
+    description: 'OCI AI services and ML fundamentals',
+    status: 'Active',
   },
-  {
-    title: 'Microsoft Azure Fundamentals (AZ-900)',
-    issuer: 'Microsoft',
-    date: '2023',
-    credentialUrl: 'https://www.credly.com/badges/',
-    icon: '🔷',
-    color: 'from-blue-500 to-cyan-500',
-  },
-  {
-    title: 'GATE CS 2021',
-    issuer: 'IIT Bombay',
-    date: '2021',
-    credentialUrl: null,
-    icon: '📜',
-    color: 'from-purple-500 to-pink-500',
-  },
-  {
-    title: 'AWS Cloud Practitioner',
-    issuer: 'Amazon Web Services',
-    date: '2022',
-    credentialUrl: 'https://aws.amazon.com/verification',
-    icon: '🟠',
-    color: 'from-amber-500 to-orange-500',
-  },
+];
+
+const gateScores = [
+  { year: '2024', exam: 'GATE CS', rank: 'AIR 26' },
+  { year: '2023', exam: 'GATE CS', rank: 'AIR 608' },
+  { year: '2024', exam: 'GATE DA', rank: 'AIR 648' },
 ];
 
 const awards = [
   {
-    title: 'RGPV University Silver Medal',
-    description: 'Awarded for academic excellence and outstanding performance in B.Tech Computer Science & Engineering.',
-    year: '2021',
+    title: 'RGPV University Silver Medal 🥈',
+    description: 'Received University Silver Medal for merit in University Finals 2021, from Governor of Madhya Pradesh.',
+    year: '2025',
     icon: Medal,
   },
   {
-    title: 'GATE Qualified',
-    description: 'Graduate Aptitude Test in Engineering (GATE) qualified in Computer Science and Information Technology.',
-    year: '2021',
+    title: 'RGPV Chancellor Scholarship Award',
+    description: 'Received University Scholarship for merit in University Exams 2019, from Governor of Madhya Pradesh.',
+    year: '2019',
     icon: Trophy,
   },
   {
-    title: 'Dean\'s List',
-    description: 'Recognized for maintaining excellent academic performance throughout undergraduate studies.',
-    year: '2020',
+    title: '3x Star of the Month @ TCS',
+    description: 'Recognized for exceptional performance and contributions during tenure at Tata Consultancy Services.',
+    year: '2021-2024',
     icon: Star,
   },
 ];
@@ -76,6 +92,32 @@ export default function AchievementsSection() {
           </p>
         </motion.div>
 
+        {/* GATE Scores */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h3 className="text-2xl font-bold mb-6 text-center">GATE Scores</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {gateScores.map((score, index) => (
+              <motion.div
+                key={score.year + score.exam}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="glass rounded-xl p-6 text-center min-w-[160px]"
+              >
+                <div className="text-3xl font-bold text-gradient">{score.rank}</div>
+                <div className="text-sm font-medium mt-1">{score.exam}</div>
+                <div className="text-xs text-muted-foreground">{score.year}</div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Certifications */}
           <motion.div
@@ -97,35 +139,48 @@ export default function AchievementsSection() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.02, x: 4 }}
-                  className="glass rounded-xl p-5 group cursor-pointer"
+                  className="glass rounded-xl p-5 group"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className={`text-3xl p-2 rounded-lg bg-gradient-to-br ${cert.color} bg-opacity-20`}>
-                      {cert.icon}
-                    </div>
+                  <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <h4 className="font-semibold group-hover:text-primary transition-colors">
-                            {cert.title}
-                          </h4>
-                          <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-                        </div>
-                        <span className="text-sm text-muted-foreground whitespace-nowrap">
-                          {cert.date}
+                      <div className="flex items-start justify-between gap-2">
+                        <h4 className="font-semibold group-hover:text-primary transition-colors text-sm">
+                          {cert.title}
+                        </h4>
+                        <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
+                          cert.status === 'Active' ? 'bg-green-500/10 text-green-500' :
+                          cert.status === 'Lifetime' ? 'bg-primary/10 text-primary' :
+                          'bg-muted text-muted-foreground'
+                        }`}>
+                          {cert.status}
                         </span>
                       </div>
-                      {cert.credentialUrl && (
-                        <a
-                          href={cert.credentialUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm text-primary mt-2 hover:underline"
-                        >
-                          Verify Credential
-                          <ExternalLink className="h-3 w-3" />
-                        </a>
-                      )}
+                      <p className="text-sm text-muted-foreground mt-1">{cert.issuer} • {cert.date}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{cert.description}</p>
+                      <div className="flex gap-4 mt-2">
+                        {cert.credentialUrl && (
+                          <a
+                            href={cert.credentialUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                          >
+                            Verify Credential
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
+                        {cert.certificateUrl && (
+                          <a
+                            href={cert.certificateUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
+                          >
+                            View Certificate
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
