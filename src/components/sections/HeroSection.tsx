@@ -24,11 +24,11 @@ export default function HeroSection() {
           transition={{ delay: 0.2 }}
           className="flex items-center justify-center gap-2 md:gap-3 mb-10 text-center"
         >
-          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">आकाश</span>
-          <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
-          <span className="text-3xl md:text-5xl font-bold text-gradient">Akash</span>
-          <span className="text-2xl md:text-3xl text-muted-foreground">•</span>
-          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient">আকাশ</span>
+          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient-neon">आकाश</span>
+          <span className="text-2xl md:text-3xl text-gradient-neon">•</span>
+          <span className="text-3xl md:text-5xl font-bold text-gradient-neon">Akash</span>
+          <span className="text-2xl md:text-3xl text-gradient-neon">•</span>
+          <span className="text-3xl md:text-5xl font-bold font-hindi text-gradient-neon">আকাশ</span>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -96,9 +96,9 @@ export default function HeroSection() {
               </div>
               <div className="flex-1">
                 <p className="font-hindi text-xl md:text-2xl font-bold text-gradient leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
-                <p className="text-xs text-muted-foreground mt-2">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
+                <p className="text-sm md:text-base text-muted-foreground mt-2">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
                 <p className="text-sm md:text-base text-foreground/80 mt-2">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
-                <p className="text-sm font-semibold text-primary mt-2">— Bhagavad Gita 2.47</p>
+                <p className="text-sm font-bold text-primary mt-2 uppercase tracking-[0.2em]">— B H A G A V A D  G I T A  2 . 4 7</p>
               </div>
             </motion.div>
 
