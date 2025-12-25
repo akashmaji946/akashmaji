@@ -4,10 +4,10 @@ import TypewriterText from '@/components/TypewriterText';
 import { Button } from '@/components/ui/button';
 
 const roles = [
-  'Software Developer',
-  'Cloud Engineer',
-  'Graphics Enthusiast',
-  'MTech @ IISc Bangalore',
+  'M.Tech Scholar @ IISc Bangalore',
+  'Software Engineer @ IBM',
+  'Database Systems Researcher',
+  'GATE 2024 AIR 26',
 ];
 
 export default function HeroSection() {
@@ -61,11 +61,11 @@ export default function HeroSection() {
             >
               <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
                 <Briefcase className="h-4 w-4 text-primary" />
-                <span className="text-sm">IBM, Bangalore</span>
+                <span className="text-sm">Incoming @ IBM, Bangalore</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
                 <MapPin className="h-4 w-4 text-accent" />
-                <span className="text-sm">India</span>
+                <span className="text-sm">IISc Bangalore</span>
               </div>
             </motion.div>
 
@@ -77,7 +77,8 @@ export default function HeroSection() {
               className="border-l-4 border-primary pl-4 italic text-muted-foreground mb-8"
             >
               <p className="font-hindi text-lg">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"</p>
-              <footer className="text-sm mt-1">— Bhagavad Gita 2.47</footer>
+              <p className="text-sm mt-1">(You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.)</p>
+              <footer className="text-sm mt-1 text-primary">— Bhagavad Gita, Chapter 2, Verse 47</footer>
             </motion.blockquote>
 
             {/* CTA Buttons */}
@@ -117,7 +118,7 @@ export default function HeroSection() {
           >
             <div className="relative">
               {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient rounded-full blur-3xl opacity-30 animate-pulse-slow" />
+              <div className="absolute inset-0 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
               
               {/* Image Container */}
               <motion.div
@@ -134,18 +135,18 @@ export default function HeroSection() {
 
               {/* Floating Elements */}
               <motion.div
-                className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center"
+                className="absolute -top-4 -right-4 w-16 h-16 rounded-full glass flex items-center justify-center"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <span className="text-2xl">💻</span>
+                <span className="text-2xl">🎓</span>
               </motion.div>
               <motion.div
-                className="absolute -bottom-4 -left-4 w-14 h-14 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center"
+                className="absolute -bottom-4 -left-4 w-14 h-14 rounded-full glass flex items-center justify-center"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
-                <span className="text-2xl">☁️</span>
+                <span className="text-2xl">💻</span>
               </motion.div>
             </div>
           </motion.div>

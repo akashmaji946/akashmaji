@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Send, Github, Linkedin, Twitter, MessageCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,29 +9,29 @@ import { useToast } from '@/hooks/use-toast';
 const contactInfo = [
   {
     icon: Mail,
-    label: 'Email',
+    label: 'Personal Email',
+    value: 'akashmaji945@gmail.com',
+    href: 'mailto:akashmaji945@gmail.com',
+  },
+  {
+    icon: Mail,
+    label: 'Academic Email',
     value: 'akashmaji@iisc.ac.in',
     href: 'mailto:akashmaji@iisc.ac.in',
   },
   {
-    icon: Phone,
-    label: 'WhatsApp',
-    value: '+91 XXXXX XXXXX',
-    href: 'https://wa.me/91XXXXXXXXXX',
-  },
-  {
     icon: MapPin,
     label: 'Location',
-    value: 'Bangalore, India',
-    href: 'https://maps.google.com/?q=Bangalore,India',
+    value: 'IISc Bangalore, India',
+    href: 'https://maps.google.com/?q=IISc+Bangalore',
   },
 ];
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/akashmaji946', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/akash-maji-iisc', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com/akash_maji_', label: 'Twitter' },
-  { icon: MessageCircle, href: 'https://wa.me/91XXXXXXXXXX', label: 'WhatsApp' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/akashmaji946', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://twitter.com/akashmaji946', label: 'Twitter' },
+  { icon: MessageCircle, href: 'https://wa.me/9131697371', label: 'WhatsApp' },
 ];
 
 export default function ContactSection() {
@@ -55,9 +55,7 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // For now, show a toast - backend will be added later
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
       
       toast({
@@ -91,7 +89,7 @@ export default function ContactSection() {
             Get in <span className="text-gradient">Touch</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a question or want to work together? Feel free to reach out!
+            Have a question or want to collaborate? Feel free to reach out!
           </p>
         </motion.div>
 
