@@ -4,30 +4,18 @@ import { MessageCircle, X, Send, Loader2, Bot, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { marked } from 'marked';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 interface Message {
-  role: 'user' | 'bot';
+  role: 'user' | 'assistant';
   content: string;
 }
-
-const GEMINI_API_KEY = 'AIzaSyBl1jHbxtlljglfRgAwoctOcl9M198jCXI';
-
-const SYSTEM_PROMPT = `You are Akash Maji's AI assistant on his portfolio website. You can ONLY answer questions related to:
-- Akash Maji (his background, education, experience, skills, projects, achievements)
-- IISc (Indian Institute of Science) - where Akash studied
-- TCS (Tata Consultancy Services) - where Akash worked
-- IBM - where Akash worked
-- Technology topics: Data Structures & Algorithms (DSA), System Design, Computer Science, Programming, Software Engineering, Machine Learning, AI, Cloud Computing, DevOps
-
-For ANY question that is not related to the above topics, respond with:
-"I can't answer that. Ask relevant query."
-
-Be helpful, concise, and professional when answering relevant questions.`;
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', content: 'Hi! I\'m Akash\'s AI assistant. How can I help you today?' }
+    { role: 'assistant', content: "Hi! I'm Akash's AI assistant. How can I help you today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -46,34 +34,35 @@ export default function Chatbot() {
     if (!userMessage || isLoading) return;
 
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    const newUserMessage: Message = { role: 'user', content: userMessage };
+    setMessages(prev => [...prev, newUserMessage]);
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [
-              { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
-              { role: 'model', parts: [{ text: 'Understood. I will only answer questions related to Akash Maji, IISc, TCS, IBM, and technology topics like DSA, System Design, and Computer Science.' }] },
-              { role: 'user', parts: [{ text: userMessage }] }
-            ]
-          }),
-        }
-      );
+      const chatHistory = messages.filter(m => m.role === 'user' || m.role === 'assistant');
+      const messagesToSend = [...chatHistory, newUserMessage];
 
-      const data = await response.json();
-      const botMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || 
-        "Sorry, I couldn't understand that.";
-      
-      setMessages(prev => [...prev, { role: 'bot', content: botMessage }]);
+      const { data, error } = await supabase.functions.invoke('chat', {
+        body: { messages: messagesToSend }
+      });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw new Error(error.message || 'Failed to get response');
+      }
+
+      if (data?.error) {
+        throw new Error(data.error);
+      }
+
+      const botMessage = data?.content || "Sorry, I couldn't understand that.";
+      setMessages(prev => [...prev, { role: 'assistant', content: botMessage }]);
     } catch (error) {
       console.error('Error fetching bot response:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Something went wrong';
+      toast.error(errorMessage);
       setMessages(prev => [...prev, { 
-        role: 'bot', 
+        role: 'assistant', 
         content: 'Sorry, something went wrong. Please try again.' 
       }]);
     } finally {
