@@ -6,10 +6,10 @@ import profileImage from '@/assets/profile-image.jpg';
 import ibmLogo from '@/assets/ibm-logo.svg';
 
 const roles = [
-  'M.Tech Scholar @ IISc Bangalore',
-  'Incoming Software Engineer @ IBM',
-  'Database Systems Researcher @ DSL',
-  'GATE 2024 AIR 26',
+  'AIR 26 @ GATE CS 2024',
+  'M.Tech CSE @ IISc Bangalore',
+  'Incoming Hardware Engineer @ IBM Bangalore',
+  'Database Systems Researcher @ DSL, CSA, SERC',
 ];
 
 export default function HeroSection() {
@@ -110,103 +110,53 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex-shrink-0"
           >
-            <div className="relative w-80 h-80 md:w-[400px] md:h-[400px]">
+            <div className="relative w-96 h-96 md:w-[460px] md:h-[460px]">
               {/* Glow Effect */}
-              <div className="absolute inset-12 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
-              
-              {/* Image Container - centered */}
+              <div className="absolute inset-14 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
+
+              {/* Image Container - centered (no click/tap jump) */}
               <motion.div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-4 border-primary/30 glow"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/30 glow select-none"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                style={{ transformOrigin: 'center', WebkitTapHighlightColor: 'transparent' }}
               >
-                <img 
-                  src={profileImage} 
+                <img
+                  src={profileImage}
                   alt="Akash Maji"
+                  draggable={false}
                   className="w-full h-full object-cover object-[center_20%] scale-[1.4]"
                 />
               </motion.div>
 
-              {/* Floating Section Icons - 8 icons evenly spaced around the circle */}
-              {/* Top - About */}
-              <motion.a
-                href="#about"
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, delay: 0 }}
-              >
-                <span className="text-lg md:text-xl">👤</span>
-              </motion.a>
-              
-              {/* Top Right - Education */}
-              <motion.a
-                href="#education"
-                className="absolute top-[15%] right-[15%] w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, delay: 0.3 }}
-              >
-                <span className="text-lg md:text-xl">🎓</span>
-              </motion.a>
-              
-              {/* Right - Experience */}
-              <motion.a
-                href="#experience"
-                className="absolute top-1/2 right-0 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}
-              >
-                <span className="text-lg md:text-xl">💼</span>
-              </motion.a>
-              
-              {/* Bottom Right - Study */}
-              <motion.a
-                href="#study"
-                className="absolute bottom-[15%] right-[15%] w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, 4, 0] }}
-                transition={{ duration: 2.6, repeat: Infinity, delay: 0.9 }}
-              >
-                <span className="text-lg md:text-xl">📚</span>
-              </motion.a>
-              
-              {/* Bottom - Projects */}
-              <motion.a
-                href="#projects"
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, 4, 0] }}
-                transition={{ duration: 2.7, repeat: Infinity, delay: 1.2 }}
-              >
-                <span className="text-lg md:text-xl">💻</span>
-              </motion.a>
-              
-              {/* Bottom Left - Reports */}
-              <motion.a
-                href="#reports"
-                className="absolute bottom-[15%] left-[15%] w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, 4, 0] }}
-                transition={{ duration: 2.9, repeat: Infinity, delay: 1.5 }}
-              >
-                <span className="text-lg md:text-xl">📄</span>
-              </motion.a>
-              
-              {/* Left - Achievements */}
-              <motion.a
-                href="#achievements"
-                className="absolute top-1/2 left-0 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ x: [0, -4, 0] }}
-                transition={{ duration: 3.1, repeat: Infinity, delay: 1.8 }}
-              >
-                <span className="text-lg md:text-xl">🏆</span>
-              </motion.a>
-              
-              {/* Top Left - Contact */}
-              <motion.a
-                href="#contact"
-                className="absolute top-[15%] left-[15%] w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 2.4, repeat: Infinity, delay: 2.1 }}
-              >
-                <span className="text-lg md:text-xl">📧</span>
-              </motion.a>
+              {/* Floating Section Icons - 8 icons on N/NE/E/SE/S/SW/W/NW */}
+              {(
+                [
+                  { href: '#about', emoji: '👤', angle: 0 },
+                  { href: '#education', emoji: '🎓', angle: 45 },
+                  { href: '#experience', emoji: '💼', angle: 90 },
+                  { href: '#study', emoji: '📚', angle: 135 },
+                  { href: '#projects', emoji: '💻', angle: 180 },
+                  { href: '#reports', emoji: '📄', angle: 225 },
+                  { href: '#achievements', emoji: '🏆', angle: 270 },
+                  { href: '#contact', emoji: '📧', angle: 315 },
+                ] as const
+              ).map((item, index) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  className="absolute left-1/2 top-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform"
+                  style={{
+                    transform: `translate(-50%, -50%) rotate(${item.angle}deg) translateY(-clamp(170px, 18vw, 215px)) rotate(-${item.angle}deg)`,
+                    transformOrigin: 'center',
+                  }}
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 2.8, repeat: Infinity, delay: index * 0.18 }}
+                >
+                  <span className="text-lg md:text-xl">{item.emoji}</span>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         </div>
