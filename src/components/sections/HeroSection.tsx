@@ -2,11 +2,12 @@ import { motion } from 'framer-motion';
 import { MapPin, Briefcase, ArrowDown, FileText } from 'lucide-react';
 import TypewriterText from '@/components/TypewriterText';
 import { Button } from '@/components/ui/button';
+import profileImage from '@/assets/profile-image.jpg';
 
 const roles = [
   'M.Tech Scholar @ IISc Bangalore',
-  'Software Engineer @ IBM',
-  'Database Systems Researcher',
+  'Incoming Software Engineer @ IBM',
+  'Database Systems Researcher @ DSL',
   'GATE 2024 AIR 26',
 ];
 
@@ -22,15 +23,23 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="flex-1 text-center lg:text-left"
           >
-            {/* Hindi Name */}
-            <motion.h1
-              className="text-6xl md:text-8xl font-bold font-hindi text-gradient mb-4"
+            {/* Name in 3 Languages */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
+              className="mb-4"
             >
-              आकाश
-            </motion.h1>
+              {/* Hindi Name */}
+              <h1 className="text-5xl md:text-7xl font-bold font-hindi text-gradient inline-block">
+                आकाश
+              </h1>
+              <span className="mx-3 text-muted-foreground text-3xl">•</span>
+              {/* Bengali Name */}
+              <h1 className="text-5xl md:text-7xl font-bold font-hindi text-gradient inline-block">
+                আকাশ
+              </h1>
+            </motion.div>
 
             {/* English Name */}
             <motion.h2
@@ -57,14 +66,14 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex items-center justify-center lg:justify-start gap-4 mb-8"
+              className="flex items-center justify-center lg:justify-start gap-4 mb-8 flex-wrap"
             >
               <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                <Briefcase className="h-4 w-4 text-primary" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="IBM" className="h-4 w-4" />
                 <span className="text-sm">Incoming @ IBM, Bangalore</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                <MapPin className="h-4 w-4 text-accent" />
+                <MapPin className="h-4 w-4 text-primary" />
                 <span className="text-sm">IISc Bangalore</span>
               </div>
             </motion.div>
@@ -76,8 +85,9 @@ export default function HeroSection() {
               transition={{ delay: 0.6 }}
               className="border-l-4 border-primary pl-4 italic text-muted-foreground mb-8"
             >
-              <p className="font-hindi text-lg">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"</p>
-              <p className="text-sm mt-1">(You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.)</p>
+              <p className="font-hindi text-lg">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन |</p>
+              <p className="text-sm mt-1">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
+              <p className="text-sm mt-1">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
               <footer className="text-sm mt-1 text-primary">— Bhagavad Gita, Chapter 2, Verse 47</footer>
             </motion.blockquote>
 
@@ -126,11 +136,11 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="w-full h-full bg-gradient flex items-center justify-center">
-                  <span className="text-6xl md:text-8xl font-bold text-primary-foreground font-hindi">
-                    आ
-                  </span>
-                </div>
+                <img 
+                  src={profileImage} 
+                  alt="Akash Maji"
+                  className="w-full h-full object-cover object-top"
+                />
               </motion.div>
 
               {/* Floating Elements */}
