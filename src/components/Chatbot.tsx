@@ -4,6 +4,7 @@ import { MessageCircle, X, Send, Loader2, Bot, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -79,7 +80,11 @@ export default function Chatbot() {
 
   const renderMessage = (content: string) => {
     const html = marked.parse(content) as string;
-    return <div dangerouslySetInnerHTML={{ __html: html }} className="prose prose-sm dark:prose-invert max-w-none" />;
+    const sanitizedHtml = DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote'],
+      ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
+    });
+    return <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} className="prose prose-sm dark:prose-invert max-w-none" />;
   };
 
   return (
