@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Loader2, CheckCircle, Calendar } from 'lucide-react';
+import { Send, Loader2, CheckCircle, Calendar, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -12,7 +12,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import emailjs from '@emailjs/browser';
+import { supabase } from '@/integrations/supabase/client';
 import qrCode from '@/assets/qrcode.png';
 import gmailLogo from '@/assets/gmail-logo.png';
 import outlookIcon from '@/assets/outlook-icon.png';
@@ -20,7 +22,6 @@ import whatsappLogo from '@/assets/whatsapp-logo.png';
 import githubLogo from '@/assets/github-logo.png';
 import linkedinLogo from '@/assets/linkedin-logo.png';
 import twitterLogo from '@/assets/twitter-logo.png';
-
 
 // Initialize EmailJS
 emailjs.init("59dg56bFBgGKAQAdD");
@@ -73,6 +74,7 @@ export default function ContactSection() {
     message: '',
   });
   const { toast } = useToast();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
     // Check if user has already sent a message
@@ -87,6 +89,31 @@ export default function ContactSection() {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const verifyRecaptcha = useCallback(async (): Promise<boolean> => {
+    if (!executeRecaptcha) {
+      console.log('reCAPTCHA not yet available');
+      return false;
+    }
+
+    try {
+      const token = await executeRecaptcha('contact_form');
+      
+      const { data, error } = await supabase.functions.invoke('verify-recaptcha', {
+        body: { token }
+      });
+
+      if (error) {
+        console.error('reCAPTCHA verification error:', error);
+        return false;
+      }
+
+      return data?.success === true;
+    } catch (error) {
+      console.error('reCAPTCHA error:', error);
+      return false;
+    }
+  }, [executeRecaptcha]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,6 +132,19 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     try {
+      // Verify reCAPTCHA first
+      const isHuman = await verifyRecaptcha();
+      
+      if (!isHuman) {
+        toast({
+          title: "Verification failed",
+          description: "Please try again. If the problem persists, refresh the page.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       const templateParams = {
         to_name: "Akash Maji",
         subject: "HIRING REQUEST",
@@ -126,7 +166,7 @@ export default function ContactSection() {
       
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error('EmailJS error:', error);
+      console.error('Form submission error:', error);
       toast({
         title: "Failed to send",
         description: "Something went wrong. Please try again.",
@@ -227,6 +267,11 @@ export default function ContactSection() {
                   />
                 </div>
                 
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <ShieldCheck className="h-4 w-4 text-green-500" />
+                  <span>Protected by reCAPTCHA</span>
+                </div>
+
                 <p className="text-xs text-muted-foreground">
                   Note: You can send only one query, so write properly.
                 </p>
@@ -240,7 +285,7 @@ export default function ContactSection() {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Sending...
+                      Verifying & Sending...
                     </>
                   ) : (
                     <>
