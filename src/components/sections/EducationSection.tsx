@@ -13,7 +13,7 @@ const education = [
     location: 'Bangalore, Karnataka',
     period: '2024 - 2026',
     description: 'CSA Department. Part of Database Systems Lab, SERC. Research focus on database systems.',
-    highlights: ['GATE 2024 AIR 26', 'GATE 2023 AIR 608', '8.2/10.0 CGPA'],
+    highlights: ['8.2/10.0 CGPA', 'GATE 2024 AIR 26', 'GATE 2023 AIR 608'],
     logo: iiscLogo,
   },
   {
@@ -23,7 +23,7 @@ const education = [
     location: 'Bhopal, Madhya Pradesh',
     period: '2017 - 2021',
     description: 'Graduated with distinction. Active participant in coding competitions and technical events.',
-    highlights: ['Silver Medal 🥈', 'CGPA: 9.39/10', 'Chancellor Award 2019'],
+    highlights: ['CGPA: 9.39/10', 'Silver Medal 🥈', 'Chancellor Award 2019'],
     logo: rgpvLogo,
   },
   {
@@ -84,7 +84,7 @@ export default function EducationSection() {
                   className="glass rounded-2xl p-6 md:p-8 w-full max-w-3xl"
                 >
                   <div className="flex items-start gap-6">
-                    <img src={edu.logo} alt={edu.institution} className="w-20 h-20 rounded-lg object-contain bg-green-100 p-2 flex-shrink-0" />
+                    <img src={edu.logo} alt={edu.institution} className="w-20 h-20 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
                       <div className="flex items-center gap-2 text-primary mb-2 flex-wrap">
@@ -112,7 +112,7 @@ export default function EducationSection() {
                         {edu.highlights.map((highlight) => (
                           <span
                             key={highlight}
-                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 text-xs font-medium"
+                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-medium"
                           >
                             <Award className="h-3 w-3" />
                             {highlight}
