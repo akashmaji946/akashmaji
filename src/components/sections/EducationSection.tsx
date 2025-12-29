@@ -112,7 +112,7 @@ export default function EducationSection() {
                         {edu.highlights.map((highlight) => (
                           <span
                             key={highlight}
-                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-medium"
+                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs font-medium"
                           >
                             <Award className="h-3 w-3" />
                             {highlight}
