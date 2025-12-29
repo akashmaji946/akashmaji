@@ -9,10 +9,10 @@ import ibmLogo from '@/assets/ibm-logo.svg';
 import geetaImage from '@/assets/geeta.jpg';
 
 const roles = [
-  'AIR 26 @ GATE CS 2024',
-  'M.Tech CSE @ IISc Bangalore',
-  'Incoming Hardware Engineer @ IBM Bangalore',
-  'Database Systems Researcher @ DSL, CSA, SERC',
+  'M.Tech CSE @ IISC Bangalore',
+  'Incoming Hardware Engineer @ IBM',
+  'AIR 26 @ GATE CSE 2024',
+  'Database Systems Researcher @ DSL',
 ];
 
 // Floating Icon Component with tooltip
@@ -110,7 +110,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-2xl md:text-3xl font-mono font-bold text-yellow-500 mb-6 h-12"
+              className="text-lg md:text-xl font-mono font-bold text-yellow-500 mb-6 h-10"
             >
               <TypewriterText texts={roles} speed={80} />
             </motion.div>
