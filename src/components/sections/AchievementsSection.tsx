@@ -155,14 +155,14 @@ export default function AchievementsSection() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Certifications */}
+            {/* Certifications - First Column */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 whitespace-nowrap">
                 <Shield className="h-6 w-6 text-primary" />
                 Certifications
               </h3>
@@ -174,8 +174,7 @@ export default function AchievementsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02, x: 4 }}
-                    className="glass rounded-xl p-5 group"
+                    className="glass rounded-xl p-5"
                   >
                     <div className="flex items-start gap-4">
                       {/* Certification Logo */}
@@ -188,13 +187,13 @@ export default function AchievementsSection() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
-                          <h4 className="font-semibold group-hover:text-primary transition-colors text-sm">
+                          <h4 className="font-semibold text-sm">
                             {cert.title}
                           </h4>
                           <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
                             cert.status === 'Active' ? 'bg-green-500/10 text-green-500' :
-                            cert.status === 'Lifetime' ? 'bg-primary/10 text-primary' :
-                            cert.status === 'Expired' ? 'bg-yellow-500/10 text-yellow-500' :
+                            cert.status === 'Lifetime' ? 'bg-yellow-500/10 text-yellow-500' :
+                            cert.status === 'Expired' ? 'bg-red-500/10 text-red-500' :
                             'bg-muted text-muted-foreground'
                           }`}>
                             {cert.status}
@@ -231,14 +230,14 @@ export default function AchievementsSection() {
               </div>
             </motion.div>
 
-            {/* Awards */}
+            {/* Awards - Second Column */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 whitespace-nowrap">
                 <Award className="h-6 w-6 text-accent" />
                 Awards & Honors
               </h3>
