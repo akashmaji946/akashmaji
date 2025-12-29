@@ -130,18 +130,18 @@ export default function ReportsSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.02, x: 8 }}
-                className="glass rounded-xl p-5 flex items-start gap-4 group hover:border-blue-400/30 border border-transparent transition-all"
+                className="glass rounded-xl p-5 flex items-start gap-4 group border border-transparent transition-all"
               >
                 <div className="p-3 rounded-lg bg-gradient flex-shrink-0">
                   <FileText className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-semibold transition-colors">
                     {report.title}
                   </h3>
                   <p className="text-sm text-blue-400 mt-1">{report.course}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{report.authors}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{report.date}</p>
+                  <p className="text-base text-muted-foreground mt-1">{report.authors}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{report.date}</p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {report.links.map((link) => {
                       const Icon = getLinkIcon(link.type);
