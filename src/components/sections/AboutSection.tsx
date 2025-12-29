@@ -79,7 +79,7 @@ export default function AboutSection() {
               {[
                 { value: '2.5+', label: 'Years @ TCS' },
                 { value: 'AIR 26', label: 'GATE 2024' },
-                { value: '8.0', label: 'CGPA @ IISc' },
+                { value: '8.2', label: 'CGPA @ IISc' },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
