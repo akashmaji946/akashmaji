@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
-import githubLogo from '@/assets/github-logo.png';
-import linkedinLogo from '@/assets/linkedin-logo.png';
-import twitterLogo from '@/assets/twitter-logo.png';
-import gmailLogo from '@/assets/gmail-logo.png';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
+import githubLogo from "@/assets/github-logo.png";
+import linkedinLogo from "@/assets/linkedin-logo.png";
+import twitterLogo from "@/assets/twitter-logo.png";
+import gmailLogo from "@/assets/gmail-logo.png";
 
 const socialLinks = [
-  { icon: githubLogo, href: 'https://github.com/akashmaji946', label: 'GitHub', invertOnDark: true },
-  { icon: linkedinLogo, href: 'https://linkedin.com/in/akashmaji946', label: 'LinkedIn', invertOnDark: false },
-  { icon: twitterLogo, href: 'https://twitter.com/akashmaji946', label: 'Twitter', invertOnDark: false },
-  { icon: gmailLogo, href: 'mailto:akashmaji@iisc.ac.in', label: 'Email', invertOnDark: false },
+  // { icon: githubLogo, href: 'https://github.com/akashmaji946', label: 'GitHub', invertOnDark: true },
+  // { icon: linkedinLogo, href: 'https://linkedin.com/in/akashmaji946', label: 'LinkedIn', invertOnDark: false },
+  // { icon: twitterLogo, href: 'https://twitter.com/akashmaji946', label: 'Twitter', invertOnDark: false },
+  // { icon: gmailLogo, href: 'mailto:akashmaji@iisc.ac.in', label: 'Email', invertOnDark: false },
 ];
 
 export default function Footer() {
@@ -26,15 +26,15 @@ export default function Footer() {
   }, []);
 
   const formatDateTime = (date: Date) => {
-    const weekday = date.toLocaleString('en-IN', { weekday: 'long', timeZone: 'Asia/Kolkata' });
-    const day = date.toLocaleString('en-IN', { day: 'numeric', timeZone: 'Asia/Kolkata' });
-    const month = date.toLocaleString('en-IN', { month: 'long', timeZone: 'Asia/Kolkata' });
-    const year = date.toLocaleString('en-IN', { year: 'numeric', timeZone: 'Asia/Kolkata' });
-    const time = date.toLocaleString('en-IN', { 
-      hour: '2-digit', 
-      minute: '2-digit',
+    const weekday = date.toLocaleString("en-IN", { weekday: "long", timeZone: "Asia/Kolkata" });
+    const day = date.toLocaleString("en-IN", { day: "numeric", timeZone: "Asia/Kolkata" });
+    const month = date.toLocaleString("en-IN", { month: "long", timeZone: "Asia/Kolkata" });
+    const year = date.toLocaleString("en-IN", { year: "numeric", timeZone: "Asia/Kolkata" });
+    const time = date.toLocaleString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
       hour12: false,
-      timeZone: 'Asia/Kolkata' 
+      timeZone: "Asia/Kolkata",
     });
     return `${weekday}, ${day} ${month}, ${year} at ${time} IST`;
   };
@@ -79,10 +79,10 @@ export default function Footer() {
                   whileTap={{ scale: 0.95 }}
                   aria-label={link.label}
                 >
-                  <img 
-                    src={link.icon} 
-                    alt={link.label} 
-                    className={`h-5 w-5 ${link.invertOnDark ? 'dark:invert' : ''}`} 
+                  <img
+                    src={link.icon}
+                    alt={link.label}
+                    className={`h-5 w-5 ${link.invertOnDark ? "dark:invert" : ""}`}
                   />
                 </motion.a>
               ))}
@@ -100,9 +100,7 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground flex items-center gap-1">
               Made with <Heart className="h-4 w-4 text-red-500 fill-red-500" /> by Akash Maji
             </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              © {currentYear} All rights reserved.
-            </p>
+            <p className="text-xs text-muted-foreground mt-1">© {currentYear} All rights reserved.</p>
           </motion.div>
         </div>
 
@@ -115,12 +113,8 @@ export default function Footer() {
           className="mt-8 pt-8 border-t border-border/30 flex flex-col items-center text-center"
         >
           {/* Current Date/Time */}
-          <p className="text-xs text-muted-foreground font-mono">
-            {formatDateTime(currentDateTime)}
-          </p>
-          <p className="text-xs text-muted-foreground font-mono mt-1">
-            Last Updated: January 2026
-          </p>
+          <p className="text-xs text-muted-foreground font-mono">{formatDateTime(currentDateTime)}</p>
+          <p className="text-xs text-muted-foreground font-mono mt-1">Last Updated: January 2026</p>
 
           {/* Bhagavad Gita Quote */}
           <div className="max-w-2xl mx-auto mt-6">
@@ -130,9 +124,7 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground mt-2">
               "You have the right to work, but never to the fruit of work"
             </p>
-            <p className="text-xs text-primary/70 mt-2 font-medium tracking-wider uppercase">
-              — Bhagavad Gita 2.47
-            </p>
+            <p className="text-xs text-primary/70 mt-2 font-medium tracking-wider uppercase">— Bhagavad Gita 2.47</p>
           </div>
         </motion.div>
       </div>
