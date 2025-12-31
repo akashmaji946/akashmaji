@@ -87,13 +87,6 @@ export default function Footer() {
                 </motion.a>
               ))}
             </div>
-            {/* Current Date/Time */}
-            <p className="text-xs text-muted-foreground font-mono">
-              {formatDateTime(currentDateTime)}
-            </p>
-            <p className="text-xs text-muted-foreground font-mono">
-              Last Updated: January 2026
-            </p>
           </motion.div>
 
           {/* Copyright */}
@@ -113,15 +106,24 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* Bhagavad Gita Quote */}
+        {/* Date/Time and Gita Quote - Centered Below */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-8 pt-8 border-t border-border/30"
+          className="mt-8 pt-8 border-t border-border/30 flex flex-col items-center text-center"
         >
-          <div className="max-w-2xl mx-auto text-center">
+          {/* Current Date/Time */}
+          <p className="text-xs text-muted-foreground font-mono">
+            {formatDateTime(currentDateTime)}
+          </p>
+          <p className="text-xs text-muted-foreground font-mono mt-1">
+            Last Updated: January 2026
+          </p>
+
+          {/* Bhagavad Gita Quote */}
+          <div className="max-w-2xl mx-auto mt-6">
             <p className="text-lg md:text-xl font-hindi text-gradient font-bold tracking-wide">
               कर्मण्येवाधिकारस्ते मा फलेषु कदाचन
             </p>
