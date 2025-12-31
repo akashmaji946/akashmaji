@@ -97,7 +97,7 @@ export default function HeroSection() {
 
             {/* Welcome Text */}
             <motion.h2
-              className="text-2xl md:text-3xl font-semibold text-foreground mb-4"
+              className="text-3xl md:text-4xl font-semibold text-foreground mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
@@ -110,7 +110,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl font-mono font-bold text-yellow-500 mb-6 h-10"
+              className="text-xl md:text-2xl font-mono font-bold text-yellow-500 mb-6 h-10"
             >
               <TypewriterText texts={roles} speed={80} />
             </motion.div>
