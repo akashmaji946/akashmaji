@@ -113,7 +113,7 @@ export default function ReportsSection() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Academic <span className="text-gradient">Reports</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -121,7 +121,7 @@ export default function ReportsSection() {
             </p>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-4">
             {reports.map((report, index) => (
               <motion.div
                 key={report.title}

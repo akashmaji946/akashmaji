@@ -150,7 +150,7 @@ export default function HeroSection() {
                 </div>
               </div>
               <div className="flex-1">
-                <p className="font-hindi text-base md:text-lg font-semibold text-sky-400 leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
+                <p className="font-hindi text-sm md:text-base font-semibold text-sky-400 leading-relaxed">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
                 <p className="text-sm md:text-base text-muted-foreground mt-2">(Karmaṇy-evādhikāras te mā phaleṣu kadācana)</p>
                 <p className="text-sm md:text-base text-foreground/80 mt-2">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
                 <p className="text-sm font-bold text-primary mt-2 uppercase tracking-widest">— Bhagavad Gita 2.47</p>
