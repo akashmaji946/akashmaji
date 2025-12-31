@@ -26,16 +26,17 @@ export default function Footer() {
   }, []);
 
   const formatDateTime = (date: Date) => {
-    return date.toLocaleString('en-IN', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
+    const weekday = date.toLocaleString('en-IN', { weekday: 'long', timeZone: 'Asia/Kolkata' });
+    const day = date.toLocaleString('en-IN', { day: 'numeric', timeZone: 'Asia/Kolkata' });
+    const month = date.toLocaleString('en-IN', { month: 'long', timeZone: 'Asia/Kolkata' });
+    const year = date.toLocaleString('en-IN', { year: 'numeric', timeZone: 'Asia/Kolkata' });
+    const time = date.toLocaleString('en-IN', { 
+      hour: '2-digit', 
       minute: '2-digit',
-      second: '2-digit',
-      timeZone: 'Asia/Kolkata'
+      hour12: false,
+      timeZone: 'Asia/Kolkata' 
     });
+    return `${weekday}, ${day} ${month}, ${year} at ${time} IST`;
   };
 
   return (
@@ -88,7 +89,10 @@ export default function Footer() {
             </div>
             {/* Current Date/Time */}
             <p className="text-xs text-muted-foreground font-mono">
-              {formatDateTime(currentDateTime)} IST
+              {formatDateTime(currentDateTime)}
+            </p>
+            <p className="text-xs text-muted-foreground font-mono">
+              Last Updated: January 2026
             </p>
           </motion.div>
 
