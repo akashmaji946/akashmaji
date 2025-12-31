@@ -21,7 +21,7 @@ interface Report {
 
 const reports: Report[] = [
   {
-    title: 'GPU Accelerated Scalar Field Reconstruction and Volume Rendering',
+    title: 'GPU Accelerated Volume Rendering',
     course: 'E0-271: Graphics And Visualization',
     authors: 'Utkarsh Sharma • Akash Maji',
     date: 'December 2025',
@@ -121,7 +121,7 @@ export default function ReportsSection() {
             </p>
           </motion.div>
 
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-4">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4">
             {reports.map((report, index) => (
               <motion.div
                 key={report.title}
