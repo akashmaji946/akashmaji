@@ -4,6 +4,16 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
+    title: 'Go-Redis',
+    description: 'A Redis-compatible in-memory key-value store server written in Go. This implementation supports core Redis commands, persistence mechanisms (AOF and RDB), authentication, expiration, transactions, monitoring, and memory management with eviction policies.',
+    technologies: ['Golang', 'Docker', 'Redis', 'Cursor'],
+    github: 'https://github.com/akashmaji946/go-redis',
+    docs: 'https://akashmaji946.github.io/go-redis/',
+    year: '2026',
+    location: 'Bangalore, IN',
+    course: 'Hobby Project',
+  },
+  {
     title: 'VM-Diffing-Tool (VMTOOL)',
     description: 'A powerful tool for analyzing and comparing VM disk images. Built with Flask and a C++ core (pybind11) that uses libguestfs for robust disk access. Features file browsing, side‑by‑side file diffs, directory and block comparisons, image conversion, VM launch utilities, and exportable JSON/PDF reports. Supports web-based and CLI (vmt) interfaces.',
     technologies: ['Python (Flask)', 'C++ (pybind11)', 'libguestfs', 'Docker', 'SQLite'],
