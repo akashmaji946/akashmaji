@@ -13,7 +13,7 @@ const education = [
     location: 'Bangalore, Karnataka',
     period: '2024 - 2026',
     description: 'CSA Department. Part of Database Systems Lab, SERC. Research focus on database systems.',
-    highlights: ['8.2/10.0 CGPA', 'GATE 2024 AIR 26', 'GATE 2023 AIR 608'],
+    highlights: ['CGPA: 8.20/10.00', 'GATE 2024 AIR 26', 'GATE 2023 AIR 608'],
     logo: iiscLogo,
   },
   {
