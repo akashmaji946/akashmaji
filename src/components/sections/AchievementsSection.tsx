@@ -176,17 +176,17 @@ export default function AchievementsSection() {
                     transition={{ delay: index * 0.1 }}
                     className="glass rounded-xl p-5"
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
                       {/* Certification Logo */}
-                      <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-background/50 border border-border/30">
+                      <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-background/50 border border-border/30">
                         <img
                           src={cert.logo}
                           alt={`${cert.title} badge`}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0 text-center sm:text-left">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-2">
                           <h4 className="font-semibold text-sm">
                             {cert.title}
                           </h4>
@@ -201,7 +201,7 @@ export default function AchievementsSection() {
                         </div>
                         <p className="text-sm text-muted-foreground mt-1">{cert.issuer} • {cert.date}</p>
                         <p className="text-xs text-muted-foreground mt-1">{cert.description}</p>
-                        <div className="flex gap-4 mt-2">
+                        <div className="flex flex-wrap justify-center sm:justify-start gap-4 mt-2">
                           {cert.credentialUrl && (
                             <a
                               href={cert.credentialUrl}

@@ -108,7 +108,7 @@ export default function AboutSection() {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-xl font-semibold mb-6">Languages & Tools</h3>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-4 gap-2 sm:gap-3">
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
