@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ArrowDown, FileText, MessageCircle, Github } from 'lucide-react';
 import TypewriterText from '@/components/TypewriterText';
@@ -16,9 +16,10 @@ const roles = [
 ];
 
 // Floating Icon Component with tooltip
-function FloatingIcon({ item, index }: { 
+function FloatingIcon({ item, index, radius }: { 
   item: { href: string; emoji: string; angle: number; label: string }; 
-  index: number 
+  index: number;
+  radius: number;
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -27,7 +28,7 @@ function FloatingIcon({ item, index }: {
     setTimeout(() => setShowTooltip(false), 3000);
   };
 
-  const r = 205;
+  const r = radius;
   const rad = (item.angle * Math.PI) / 180;
   const x = Math.cos(rad) * r;
   const y = Math.sin(rad) * r;
@@ -68,6 +69,24 @@ function FloatingIcon({ item, index }: {
 
 export default function HeroSection() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [orbitRadius, setOrbitRadius] = useState(205);
+
+  useEffect(() => {
+    const updateRadius = () => {
+      if (window.innerWidth < 640) {
+        setOrbitRadius(110);
+      } else if (window.innerWidth < 768) {
+        setOrbitRadius(130);
+      } else if (window.innerWidth < 1024) {
+        setOrbitRadius(160);
+      } else {
+        setOrbitRadius(205);
+      }
+    };
+    updateRadius();
+    window.addEventListener('resize', updateRadius);
+    return () => window.removeEventListener('resize', updateRadius);
+  }, []);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-20">
@@ -77,13 +96,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex items-center justify-center gap-2 md:gap-3 mb-10 text-center"
+          className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3 mb-10 text-center flex-wrap"
         >
-          <span className="text-3xl md:text-5xl font-bold font-hindi bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">आकाश</span>
-          <span className="text-2xl md:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">•</span>
-          <span className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">Akash</span>
-          <span className="text-2xl md:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">•</span>
-          <span className="text-3xl md:text-5xl font-bold font-hindi bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">আকাশ</span>
+          <span className="text-xl sm:text-3xl md:text-5xl font-bold font-hindi bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">आकाश</span>
+          <span className="text-lg sm:text-2xl md:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">•</span>
+          <span className="text-xl sm:text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">Akash</span>
+          <span className="text-lg sm:text-2xl md:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">•</span>
+          <span className="text-xl sm:text-3xl md:text-5xl font-bold font-hindi bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500">আকাশ</span>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -166,14 +185,14 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex-shrink-0 flex flex-col items-center"
           >
-            <div className="relative w-96 h-96 md:w-[460px] md:h-[460px]">
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[460px] lg:h-[460px]">
               {/* Glow Effect */}
-              <div className="absolute inset-14 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
+              <div className="absolute inset-10 sm:inset-14 bg-gradient rounded-full blur-3xl opacity-20 animate-pulse-slow" />
 
               {/* Image Container - centered (motion transform-safe) */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <motion.div
-                  className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/30 glow select-none"
+                  className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/30 glow select-none"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 260, damping: 18 }}
@@ -189,21 +208,23 @@ export default function HeroSection() {
                 </motion.div>
               </div>
 
-              {/* Floating Section Icons - perfectly centered orbit */}
-              {(
-                [
-                  { href: '#about', emoji: '👤', angle: 0, label: 'About' },
-                  { href: '#education', emoji: '🎓', angle: 45, label: 'Education' },
-                  { href: '#experience', emoji: '💼', angle: 90, label: 'Experience' },
-                  { href: '#study', emoji: '📚', angle: 135, label: 'Study' },
-                  { href: '#projects', emoji: '💻', angle: 180, label: 'Projects' },
-                  { href: '#reports', emoji: '📄', angle: 225, label: 'Reports' },
-                  { href: '#achievements', emoji: '🏆', angle: 270, label: 'Achievements' },
-                  { href: '#contact', emoji: '📧', angle: 315, label: 'Contact' },
-                ] as const
-              ).map((item, index) => (
-                <FloatingIcon key={item.href} item={item} index={index} />
-              ))}
+              {/* Floating Section Icons - perfectly centered orbit - hidden on very small screens */}
+              <div className="hidden sm:block">
+                {(
+                  [
+                    { href: '#about', emoji: '👤', angle: 0, label: 'About' },
+                    { href: '#education', emoji: '🎓', angle: 45, label: 'Education' },
+                    { href: '#experience', emoji: '💼', angle: 90, label: 'Experience' },
+                    { href: '#study', emoji: '📚', angle: 135, label: 'Study' },
+                    { href: '#projects', emoji: '💻', angle: 180, label: 'Projects' },
+                    { href: '#reports', emoji: '📄', angle: 225, label: 'Reports' },
+                    { href: '#achievements', emoji: '🏆', angle: 270, label: 'Achievements' },
+                    { href: '#contact', emoji: '📧', angle: 315, label: 'Contact' },
+                  ] as const
+                ).map((item, index) => (
+                  <FloatingIcon key={item.href} item={item} index={index} radius={orbitRadius} />
+                ))}
+              </div>
             </div>
 
             {/* CTA Buttons - Below Profile */}

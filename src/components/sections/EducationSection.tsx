@@ -83,11 +83,11 @@ export default function EducationSection() {
                   whileHover={{ scale: 1.02 }}
                   className="glass rounded-2xl p-6 md:p-8 w-full max-w-3xl"
                 >
-                  <div className="flex items-start gap-6">
-                    <img src={edu.logo} alt={edu.institution} className="w-20 h-20 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
-                    <div className="flex-1">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+                    <img src={edu.logo} alt={edu.institution} className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
+                    <div className="flex-1 text-center sm:text-left">
                       <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
-                      <div className="flex items-center gap-2 text-primary mb-2 flex-wrap">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-primary mb-2 flex-wrap">
                         <GraduationCap className="h-4 w-4" />
                         {edu.institutionUrl ? (
                           <a href={edu.institutionUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:underline">
@@ -97,7 +97,7 @@ export default function EducationSection() {
                           <span className="font-medium">{edu.institution}</span>
                         )}
                       </div>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-3">
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-sm text-muted-foreground mb-3">
                         <span className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
                           {edu.period}
@@ -108,7 +108,7 @@ export default function EducationSection() {
                         </span>
                       </div>
                       <p className="text-muted-foreground text-sm mb-4">{edu.description}</p>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                         {edu.highlights.map((highlight) => (
                           <span
                             key={highlight}

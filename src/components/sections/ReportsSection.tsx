@@ -140,7 +140,7 @@ export default function ReportsSection() {
                     {report.title}
                   </h3>
                   <p className="text-sm text-blue-400 mt-1">{report.course}</p>
-                  <p className="text-sm text-muted-foreground mt-1 whitespace-nowrap">{report.authors}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{report.authors}</p>
                   <p className="text-xs text-purple-400 mt-1">{report.date}</p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {report.links.map((link) => {
