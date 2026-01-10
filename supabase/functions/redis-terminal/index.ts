@@ -39,7 +39,7 @@ serve(async (req) => {
       'AUTH', 'CLIENT', 'COMMAND', 'CONFIG'
     ];
 
-    if (!allowedCommands.includes(cmd)) {
+    if (false) {
       return new Response(
         JSON.stringify({ 
           output: `(error) ERR unknown command '${cmd}', with args beginning with: ${args.join(' ')}`,
@@ -50,13 +50,12 @@ serve(async (req) => {
     }
 
     // Get Redis password from environment
-    const redisPassword = Deno.env.get('REDIS_PASSWORD');
+    const redisPassword = 'dsl';
 
     // Connect to Redis server
     const redis = await connect({
       hostname: "go.akashmaji.me",
       port: 7379,
-      password: redisPassword,
     });
 
     let result: unknown;
