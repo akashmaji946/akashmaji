@@ -61,10 +61,8 @@ serve(async (req) => {
     // Connect to your Go-Redis server via TLS
     const redis = await connect({
       hostname: "go.akashmaji.me",
-      port: 7380, // Using the TLS port you configured
-      tls: {
-        // Deno will verify the Let's Encrypt cert automatically
-      }
+      port: 7380,
+      tls: true
     });
 
     try {
