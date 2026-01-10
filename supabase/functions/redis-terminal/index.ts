@@ -35,7 +35,8 @@ serve(async (req) => {
       'HGET', 'HSET', 'HDEL', 'HGETALL', 'HKEYS', 'HVALS',
       'ZADD', 'ZRANGE', 'ZRANK', 'ZSCORE', 'ZCARD',
       'DBSIZE', 'ECHO', 'TIME', 'TYPE', 'STRLEN', 'APPEND',
-      'MGET', 'MSET', 'GETEX', 'SCAN', 'SSCAN', 'HSCAN', 'ZSCAN'
+      'MGET', 'MSET', 'GETEX', 'SCAN', 'SSCAN', 'HSCAN', 'ZSCAN',
+      'AUTH', 'CLIENT', 'COMMAND', 'CONFIG'
     ];
 
     if (!allowedCommands.includes(cmd)) {
@@ -48,10 +49,14 @@ serve(async (req) => {
       );
     }
 
+    // Get Redis password from environment
+    const redisPassword = Deno.env.get('REDIS_PASSWORD');
+
     // Connect to Redis server
     const redis = await connect({
       hostname: "go.akashmaji.me",
       port: 7379,
+      password: redisPassword,
     });
 
     let result: unknown;
