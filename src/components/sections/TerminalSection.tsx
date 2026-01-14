@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Copy, ExternalLink, Check } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface TypewriterLine {
   type: 'comment' | 'command' | 'prompt' | 'response' | 'link';
@@ -8,6 +10,8 @@ interface TypewriterLine {
 }
 
 export default function TerminalSection() {
+  const [copied, setCopied] = useState(false);
+  
   const staticLines = [
     { type: 'comment' as const, content: '# Try this out within your terminal' },
     { type: 'comment' as const, content: '# First install redis-tools (redis-cli)' },
@@ -16,6 +20,7 @@ export default function TerminalSection() {
   const typewriterLines: TypewriterLine[] = [
     { type: 'comment', content: '# connect to server' },
     { type: 'command', content: 'redis-cli -h go.akashmaji.me -p 7380 --tls' },
+    { type: 'comment', content: '# authenticate as root' },
     { type: 'prompt', prompt: 'go.akashmaji.me:7380>', content: 'AUTH root dsl' },
     { type: 'response', content: 'OK' },
     { type: 'comment', content: '# see available commands' },
@@ -24,6 +29,9 @@ export default function TerminalSection() {
     { type: 'response', content: '      ........' },
     { type: 'comment', content: '# see command usage' },
     { type: 'prompt', prompt: 'go.akashmaji.me:7380>', content: 'COMMANDS SET' },
+    { type: 'response', content: '1) "Usage       : SET <key> <value>"' },
+    { type: 'response', content: '2) "Description : Set the string value of a key"' },
+    { type: 'response', content: '3) "Category    : string"' },
     { type: 'comment', content: '# visit this link for more info' },
     { type: 'link', content: '# https://github.com/akashmaji946/go-redis/' },
   ];
@@ -54,6 +62,17 @@ export default function TerminalSection() {
       return () => clearTimeout(timeout);
     }
   }, [currentText, visibleLines, typewriterLines]);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText('redis-cli -h go.akashmaji.me -p 7380 --tls');
+    setCopied(true);
+    toast.success('Command copied to clipboard!');
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleOpenLink = () => {
+    window.open('https://github.com/akashmaji946/go-redis/', '_blank');
+  };
 
   const renderLine = (line: TypewriterLine, text: string, showCursor: boolean) => {
     if (line.type === 'comment' || line.type === 'link') {
@@ -120,11 +139,30 @@ export default function TerminalSection() {
                 go-redis-server
               </span>
             </div>
-            <div className="w-14" />
+            <div className="flex gap-2">
+              <button
+                onClick={handleCopy}
+                className="p-1.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                title="Copy connection command"
+              >
+                {copied ? (
+                  <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
+                ) : (
+                  <Copy className="w-4 h-4 text-[#4a4a4a] dark:text-[#d0d0d0]" />
+                )}
+              </button>
+              <button
+                onClick={handleOpenLink}
+                className="p-1.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                title="View on GitHub"
+              >
+                <ExternalLink className="w-4 h-4 text-[#4a4a4a] dark:text-[#d0d0d0]" />
+              </button>
+            </div>
           </div>
 
           {/* Terminal Body */}
-          <div className="bg-[#1e1e1e] dark:bg-[#0d0d0d] p-4 sm:p-6 font-mono text-sm sm:text-base min-h-[300px]">
+          <div className="bg-[#1e1e1e] dark:bg-[#0d0d0d] p-4 sm:p-6 font-mono text-sm sm:text-base min-h-[350px]">
             {/* Static lines */}
             {staticLines.map((line, index) => (
               <div key={index} className="mb-1">
