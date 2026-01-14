@@ -23,15 +23,20 @@ export default function TerminalSection() {
     { type: 'comment', content: '# authenticate as root' },
     { type: 'prompt', prompt: 'go.akashmaji.me:7380>', content: 'AUTH root dsl' },
     { type: 'response', content: 'OK' },
-    { type: 'comment', content: '# see available commands' },
+    { type: 'comment', content: '# see available commands in go-redis' },
     { type: 'prompt', prompt: 'go.akashmaji.me:7380>', content: 'COMMANDS' },
     { type: 'response', content: '1) "AUTH"' },
     { type: 'response', content: '      ........' },
-    { type: 'comment', content: '# see command usage' },
+    { type: 'comment', content: '# see available command usage' },
     { type: 'prompt', prompt: 'go.akashmaji.me:7380>', content: 'COMMANDS SET' },
     { type: 'response', content: '1) "Usage       : SET <key> <value>"' },
     { type: 'response', content: '2) "Description : Set the string value of a key"' },
     { type: 'response', content: '3) "Category    : string"' },
+    { type: 'comment', content: '# run commands like redis' },
+    { type: 'prompt', prompt: 'go.akashmaji.me:7380>', content: 'SET k v' },
+    { type: 'response', content: 'OK' },
+    { type: 'prompt', prompt: 'go.akashmaji.me:7380>', content: 'GET k' },
+    { type: 'response', content: '"v"' },
     { type: 'comment', content: '# visit this link for more info' },
     { type: 'link', content: '# https://github.com/akashmaji946/go-redis/' },
   ];
@@ -42,8 +47,13 @@ export default function TerminalSection() {
 
   useEffect(() => {
     if (visibleLines >= typewriterLines.length) {
-      setIsTyping(false);
-      return;
+      // Reset to start cycling animation
+      const timeout = setTimeout(() => {
+        setVisibleLines(0);
+        setCurrentText('');
+        setIsTyping(true);
+      }, 2000);
+      return () => clearTimeout(timeout);
     }
 
     const currentLine = typewriterLines[visibleLines];
@@ -89,7 +99,7 @@ export default function TerminalSection() {
       return (
         <div className="flex items-start">
           <span className="text-green-400 mr-2 select-none">$</span>
-          <span className="text-white">
+          <span className="text-yellow-400">
             {text}
             {showCursor && <span className="inline-block w-2 h-4 bg-yellow-500 ml-0.5 animate-pulse" />}
           </span>
