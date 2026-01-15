@@ -21,6 +21,16 @@ interface Report {
 
 const reports: Report[] = [
   {
+    title: 'RasterDB: Implementing Efficient Index Update Pipeline',
+    course: 'MTech Mid-Term Project Report',
+    authors: 'Akash Maji',
+    date: 'January 2026',
+    links: [
+      { type: 'report', label: 'Technical Report', url: '/reports/RasterDB_Mid_Term_Report.pdf' },
+      { type: 'project', label: 'Poster Presentation', url: '/reports/RasterDB_Poster.pdf' },
+    ],
+  },
+  {
     title: 'GPU Accelerated Volume Rendering',
     course: 'E0-271: Graphics And Visualization',
     authors: 'Utkarsh Sharma • Akash Maji',
