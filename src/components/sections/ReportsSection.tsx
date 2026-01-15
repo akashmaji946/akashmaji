@@ -21,7 +21,7 @@ interface Report {
 
 const reports: Report[] = [
   {
-    title: 'RasterDB: Implementing Efficient Index Update Pipeline',
+    title: 'RasterDB: Efficient Index Update Pipeline',
     course: 'MTech Mid-Term Project Report',
     authors: 'Akash Maji',
     date: 'January 2026',
