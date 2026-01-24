@@ -128,51 +128,51 @@ export default function TerminalSection() {
   };
 
   return (
-    <section className="py-12 sm:py-16 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-8 sm:py-12 px-4">
+      <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="rounded-xl overflow-hidden shadow-2xl border border-border/50"
+          className="rounded-lg overflow-hidden shadow-xl border border-border/50"
         >
           {/* Terminal Header */}
-          <div className="bg-[#e0e0e0] dark:bg-[#3a3a3a] px-4 py-3 flex items-center">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-              <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-              <div className="w-3 h-3 rounded-full bg-[#27ca40]" />
+          <div className="bg-[#e0e0e0] dark:bg-[#3a3a3a] px-3 py-2 flex items-center">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#27ca40]" />
             </div>
             <div className="flex-1 text-center">
-              <span className="text-sm font-medium text-[#4a4a4a] dark:text-[#d0d0d0]">
+              <span className="text-xs font-medium text-[#4a4a4a] dark:text-[#d0d0d0]">
                 go-redis-server
               </span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5">
               <button
                 onClick={handleCopy}
-                className="p-1.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                className="p-1 rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
                 title="Copy connection command"
               >
                 {copied ? (
-                  <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
+                  <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
                 ) : (
-                  <Copy className="w-4 h-4 text-[#4a4a4a] dark:text-[#d0d0d0]" />
+                  <Copy className="w-3 h-3 text-[#4a4a4a] dark:text-[#d0d0d0]" />
                 )}
               </button>
               <button
                 onClick={handleOpenLink}
-                className="p-1.5 rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                className="p-1 rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
                 title="View on GitHub"
               >
-                <ExternalLink className="w-4 h-4 text-[#4a4a4a] dark:text-[#d0d0d0]" />
+                <ExternalLink className="w-3 h-3 text-[#4a4a4a] dark:text-[#d0d0d0]" />
               </button>
             </div>
           </div>
 
           {/* Terminal Body */}
-          <div className="bg-[#1e1e1e] dark:bg-[#0d0d0d] p-4 sm:p-6 font-mono text-sm sm:text-base min-h-[350px]">
+          <div className="bg-[#1e1e1e] dark:bg-[#0d0d0d] p-3 sm:p-4 font-mono text-xs sm:text-sm min-h-[250px]">
             {/* Static lines */}
             {staticLines.map((line, index) => (
               <div key={index} className="mb-1">
