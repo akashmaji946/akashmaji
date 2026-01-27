@@ -81,23 +81,23 @@ export default function EducationSection() {
               >
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="glass rounded-2xl p-6 md:p-8 w-full max-w-3xl"
+                  className="glass rounded-2xl p-4 md:p-6 w-full max-w-3xl"
                 >
                   <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-                    <img src={edu.logo} alt={edu.institution} className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
+                    <img src={edu.logo} alt={edu.institution} className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg object-contain bg-white p-2 flex-shrink-0" />
                     <div className="flex-1 text-center sm:text-left">
-                      <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
+                      <h3 className="text-base sm:text-lg font-bold mb-1">{edu.degree}</h3>
                       <div className="flex items-center justify-center sm:justify-start gap-2 text-primary mb-2 flex-wrap">
-                        <GraduationCap className="h-4 w-4" />
+                        <GraduationCap className="h-3.5 w-3.5" />
                         {edu.institutionUrl ? (
-                          <a href={edu.institutionUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:underline">
+                          <a href={edu.institutionUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline">
                             {edu.institution}
                           </a>
                         ) : (
-                          <span className="font-medium">{edu.institution}</span>
+                          <span className="text-sm font-medium">{edu.institution}</span>
                         )}
                       </div>
-                      <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-sm text-muted-foreground mb-3">
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-xs text-muted-foreground mb-2">
                         <span className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
                           {edu.period}
@@ -107,14 +107,14 @@ export default function EducationSection() {
                           {edu.location}
                         </span>
                       </div>
-                      <p className="text-muted-foreground text-sm mb-4">{edu.description}</p>
-                      <div className="flex flex-wrap justify-center sm:justify-start gap-2">
+                      <p className="text-muted-foreground text-xs mb-3">{edu.description}</p>
+                      <div className="flex flex-wrap justify-center sm:justify-start gap-1.5">
                         {edu.highlights.map((highlight) => (
                           <span
                             key={highlight}
-                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs font-medium"
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-pink-500/10 text-pink-400 text-[10px] sm:text-xs font-medium"
                           >
-                            <Award className="h-3 w-3" />
+                            <Award className="h-2.5 w-2.5" />
                             {highlight}
                           </span>
                         ))}
