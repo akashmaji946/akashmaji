@@ -89,7 +89,7 @@ export default function ExperienceSection() {
             >
               <motion.div
                 whileHover={{ scale: 1.01 }}
-                className="glass rounded-2xl p-6 md:p-8 relative overflow-hidden group"
+                className="glass rounded-2xl p-4 md:p-6 relative overflow-hidden group"
               >
                 {/* Background Gradient on Hover */}
                 <div className="absolute inset-0 bg-gradient opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
@@ -97,37 +97,37 @@ export default function ExperienceSection() {
                 <div className="relative">
                   {/* Header */}
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
-                    <div className="flex items-start gap-4">
-                      <img src={exp.logo} alt={exp.company} className="w-14 h-14 rounded-lg object-contain bg-white p-1" />
+                    <div className="flex items-start gap-3">
+                      <img src={exp.logo} alt={exp.company} className="w-12 h-12 rounded-lg object-contain bg-white p-1" />
                       <div>
-                        <h3 className="text-xl font-bold">{exp.title}</h3>
+                        <h3 className="text-base sm:text-lg font-bold">{exp.title}</h3>
                         <a
                           href={exp.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary hover:underline flex items-center gap-1"
+                          className="text-primary hover:underline flex items-center gap-1 text-sm"
                         >
                           {exp.company}
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       </div>
                     </div>
-                    <div className="flex flex-col items-start md:items-end gap-2">
-                      <div className="flex gap-2">
-                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                    <div className="flex flex-col items-start md:items-end gap-1.5">
+                      <div className="flex gap-1.5">
+                        <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
                           {exp.type}
                         </span>
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusStyles(exp.status)}`}>
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusStyles(exp.status)}`}>
                           {getStatusLabel(exp.status)}
                         </span>
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
+                          <Calendar className="h-2.5 w-2.5" />
                           {exp.period}
                         </span>
                         <span className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
+                          <MapPin className="h-2.5 w-2.5" />
                           {exp.location}
                         </span>
                       </div>
@@ -135,14 +135,14 @@ export default function ExperienceSection() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-muted-foreground mb-4">{exp.description}</p>
+                  <p className="text-muted-foreground text-xs sm:text-sm mb-3">{exp.description}</p>
 
                   {/* Responsibilities */}
                   {exp.responsibilities.length > 0 && (
-                    <ul className="space-y-2 mb-4">
+                    <ul className="space-y-1.5 mb-3">
                       {exp.responsibilities.map((resp, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="text-primary mt-1">▹</span>
+                        <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
+                          <span className="text-primary mt-0.5">▹</span>
                           {resp}
                         </li>
                       ))}
@@ -151,11 +151,11 @@ export default function ExperienceSection() {
 
                   {/* Technologies */}
                   {exp.technologies.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {exp.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-medium"
+                          className="px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground text-[10px] sm:text-xs font-medium"
                         >
                           {tech}
                         </span>
