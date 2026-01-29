@@ -10,7 +10,6 @@ import geetaImage from '@/assets/geeta.jpg';
 
 const roles = [
   'M.Tech CSE @ IISC Bangalore',
-  'Incoming Hardware Engineer @ IBM',
   'AIR 26 @ GATE CSE 2024',
   'Database Systems Researcher @ DSL',
 ];
@@ -141,10 +140,7 @@ export default function HeroSection() {
               transition={{ delay: 0.5 }}
               className="flex items-center justify-center lg:justify-start gap-4 mb-8 flex-wrap"
             >
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                <img src={ibmLogo} alt="IBM" className="h-5 w-5" />
-                <span className="text-sm">Incoming Hardware Engineer @ IBM</span>
-              </div>
+              {/* IBM badge hidden temporarily */}
               <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
                 <MapPin className="h-4 w-4 text-primary" />
                 <span className="text-sm">IISc Bangalore</span>
