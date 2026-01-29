@@ -4,19 +4,20 @@ import ibmLogo from '@/assets/ibm-logo.svg';
 import tcsLogo from '@/assets/tcs-logo.png';
 
 const experiences = [
-  {
-    title: 'Incoming Hardware Engineer',
-    company: 'International Business Machines (IBM)',
-    companyUrl: 'https://www.ibm.com',
-    location: 'Bangalore, India',
-    period: 'July 2026',
-    type: 'Full-time',
-    status: 'incoming', // incoming = yellow
-    description: 'Will be joining IBM as a Hardware Engineer after completing M.Tech at IISc Bangalore.',
-    responsibilities: [],
-    technologies: [],
-    logo: ibmLogo,
-  },
+  // IBM entry hidden temporarily
+  // {
+  //   title: 'Incoming Hardware Engineer',
+  //   company: 'International Business Machines (IBM)',
+  //   companyUrl: 'https://www.ibm.com',
+  //   location: 'Bangalore, India',
+  //   period: 'July 2026',
+  //   type: 'Full-time',
+  //   status: 'incoming',
+  //   description: 'Will be joining IBM as a Hardware Engineer after completing M.Tech at IISc Bangalore.',
+  //   responsibilities: [],
+  //   technologies: [],
+  //   logo: ibmLogo,
+  // },
   {
     title: 'System Engineer (Full Stack Java Developer)',
     company: 'Tata Consultancy Services (TCS)',
