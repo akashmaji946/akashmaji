@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/sections/HeroSection';
-import TerminalSection from '@/components/sections/TerminalSection';
+
 import AboutSection from '@/components/sections/AboutSection';
 import EducationSection from '@/components/sections/EducationSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
@@ -26,7 +26,7 @@ export default function Index() {
       <Header />
       <main>
         <HeroSection />
-        <TerminalSection />
+        
         <AboutSection />
         <EducationSection />
         <ExperienceSection />

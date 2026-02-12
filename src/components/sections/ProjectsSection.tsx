@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, FileText, Folder } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import TerminalSection from '@/components/sections/TerminalSection';
 
 const projects = [
   {
@@ -120,6 +121,8 @@ export default function ProjectsSection() {
             Academic and personal projects in systems, graphics, and machine learning
           </p>
         </motion.div>
+
+        <TerminalSection />
 
         {/* All Projects - 2 per row */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
