@@ -4,6 +4,15 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
+    title: 'Go-Mix',
+    description: 'A lightweight, JS-based interpreted programming language written in Go, designed for simplicity, learning, and rapid experimentation. Features an easy single-script installation, system-wide CLI access, interactive REPL, script execution support, structured project code samples, and cross-compilation build system.',
+    technologies: ['Golang', 'Docker', 'VSCode Extension'],
+    github: 'https://github.com/akashmaji946/go-mix',
+    year: '2026',
+    location: 'Bangalore, IN',
+    course: 'Hobby Project',
+  },
+  {
     title: 'Go-Redis',
     description: 'A Redis-compatible in-memory key-value store server written in Go. This implementation supports core Redis commands, persistence mechanisms (AOF and RDB), authentication, expiration, transactions, monitoring, and memory management with eviction policies.',
     technologies: ['Golang', 'Docker', 'Redis', 'Cursor'],
