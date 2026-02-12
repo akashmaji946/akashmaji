@@ -3,6 +3,37 @@ import Terminal from '@/components/Terminal';
 export default function TerminalSection() {
   return (
     <div className="grid md:grid-cols-2 gap-6 mt-8">
+      {/* Go-Mix Terminal */}
+      <Terminal
+        title="go-mix-language"
+        copyCommand="telnet go.akashmaji.me 9090"
+        githubLink="https://github.com/akashmaji946/go-mix"
+        staticLines={[
+          { type: 'comment', content: '# Try this out within your terminal' },
+          { type: 'comment', content: '# First install telnet' },
+          { type: 'comment', content: '# Connect to the language server' },
+        ]}
+        typewriterLines={[
+          { type: 'command', content: 'telnet go.akashmaji.me 9090' },
+          { type: 'response', content: '----------------------------------------------------------------' },
+          { type: 'response', content: 'Version: v1.0.0 | Author: akashmaji(@iisc.ac.in) | License: MIT' },
+          { type: 'response', content: '----------------------------------------------------------------' },
+          { type: 'response', content: 'Welcome to Go-Mix!' },
+          { type: 'response', content: 'Type your code and press enter' },
+          { type: 'response', content: "Type '/exit' to quit" },
+          { type: 'response', content: 'Use up/down arrows to navigate command history' },
+          { type: 'response', content: '----------------------------------------------------------------' },
+          { type: 'prompt', prompt: 'Go-Mix >>>', content: 'var a = 1;' },
+          { type: 'response', content: '1' },
+          { type: 'prompt', prompt: 'Go-Mix >>>', content: 'println(a)' },
+          { type: 'response', content: '1' },
+          { type: 'response', content: 'nil' },
+          { type: 'prompt', prompt: 'Go-Mix >>>', content: '/scope' },
+          { type: 'response', content: '.......' },
+          { type: 'link', content: '# https://github.com/akashmaji946/go-mix' },
+        ]}
+      />
+
       {/* Go-Redis Terminal */}
       <Terminal
         title="go-redis-server"
@@ -34,37 +65,6 @@ export default function TerminalSection() {
           { type: 'response', content: '"v"' },
           { type: 'comment', content: '# visit this link for more info' },
           { type: 'link', content: '# https://github.com/akashmaji946/go-redis/' },
-        ]}
-      />
-
-      {/* Go-Mix Terminal */}
-      <Terminal
-        title="go-mix-language"
-        copyCommand="telnet go.akashmaji.me 9090"
-        githubLink="https://github.com/akashmaji946/go-mix"
-        staticLines={[
-          { type: 'comment', content: '# Try this out within your terminal' },
-          { type: 'comment', content: '# First install telnet' },
-          { type: 'comment', content: '# Connect to the language server' },
-        ]}
-        typewriterLines={[
-          { type: 'command', content: 'telnet go.akashmaji.me 9090' },
-          { type: 'response', content: '----------------------------------------------------------------' },
-          { type: 'response', content: 'Version: v1.0.0 | Author: akashmaji(@iisc.ac.in) | License: MIT' },
-          { type: 'response', content: '----------------------------------------------------------------' },
-          { type: 'response', content: 'Welcome to Go-Mix!' },
-          { type: 'response', content: 'Type your code and press enter' },
-          { type: 'response', content: "Type '/exit' to quit" },
-          { type: 'response', content: 'Use up/down arrows to navigate command history' },
-          { type: 'response', content: '----------------------------------------------------------------' },
-          { type: 'prompt', prompt: 'Go-Mix >>>', content: 'var a = 1;' },
-          { type: 'response', content: '1' },
-          { type: 'prompt', prompt: 'Go-Mix >>>', content: 'println(a)' },
-          { type: 'response', content: '1' },
-          { type: 'response', content: 'nil' },
-          { type: 'prompt', prompt: 'Go-Mix >>>', content: '/scope' },
-          { type: 'response', content: '.......' },
-          { type: 'link', content: '# https://github.com/akashmaji946/go-mix' },
         ]}
       />
     </div>
