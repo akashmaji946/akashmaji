@@ -59,6 +59,12 @@ export default function TerminalSection() {
             { type: 'response', content: 'Use up/down arrows to navigate command history' },
             { type: 'response', content: '----------------------------------------------------------------' },
             { type: 'prompt', prompt: 'Go-Mix >>>', content: 'var a = 1;' },
+            { type: 'response', content: '1' },
+            { type: 'prompt', prompt: 'Go-Mix >>>', content: 'println(a)' },
+            { type: 'response', content: '1' },
+            { type: 'response', content: 'nil' },
+            { type: 'prompt', prompt: 'Go-Mix >>>', content: '/scope' },
+            { type: 'response', content: '.......' },
             { type: 'link', content: '# https://github.com/akashmaji946/go-mix' },
           ]}
         />
