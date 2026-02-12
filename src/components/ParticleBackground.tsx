@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -293,6 +293,19 @@ function Scene({ isDark }: { isDark: boolean }) {
 export default function ParticleBackground() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const [webglSupported, setWebglSupported] = useState(true);
+
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) setWebglSupported(false);
+    } catch {
+      setWebglSupported(false);
+    }
+  }, []);
+
+  if (!webglSupported) return null;
 
   return (
     <div className="fixed inset-0 -z-10">
