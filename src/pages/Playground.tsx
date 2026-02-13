@@ -139,7 +139,6 @@ export default function Playground() {
             value={code}
             onChange={setCode}
             onRun={runCode}
-            placeholder="// Write your Go-Mix code here..."
             className="min-h-[300px] md:min-h-0 bg-[#1e1e1e]"
           />
         </div>
