@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, FileText, Folder, Play } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ExternalLink, FileText, Folder } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import TerminalSection from '@/components/sections/TerminalSection';
 
@@ -121,22 +120,6 @@ export default function ProjectsSection() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Academic and personal projects in systems, graphics, and machine learning
           </p>
-        </motion.div>
-
-        {/* Playground Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="flex justify-center mt-8 mb-2"
-        >
-          <Button asChild size="lg" className="gap-2 bg-green-600 hover:bg-green-700 text-white font-mono">
-            <Link to="/playground">
-              <Play className="w-4 h-4" />
-              Go-Mix Playground
-            </Link>
-          </Button>
         </motion.div>
 
         <TerminalSection />
