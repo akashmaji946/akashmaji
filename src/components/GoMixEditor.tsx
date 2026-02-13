@@ -1,97 +1,96 @@
-import { useRef, useCallback, useEffect, useState } from 'react';
-import { tokenizeLine, TOKEN_COLORS } from '@/lib/goMixHighlighter';
+import { useRef, useEffect, useCallback } from 'react';
+import { EditorView, keymap, lineNumbers, highlightActiveLine, highlightActiveLineGutter } from '@codemirror/view';
+import { EditorState } from '@codemirror/state';
+import { defaultKeymap, indentWithTab, history, historyKeymap } from '@codemirror/commands';
+import { bracketMatching, indentOnInput } from '@codemirror/language';
+import { closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete';
+import goMixLanguage from '@/lib/goMixLanguage';
+import { oneDarkTheme, oneDarkHighlightStyle } from '@/lib/oneDarkTheme';
 
 interface GoMixEditorProps {
   value: string;
   onChange: (value: string) => void;
   onRun?: () => void;
-  placeholder?: string;
   className?: string;
 }
 
-export default function GoMixEditor({ value, onChange, onRun, placeholder, className }: GoMixEditorProps) {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const highlightRef = useRef<HTMLDivElement>(null);
+export default function GoMixEditor({ value, onChange, onRun, className }: GoMixEditorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [lineCount, setLineCount] = useState(1);
+  const viewRef = useRef<EditorView | null>(null);
+  const onChangeRef = useRef(onChange);
+  const onRunRef = useRef(onRun);
 
-  const syncScroll = useCallback(() => {
-    if (textareaRef.current && highlightRef.current) {
-      highlightRef.current.scrollTop = textareaRef.current.scrollTop;
-      highlightRef.current.scrollLeft = textareaRef.current.scrollLeft;
-    }
-  }, []);
+  onChangeRef.current = onChange;
+  onRunRef.current = onRun;
+
+  const initEditor = useCallback(() => {
+    if (!containerRef.current) return;
+
+    // Clean up previous instance
+    viewRef.current?.destroy();
+
+    const runKeymap = keymap.of([
+      {
+        key: 'Ctrl-Enter',
+        mac: 'Cmd-Enter',
+        run: () => {
+          onRunRef.current?.();
+          return true;
+        },
+      },
+    ]);
+
+    const updateListener = EditorView.updateListener.of((update) => {
+      if (update.docChanged) {
+        onChangeRef.current(update.state.doc.toString());
+      }
+    });
+
+    const state = EditorState.create({
+      doc: value,
+      extensions: [
+        lineNumbers(),
+        highlightActiveLine(),
+        highlightActiveLineGutter(),
+        history(),
+        indentOnInput(),
+        bracketMatching(),
+        closeBrackets(),
+        goMixLanguage,
+        oneDarkTheme,
+        oneDarkHighlightStyle,
+        runKeymap,
+        keymap.of([...defaultKeymap, ...historyKeymap, ...closeBracketsKeymap, indentWithTab]),
+        updateListener,
+        EditorView.lineWrapping,
+      ],
+    });
+
+    viewRef.current = new EditorView({
+      state,
+      parent: containerRef.current,
+    });
+  }, []); // Only run once
 
   useEffect(() => {
-    setLineCount(value.split('\n').length);
-  }, [value]);
+    initEditor();
+    return () => viewRef.current?.destroy();
+  }, [initEditor]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      e.preventDefault();
-      onRun?.();
-    }
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const ta = e.currentTarget;
-      const start = ta.selectionStart;
-      const end = ta.selectionEnd;
-      const newVal = value.substring(0, start) + '  ' + value.substring(end);
-      onChange(newVal);
-      requestAnimationFrame(() => {
-        ta.selectionStart = ta.selectionEnd = start + 2;
+  // Sync external value changes
+  useEffect(() => {
+    const view = viewRef.current;
+    if (view && view.state.doc.toString() !== value) {
+      view.dispatch({
+        changes: { from: 0, to: view.state.doc.length, insert: value },
       });
     }
-  };
-
-  const renderHighlighted = () => {
-    const lines = value.split('\n');
-    return lines.map((line, i) => (
-      <div key={i} className="leading-relaxed" style={{ minHeight: '1.625em' }}>
-        {line === '' ? '\n' : tokenizeLine(line).map((token, j) => (
-          <span key={j} style={{ color: TOKEN_COLORS[token.type] || '#D4D4D4' }}>
-            {token.text}
-          </span>
-        ))}
-      </div>
-    ));
-  };
+  }, [value]);
 
   return (
-    <div ref={containerRef} className={`relative flex flex-1 overflow-hidden ${className || ''}`}>
-      {/* Line numbers */}
-      <div className="flex-shrink-0 bg-[#1e1e1e] text-[#858585] font-mono text-sm select-none border-r border-[#333] overflow-hidden">
-        <div className="px-3 pt-4 pb-4">
-          {Array.from({ length: lineCount }, (_, i) => (
-            <div key={i} className="leading-relaxed text-right" style={{ minHeight: '1.625em' }}>
-              {i + 1}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Highlight layer */}
-      <div
-        ref={highlightRef}
-        className="absolute inset-0 font-mono text-sm p-4 pointer-events-none overflow-hidden whitespace-pre"
-        style={{ left: `${Math.max(lineCount.toString().length * 10 + 24, 44)}px` }}
-        aria-hidden="true"
-      >
-        {renderHighlighted()}
-      </div>
-
-      {/* Textarea (transparent text, visible caret) */}
-      <textarea
-        ref={textareaRef}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onScroll={syncScroll}
-        onKeyDown={handleKeyDown}
-        spellCheck={false}
-        className="flex-1 resize-none bg-transparent font-mono text-sm p-4 focus:outline-none leading-relaxed whitespace-pre overflow-auto"
-        style={{ color: 'transparent', caretColor: '#d4d4d4' }}
-        placeholder={placeholder}
-      />
-    </div>
+    <div
+      ref={containerRef}
+      className={`flex-1 overflow-auto ${className || ''}`}
+    />
   );
 }
