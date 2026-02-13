@@ -11,7 +11,7 @@ serve(async (req) => {
   }
 
   try {
-    const { code } = await req.json();
+    const { code, inputs } = await req.json();
 
     if (!code || typeof code !== 'string') {
       return new Response(JSON.stringify({ error: 'No code provided' }), {
@@ -19,6 +19,10 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
+
+    // Queue of pre-filled stdin values
+    const inputQueue: string[] = Array.isArray(inputs) ? [...inputs] : [];
+    let inputIndex = 0;
 
     // Connect to Go-Mix telnet server
     const conn = await Deno.connect({ hostname: "go.akashmaji.me", port: 9090 });
@@ -30,10 +34,8 @@ serve(async (req) => {
     const bannerBuf = new Uint8Array(4096);
     let bannerOutput = '';
     
-    // Wait for banner with timeout
     const bannerTimeout = setTimeout(() => {}, 3000);
     try {
-      // Read initial banner (multiple reads may be needed)
       let readAttempts = 0;
       while (readAttempts < 5) {
         const readable = await Promise.race([
@@ -43,7 +45,6 @@ serve(async (req) => {
         if (readable === null || readable === 0) break;
         bannerOutput += decoder.decode(bannerBuf.subarray(0, readable as number));
         readAttempts++;
-        // If we see the prompt indicator, we're ready
         if (bannerOutput.includes('>>>')) break;
       }
     } finally {
@@ -63,15 +64,26 @@ serve(async (req) => {
       let lineOutput = '';
       let readAttempts = 0;
       
-      while (readAttempts < 3) {
+      while (readAttempts < 5) {
         const n = await Promise.race([
           conn.read(buf),
-          new Promise<null>((resolve) => setTimeout(() => resolve(null), 1500)),
+          new Promise<null>((resolve) => setTimeout(() => resolve(null), 2000)),
         ]);
         if (n === null || n === 0) break;
         const chunk = decoder.decode(buf.subarray(0, n as number));
         lineOutput += chunk;
         readAttempts++;
+
+        // Check if server is waiting for input (prompt without >>>)
+        // If it looks like it's waiting for input and we have values queued, send one
+        if (!chunk.includes('>>>') && inputIndex < inputQueue.length) {
+          // Send the next input value
+          await conn.write(encoder.encode(inputQueue[inputIndex] + '\n'));
+          inputIndex++;
+          // Continue reading response after sending input
+          continue;
+        }
+
         if (chunk.includes('>>>')) break;
       }
 

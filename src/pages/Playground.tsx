@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, ArrowLeft, Loader2, Trash2, Download, Copy, Check } from 'lucide-react';
+import { Play, ArrowLeft, Loader2, Trash2, Download, Copy, Check, Plus, X, Terminal } from 'lucide-react';
 import GoMixEditor from '@/components/GoMixEditor';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -20,6 +21,13 @@ export default function Playground() {
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [inputs, setInputs] = useState<string[]>([]);
+  const [showInputPanel, setShowInputPanel] = useState(false);
+
+  const addInput = () => setInputs(prev => [...prev, '']);
+  const removeInput = (index: number) => setInputs(prev => prev.filter((_, i) => i !== index));
+  const updateInput = (index: number, value: string) =>
+    setInputs(prev => prev.map((v, i) => (i === index ? value : v)));
 
   const runCode = useCallback(async () => {
     if (!code.trim()) {
@@ -32,7 +40,7 @@ export default function Playground() {
 
     try {
       const { data, error } = await supabase.functions.invoke('go-mix-execute', {
-        body: { code },
+        body: { code, inputs: inputs.filter(i => i.length > 0) },
       });
 
       if (error) throw error;
@@ -48,7 +56,7 @@ export default function Playground() {
     } finally {
       setIsRunning(false);
     }
-  }, [code]);
+  }, [code, inputs]);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(code);
@@ -86,6 +94,20 @@ export default function Playground() {
           </div>
           <div className="flex items-center gap-2">
             <Button
+              variant={showInputPanel ? "secondary" : "ghost"}
+              size="sm"
+              onClick={() => setShowInputPanel(p => !p)}
+              className="gap-1.5"
+            >
+              <Terminal className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Stdin</span>
+              {inputs.length > 0 && (
+                <span className="ml-1 bg-primary text-primary-foreground rounded-full text-[10px] w-4 h-4 flex items-center justify-center">
+                  {inputs.length}
+                </span>
+              )}
+            </Button>
+            <Button
               variant="ghost"
               size="sm"
               onClick={handleCopy}
@@ -119,6 +141,47 @@ export default function Playground() {
           </div>
         </div>
       </header>
+
+      {/* Stdin Input Panel */}
+      {showInputPanel && (
+        <div className="border-b border-border bg-muted/50 px-4 py-3">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-mono text-muted-foreground">
+              Standard Input — values fed to <code className="bg-muted px-1 rounded">input()</code> calls in order
+            </span>
+            <Button size="sm" variant="ghost" onClick={addInput} className="h-6 gap-1 text-xs">
+              <Plus className="w-3 h-3" /> Add
+            </Button>
+          </div>
+          {inputs.length === 0 ? (
+            <p className="text-xs text-muted-foreground italic">
+              No inputs added. Click "Add" to pre-fill values for input() calls.
+            </p>
+          ) : (
+            <div className="flex flex-wrap gap-2">
+              {inputs.map((val, i) => (
+                <div key={i} className="flex items-center gap-1">
+                  <span className="text-[10px] text-muted-foreground font-mono w-4">{i + 1}.</span>
+                  <Input
+                    value={val}
+                    onChange={e => updateInput(i, e.target.value)}
+                    placeholder={`Input #${i + 1}`}
+                    className="h-7 w-40 text-xs font-mono"
+                  />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeInput(i)}
+                    className="h-6 w-6 p-0"
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Editor + Output */}
       <div className="flex-1 flex flex-col md:flex-row">
