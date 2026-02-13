@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, ArrowLeft, Loader2, Trash2, Download, Copy, Check } from 'lucide-react';
+import GoMixEditor from '@/components/GoMixEditor';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -134,29 +135,12 @@ export default function Playground() {
               <Trash2 className="w-3 h-3" />
             </Button>
           </div>
-          <textarea
+          <GoMixEditor
             value={code}
-            onChange={(e) => setCode(e.target.value)}
-            spellCheck={false}
-            className="flex-1 resize-none bg-[#1e1e1e] text-[#d4d4d4] font-mono text-sm p-4 focus:outline-none min-h-[300px] md:min-h-0 leading-relaxed"
+            onChange={setCode}
+            onRun={runCode}
             placeholder="// Write your Go-Mix code here..."
-            onKeyDown={(e) => {
-              // Ctrl/Cmd + Enter to run
-              if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-                e.preventDefault();
-                runCode();
-              }
-              // Tab for indentation
-              if (e.key === 'Tab') {
-                e.preventDefault();
-                const start = e.currentTarget.selectionStart;
-                const end = e.currentTarget.selectionEnd;
-                setCode(code.substring(0, start) + '  ' + code.substring(end));
-                setTimeout(() => {
-                  e.currentTarget.selectionStart = e.currentTarget.selectionEnd = start + 2;
-                }, 0);
-              }
-            }}
+            className="min-h-[300px] md:min-h-0 bg-[#1e1e1e]"
           />
         </div>
 
