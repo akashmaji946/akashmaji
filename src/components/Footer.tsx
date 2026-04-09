@@ -114,7 +114,7 @@ export default function Footer() {
         >
           {/* Current Date/Time */}
           <p className="text-xs text-muted-foreground font-mono">{formatDateTime(currentDateTime)}</p>
-          <p className="text-xs text-muted-foreground font-mono mt-1">Last Updated: January 2026</p>
+          <p className="text-xs text-muted-foreground font-mono mt-1">Last Updated: April 2026</p>
 
           {/* Bhagavad Gita Quote */}
           <div className="max-w-2xl mx-auto mt-6">
