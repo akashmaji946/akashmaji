@@ -17,21 +17,36 @@ import rhapsody from '@/assets/gallery/iisc-rhapsody-2025.jpg';
 import rhapsody2 from '@/assets/gallery/iisc-rhapsody-2025-2.jpg';
 import openDay2 from '@/assets/gallery/iisc-open-day-2025-2.jpg';
 import janmashtami from '@/assets/gallery/iisc-janmashtami-2024.jpg';
+import csaOpenDay from '@/assets/gallery/CSA-Open-Day-2026.jpg';
+import iiScLibrary from '@/assets/gallery/IISc-Library.jpg';
+import iiScOpenDay2026 from '@/assets/gallery/IISc-Open-Day-2026.jpg';
+import pgConfIndia from '@/assets/gallery/PGConf-India-2026.jpg';
+import pravega2026 from '@/assets/gallery/Pravega-2026.jpg';
+import rhapsody2026 from '@/assets/gallery/Rhapsody-2026.jpg';
 
 const portraitImages = [
-  { src: pravegaFest, caption: 'IISc Pravega Fest 2025' },
-  { src: ganeshPuja, caption: 'IISc Ganesh Puja 2025' },
-  { src: pravegaFest2, caption: 'IISc Pravega Fest 2025' },
+  // { src: csaOpenDay, caption: 'CSA Open Day 2026' },
+  // { src: pgConfIndia, caption: 'PGConf India 2026' },
+      // { src: ganeshPuja, caption: 'IISc Ganesh Puja 2025' },
+
 ];
 
 const landscapeImages = [
-  { src: openDay, caption: 'IISc Open Day 2025' },
-  { src: durgaPuja, caption: 'IISc Durga Puja 2025' },
-  { src: pravegaFest3, caption: 'IISc Pravega Fest 2025' },
+
+
+  { src: rhapsody2026, caption: 'Rhapsody 2026' },
+  
+  { src: iiScOpenDay2026, caption: 'IISc Open Day 2026' },
+    { src: csaOpenDay, caption: 'CSA Open Day 2026' },
+
+  { src: pravega2026, caption: 'Pravega 2026' },
   { src: rhapsody, caption: 'IISc Rhapsody 2025' },
-  { src: rhapsody2, caption: 'IISc Rhapsody 2025' },
-  { src: openDay2, caption: 'IISc Open Day 2025' },
+
   { src: janmashtami, caption: 'IISc Janmashtami 2024' },
+  { src: durgaPuja, caption: 'IISc Durga Puja 2025' },
+
+  { src: pgConfIndia, caption: 'PGConf India 2026' },
+  { src: iiScLibrary, caption: 'IISc Library' },
 ];
 
 export default function PersonalGallerySection() {

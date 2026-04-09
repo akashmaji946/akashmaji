@@ -198,7 +198,7 @@ export default function HeroSection() {
                     src={profileImage}
                     alt="Akash Maji"
                     draggable={false}
-                    className="w-full h-full object-cover object-[center_20%] scale-[1.4]"
+                    className="w-full h-full object-cover object-center"
                     loading="eager"
                   />
                 </motion.div>

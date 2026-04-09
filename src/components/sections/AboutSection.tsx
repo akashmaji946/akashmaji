@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import ImageGallerySlider from '../ImageGallerySlider';
 
 // Technology icons using devicons CDN
 const skills = [
@@ -43,6 +44,9 @@ export default function AboutSection() {
             A scholar at IISc Bangalore pursuing research in database systems with industry experience in full-stack development.
           </p>
         </motion.div>
+
+        {/* Image Gallery Slider */}
+        <ImageGallerySlider />
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* About Text */}
