@@ -82,27 +82,27 @@ export default function GoDBPage() {
             </a>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
             
-            <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-3.5 h-8">
+            <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-2.5 sm:px-3.5 h-8">
               <a href="https://github.com/akashmaji946/godb" target="_blank" rel="noopener noreferrer">
                 <Github className="h-3.5 w-3.5 text-primary" />
-                View Source
+                <span className="hidden sm:inline">View Source</span>
               </a>
             </Button>
 
-            <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-3.5 h-8">
+            <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-2.5 sm:px-3.5 h-8">
               <a href="https://github.com/akashmaji946/godb/releases" target="_blank" rel="noopener noreferrer">
                 <Download className="h-3.5 w-3.5 text-emerald-500" />
-                Releases
+                <span className="hidden sm:inline">Releases</span>
               </a>
             </Button>
 
-            <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-3.5 h-8">
+            <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-2.5 sm:px-3.5 h-8">
               <a href="https://github.com/akashmaji946/godb/issues" target="_blank" rel="noopener noreferrer">
                 <Bug className="h-3.5 w-3.5 text-rose-500" />
-                Bug Report
+                <span className="hidden sm:inline">Bug Report</span>
               </a>
             </Button>
           </div>
@@ -190,9 +190,8 @@ export default function GoDBPage() {
                   <div className="text-muted-foreground/60 text-[10px] select-none">godb-shell --repl</div>
                   <div className="w-12" />
                 </div>
-
                 {/* Terminal Body */}
-                <div className="p-6 h-[530px] overflow-hidden select-text font-mono text-[8.5px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-relaxed text-left flex flex-col justify-start">
+                <div className="p-4 sm:p-6 h-[460px] xs:h-[490px] sm:h-[530px] overflow-x-auto overflow-y-hidden select-text font-mono text-[7.5px] xs:text-[8.5px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-relaxed text-left flex flex-col justify-start custom-scrollbar">
                   <div className="text-slate-100/90 whitespace-pre">
                     <div>        +---------------------------------- +</div>
                     <div>        | ██████╗  ██████╗ ██████╗  ██████╗ |</div>
