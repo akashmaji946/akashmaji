@@ -93,6 +93,13 @@ export default function GoDBPage() {
             </Button>
 
             <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-3.5 h-8">
+              <a href="https://github.com/akashmaji946/godb/releases" target="_blank" rel="noopener noreferrer">
+                <Download className="h-3.5 w-3.5 text-emerald-500" />
+                Releases
+              </a>
+            </Button>
+
+            <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5 border-border/60 hover:bg-muted/50 text-xs font-semibold px-3.5 h-8">
               <a href="https://github.com/akashmaji946/godb/issues" target="_blank" rel="noopener noreferrer">
                 <Bug className="h-3.5 w-3.5 text-rose-500" />
                 Bug Report
