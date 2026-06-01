@@ -15,4 +15,13 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        godb: path.resolve(__dirname, 'godb.html'),
+        documentation: path.resolve(__dirname, 'godb/documentation.html'),
+      },
+    },
+  },
 }));

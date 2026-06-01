@@ -14,6 +14,7 @@ const navItems = [
   { label: 'Projects', href: '#projects' },
   { label: 'Reports', href: '#reports' },
   { label: 'Achievements', href: '#achievements' },
+  { label: 'GoDB', href: '/godb.html' },
   { label: 'Contact', href: '#contact' },
   { label: 'Resume', href: '/resume/Resume_Akash_Maji.pdf', isResume: true },
 ];
@@ -65,9 +66,8 @@ export default function Header() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'glass-strong shadow-elegant py-3' : 'py-5'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-strong shadow-elegant py-3' : 'py-5'
+          }`}
       >
         <nav className="container mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
@@ -95,16 +95,25 @@ export default function Header() {
                 >
                   {item.label}
                 </motion.a>
+              ) : item.href.startsWith('/') ? (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  className="px-4 py-2 rounded-full text-sm font-medium transition-colors text-muted-foreground hover:text-foreground cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                </motion.a>
               ) : (
                 <motion.a
                   key={item.href}
                   href={item.href}
                   onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors relative ${
-                    activeSection === item.href.slice(1)
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors relative ${activeSection === item.href.slice(1)
                       ? 'text-primary'
                       : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                    }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -124,7 +133,7 @@ export default function Header() {
           {/* Theme Toggle & Mobile Menu */}
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            
+
             <Button
               variant="ghost"
               size="icon"
@@ -159,6 +168,17 @@ export default function Header() {
                     >
                       {item.label}
                     </motion.a>
+                  ) : item.href.startsWith('/') ? (
+                    <motion.a
+                      key={item.href}
+                      href={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="px-4 py-3 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground cursor-pointer block"
+                    >
+                      {item.label}
+                    </motion.a>
                   ) : (
                     <motion.a
                       key={item.href}
@@ -167,11 +187,10 @@ export default function Header() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                        activeSection === item.href.slice(1)
+                      className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === item.href.slice(1)
                           ? 'bg-primary/10 text-primary'
                           : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </motion.a>
